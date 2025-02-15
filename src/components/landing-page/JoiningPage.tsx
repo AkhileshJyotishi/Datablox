@@ -1,7 +1,11 @@
 import React from 'react';
 import StakingImage from '@/assets/landing-page/staking.png'
 import Dao from '@/assets/landing-page/dao.png'
+import LaunchPad from '@/assets/landing-page/launchpad.png'
+import LearnToEarn from '@/assets/landing-page/learntoearn.png'
+import SeedFunding from '@/assets/landing-page/seedfunding.png'
 import { StaticImageData } from 'next/image';
+import CryptoList from './CryptoList';
 interface DaoSectionProps {
     title: string;
     description: string;
@@ -19,13 +23,13 @@ export const DaoSection: React.FC<DaoSectionProps> = ({
 }) => {
     return (
         <section
-            className={`flex items-center overflow-hidden flex-wrap gap-10 justify-between px-24 py-14 max-md:px-5 ${dir === 'right' ? 'flex-row-reverse' : 'flex-row '}`}
+            className={`flex items-center overflow-hidden flex-wrap gap-8 justify-between px-28 py-0 max-md:px-5 ${dir === 'right' ? 'flex-row-reverse' : 'flex-row '}`}
         >
             <div className="flex flex-col min-w-[240px] w-[612px] max-md:max-w-full h-full flex-grow">
                 <div className={dir === 'right' ? 'self-end w-full flex justify-end' : 'self-start'}>
                     <div className="flex flex-col max-w-full text-white w-[612px]">
-                        <h1 className="text-6xl font-semibold max-md:text-4xl">{title}</h1>
-                        <p className="mt-4 text-2xl leading-10 max-md:max-w-full">
+                        <h1 className="text-6xl font-semibold max-md:text-2xl">{title}</h1>
+                        <p className="mt-4 text-xl leading-10 text-gray-400 max-md:max-w-full">
                             {description}
                         </p>
                             <button
@@ -47,7 +51,7 @@ export const DaoSection: React.FC<DaoSectionProps> = ({
                 loading="lazy"
                 src={imageSrc.src}
                 alt="DAO community illustration"
-                className="object-contain aspect-[1.06] min-w-[240px] w-[500px] max-md:max-w-full"
+                className="object-contain aspect-[1.06] min-w-[240px] w-[600px] max-md:max-w-full"
             />
         </section>
     );
@@ -63,12 +67,34 @@ export default function JoiningPage() {
                 imageSrc={StakingImage}
                 dir="right"
             />
+            <CryptoList/>
             <DaoSection
                 title="DAO"
                 description="Join our decentralized community and take part in shaping the future of our project."
                 buttonText="Learn more"
                 imageSrc={Dao}
                 dir="left"
+            />
+            <DaoSection
+                title="LaunchPad"
+                description="Discover the next big thing in the blockchain world through our exclusive launchpad platform. "
+                buttonText="Learn more"
+                imageSrc={LaunchPad}
+                dir="right"
+            />
+            <DaoSection
+                title="Learn To Earn"
+                description="Unleash your potential in the crypto space with our Learn to Earn program."
+                buttonText="Learn more"
+                imageSrc={LearnToEarn}
+                dir="left"
+            />
+            <DaoSection
+                title="Seed Funding"
+                description="Are you a promising blockchain project in need of seed funding? Look no further."
+                buttonText="Learn more"
+                imageSrc={SeedFunding}
+                dir="right"
             />
         </div>
     );
