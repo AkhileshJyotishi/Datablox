@@ -2,6 +2,7 @@ import React from "react"
 
 import { Metadata, NextPage } from "next"
 import Landingpage from "@/components/landing-page/Landingpage"
+import Marketplace from "@/components/marketplace/Marketplace"
 // interface HomePageProps {}
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 const HomePage: NextPage = () => {
   return <>
-  <Landingpage/>
+    <Marketplace />
   </>
 }
 
