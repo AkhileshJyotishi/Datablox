@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/dataset-page/img1.svg"
-export default function Metadata() {
+export default function PublishPage() {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
