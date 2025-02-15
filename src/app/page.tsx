@@ -1,7 +1,7 @@
 import React from "react"
 
 import { Metadata, NextPage } from "next"
-
+import Section2 from "@/components/landing-page/section2"
 // interface HomePageProps {}
 
 export const metadata: Metadata = {
@@ -10,7 +10,9 @@ export const metadata: Metadata = {
 }
 
 const HomePage: NextPage = () => {
-  return <></>
+  return <>
+  <Section2/>
+  </>
 }
 
 export default HomePage
