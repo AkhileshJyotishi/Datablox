@@ -3,6 +3,8 @@ import Metadata from '@/components/dataset-page/metadata';
 import Image from 'next/image';
 import React from 'react';
 import logo from "@/assets/dataset-page/img1.svg"
+import RelatedDataset from '@/components/dataset-page/relatedDataset';
+import Header from '@/components/landing-page/Header';
 
 // bg color #141414
 export default async function Page({
@@ -21,11 +23,13 @@ export default async function Page({
   };
 
   return (
-    <section className="min-h-screen mx-24 ">
-        <h1 className="text-white text-6xl mt-16 mb-6 text-center">{data.dataName}</h1>
+    <>
+    <Header />    
+    <section className="min-h-screen px-36 ">
+        <h1 className="text-zinc-300 font-semibold text-7xl mt-12 mb-6 text-center">{data.dataName}</h1>
         <div className="flex flex-row gap-8 py-3 justify-center">
 
-          <div className="w-3/5 h-full border border-zinc-700 pb-8 bg-[#141414] bg-opacity-70  shadow-lg flex flex-col items-center justify-center">
+          <div className="w-2/3 h-full border border-zinc-700 pb-8 bg-[#141414] bg-opacity-70  shadow-lg flex flex-col items-center justify-center">
             <div className="border-b w-full h-full border-zinc-700 flex items-center justify-between">
                 <div className="border-r border-zinc-700 ">
                     <Image
@@ -47,10 +51,12 @@ export default async function Page({
               tags={data.tags} 
             />
           </div>
-          <div className="w-2/5 h-full border border-zinc-700 bg-[#141414] bg-opacity-70  shadow-lg flex flex-col items-center justify-center">
+          <div className="w-1/3 h-full bg-opacity-70  shadow-lg flex flex-col items-center justify-center">
             <Dataset />
+            <RelatedDataset/>
           </div>
       </div>
     </section>
+    </>
   );
 }
