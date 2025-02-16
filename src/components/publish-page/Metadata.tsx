@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/dataset-page/img1.svg"
-export default function Metadata({ setUserData,tabNo, setTabNo, setIsTabCompleted }: { setUserData: any,tabNo:any,setTabNo:any,setIsTabCompleted:any }) 
-{
+export default function Metadata({ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }: { userData: any, setUserData: any, tabNo: any, setTabNo: any, setIsTabCompleted: any }) {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -12,12 +11,24 @@ export default function Metadata({ setUserData,tabNo, setTabNo, setIsTabComplete
         tagInput: "",
     });
     useEffect(() => {
-        setUserData((prev: any) => {
-            const updatedData = prev;
-            updatedData.metadata = formData;
-            return updatedData;
-        })
-    }, [formData]);
+        // Whenever formData changes, update userData's 'access' property.
+        setUserData((prev: any) => ({
+            ...prev,
+            metadata: formData,
+        }));
+    }, [formData, setUserData]);
+
+    useEffect(() => {
+        // On mount or when userData changes,
+        // if formData.validate is empty and userData.access exists,
+        // initialize formData from userData.access.
+        if (formData.title === "" && userData?.metadata) {
+            // Only update if the data is different to avoid infinite loops.
+            if (JSON.stringify(formData) !== JSON.stringify(userData.metadata)) {
+                setFormData(userData.metadata);
+            }
+        }
+    }, [userData]);
 
     const [errors, setErrors] = useState({
         title: "",
@@ -68,11 +79,11 @@ export default function Metadata({ setUserData,tabNo, setTabNo, setIsTabComplete
 
         if (!newErrors.title && !newErrors.description && !newErrors.author) {
             console.log("Form submitted:", formData);
-            setTabNo((prev:any)=>{
-                return prev+1;
+            setTabNo((prev: any) => {
+                return prev + 1;
             })
-            setIsTabCompleted((prev:any)=>{
-                prev[tabNo]=true;
+            setIsTabCompleted((prev: any) => {
+                prev[tabNo] = true;
                 return prev;
             })
         }
