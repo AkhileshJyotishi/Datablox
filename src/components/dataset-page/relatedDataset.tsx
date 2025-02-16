@@ -21,7 +21,7 @@ export default function RelatedDataset() {
     <div className="w-full h-full mt-10">
       <h1 className="text-xl text-zinc-500 px-1 font-bold mb-3">Related Datasets</h1>
       {
-        relatedData.map((data,ind)=><div className="mb-5">
+        relatedData.map((data,ind)=><div className="mb-5 w-full">
             <RelatedDataPacket data={data} key={ind}/>
         </div>)
       }
