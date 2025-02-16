@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/dataset-page/img1.svg"
-export default function Access() {
+import { TbReload } from "react-icons/tb";
+
+export default function Access({ setUserData, tabNo, setTabNo, setIsTabCompleted }: { setUserData: any, tabNo: any, setTabNo: any, setIsTabCompleted: any }) {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -10,60 +12,187 @@ export default function Access() {
         tags: [] as string[],
         tagInput: "",
     });
+    useEffect(() => {
+        setUserData((prev: any) => {
+            const updatedData = prev;
+            updatedData.metadata = formData;
+            return updatedData;
+        })
+    }, [formData]);
 
     const [errors, setErrors] = useState({
         title: "",
         description: "",
         author: "",
     });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+
+        // Clear error when user starts typing
+        if (errors[name as keyof typeof errors]) {
+            setErrors({ ...errors, [name]: "" });
+        }
+    };
+
+    const handleTagInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, tagInput: e.target.value });
+    };
+
+    const handleAddTag = () => {
+        if (formData.tagInput.trim() !== "") {
+            setFormData({
+                ...formData,
+                tags: [...formData.tags, formData.tagInput.trim()],
+                tagInput: "",
+            });
+        }
+    };
+
+    const handleRemoveTag = (index: number) => {
+        setFormData({
+            ...formData,
+            tags: formData.tags.filter((_, i) => i !== index),
+        });
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        let newErrors = { title: "", description: "", author: "" };
+
+        if (!formData.title.trim()) newErrors.title = "Title is required.";
+        if (!formData.description.trim()) newErrors.description = "Description is required.";
+        if (!formData.author.trim()) newErrors.author = "Author is required.";
+
+        setErrors(newErrors);
+
+        if (!newErrors.title && !newErrors.description && !newErrors.author) {
+            console.log("Form submitted:", formData);
+            setTabNo((prev: any) => {
+                return prev + 1;
+            })
+            setIsTabCompleted((prev: any) => {
+                prev[tabNo] = true;
+                return prev;
+            })
+        }
+    };
+    const changeParam = ['Contumacious Herring Token — CONHER-70','Caustic Cuttlefish Token — CAUCUT-40','Sagacious Nautilus Token — SAGNAU-82','Adroit Shark Token — ADRSHA-23']
+
+    function getRandomIntInclusive(min:number, max:number) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    const [changeParamnumber,setChangeParamNumber]=useState(getRandomIntInclusive(0, 3));
+      
+
     return (
         <div className="w-full mx-auto py-6 px-32 text-white">
-            <div className="mt-5 mb-10 flex w-full flex-col gap-10 items-center">
+            <div className="text-md font-bold">Data Token<span className="text-zinc-400 text-base">*</span></div>
+            <div className="mt-3 mb-10 flex w-full gap-10 items-center">
+                <div className="flex flex-col">
+                    <div className="rounded-full w-28 h-28 bg-black flex items-center justify-center">
+                        <svg width="4em" height="4em" viewBox="0 0 394 399" xmlns="http://www.w3.org/2000/svg"><path fill="#e000cf" d="M196.742 57.263c15.783 0 28.588-12.815 28.588-28.63C225.33 12.82 212.525 0 196.742 0c-15.798 0-28.603 12.82-28.603 28.632 0 15.816 12.805 28.631 28.603 28.631ZM29.167 213.019c11.694 0 21.16-9.492 21.16-21.193s-9.466-21.182-21.16-21.182c-11.684 0-21.16 9.481-21.16 21.182 0 11.701 9.476 21.193 21.16 21.193ZM365.451 213.019c11.678 0 21.155-9.492 21.155-21.193s-9.477-21.182-21.155-21.182c-11.689 0-21.166 9.481-21.166 21.182 0 11.701 9.477 21.193 21.166 21.193ZM218.467 275.433c0 11.699-9.476 21.19-21.158 21.19-11.687 0-21.163-9.491-21.163-21.19 0-11.7 9.476-21.185 21.163-21.185 11.682 0 21.158 9.485 21.158 21.185ZM112.662 255.393c11.693 0 21.163-9.491 21.163-21.187 0-11.706-9.47-21.187-21.163-21.187-11.687 0-21.158 9.481-21.158 21.187 0 11.696 9.471 21.187 21.158 21.187ZM301.965 234.206c0 11.696-9.476 21.187-21.158 21.187-11.693 0-21.163-9.491-21.163-21.187 0-11.706 9.47-21.187 21.163-21.187 11.682 0 21.158 9.481 21.158 21.187ZM29.175 270.282c7.894 0 14.29-6.418 14.29-14.311 0-7.913-6.396-14.321-14.29-14.321-7.905 0-14.306 6.408-14.306 14.321 0 7.893 6.401 14.311 14.306 14.311ZM379.743 255.971c0 7.893-6.405 14.311-14.297 14.311-7.898 0-14.298-6.418-14.298-14.311 0-7.913 6.4-14.321 14.298-14.321 7.892 0 14.297 6.408 14.297 14.321ZM197.312 355.031c7.884 0 14.292-6.418 14.292-14.326 0-7.903-6.408-14.305-14.292-14.305-7.89 0-14.303 6.402-14.303 14.305 0 7.908 6.413 14.326 14.303 14.326ZM126.962 298.346c0 7.905-6.399 14.31-14.292 14.31-7.898 0-14.303-6.405-14.303-14.31 0-7.911 6.405-14.321 14.303-14.321 7.893 0 14.292 6.41 14.292 14.321ZM280.812 312.656c7.881 0 14.29-6.405 14.29-14.31 0-7.911-6.409-14.321-14.29-14.321-7.902 0-14.305 6.41-14.305 14.321 0 7.905 6.403 14.31 14.305 14.31ZM36.602 306.35c0 4.119-3.327 7.452-7.432 7.452-4.111 0-7.438-3.333-7.438-7.452a7.434 7.434 0 0 1 7.438-7.437 7.433 7.433 0 0 1 7.432 7.437ZM365.448 313.802c4.098 0 7.432-3.333 7.432-7.452a7.438 7.438 0 0 0-7.432-7.437 7.432 7.432 0 0 0-7.437 7.437c0 4.119 3.324 7.452 7.437 7.452ZM204.741 391.102c0 4.112-3.334 7.449-7.432 7.449-4.108 0-7.437-3.337-7.437-7.449a7.435 7.435 0 1 1 14.869 0ZM112.662 356.176c4.106 0 7.438-3.337 7.438-7.444a7.439 7.439 0 0 0-7.438-7.444c-4.1 0-7.432 3.327-7.432 7.444 0 4.107 3.332 7.444 7.432 7.444ZM288.239 348.732c0 4.107-3.334 7.444-7.432 7.444a7.437 7.437 0 0 1-7.438-7.444 7.43 7.43 0 0 1 7.438-7.444c4.098 0 7.432 3.327 7.432 7.444ZM225.33 113.381c0 15.814-12.805 28.631-28.588 28.631-15.798 0-28.603-12.817-28.603-28.631 0-15.809 12.805-28.632 28.603-28.632 15.783 0 28.588 12.823 28.588 28.632ZM196.742 225.617c15.783 0 28.588-12.82 28.588-28.627 0-15.817-12.805-28.637-28.588-28.637-15.798 0-28.603 12.82-28.603 28.637 0 15.807 12.805 28.627 28.603 28.627ZM393.469 113.381c0 15.814-12.802 28.631-28.593 28.631-15.795 0-28.597-12.817-28.597-28.631 0-15.809 12.802-28.632 28.597-28.632 15.791 0 28.593 12.823 28.593 28.632ZM28.598 142.012c15.793 0 28.592-12.817 28.592-28.631 0-15.809-12.8-28.632-28.592-28.632C12.805 84.75 0 97.572 0 113.381c0 15.814 12.805 28.631 28.598 28.631ZM141.832 71.006c0 15.812-12.801 28.632-28.595 28.632-15.795 0-28.595-12.82-28.595-28.632 0-15.822 12.8-28.631 28.595-28.631 15.794 0 28.595 12.81 28.595 28.631ZM113.237 183.242c15.794 0 28.595-12.821 28.595-28.634 0-15.808-12.801-28.629-28.595-28.629-15.795 0-28.595 12.821-28.595 28.629 0 15.813 12.8 28.634 28.595 28.634ZM309.971 71.006c0 15.812-12.804 28.632-28.598 28.632-15.793 0-28.592-12.82-28.592-28.632 0-15.822 12.799-28.631 28.592-28.631 15.794 0 28.598 12.81 28.598 28.631ZM281.373 183.242c15.794 0 28.598-12.821 28.598-28.634 0-15.808-12.804-28.629-28.598-28.629-15.793 0-28.592 12.821-28.592 28.629 0 15.813 12.799 28.634 28.592 28.634Z"></path></svg>
+                    </div>
+                </div>
+                <div className=" border border-zinc-700 w-full px-6 py-2 flex gap-2 items-center">
+                    <div className="text-md  text-zinc-200 font-bold">
+                        {changeParam[changeParamnumber]}
+                    </div>
+                    <button onClick={()=>{
+                        setChangeParamNumber(getRandomIntInclusive(0, 3));
+                    }}>
+                        <TbReload color="#ff4092"/>
+                    </button>
+                </div>
+            </div>
+            <div className="space-y-10">
+                {/* Title Field */}
+                <div>
+                    <label className="block text-lg font-bold mb-1">Title<span className="text-base text-gray-400">*</span></label>
+                    <input
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+                    />
+                    {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
+                </div>
 
-                <div className="w-full">
-                    <label className="block text-lg font-bold mb-1">Title<span className="text-base text-gray-400">*</span></label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
+                {/* Description Field */}
+                <div>
+                    <label className="block text-lg font-bold mb-1">Description<span className="text-base text-gray-400">*</span></label>
+                    <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleInputChange}
+                        rows={3}
                         className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
                     />
-                    {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
+                    {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
                 </div>
-                <div className="w-full">
-                    <label className="block text-lg font-bold mb-1">Title<span className="text-base text-gray-400">*</span></label>
+
+                {/* Author Field */}
+                <div>
+                    <label className="block text-lg font-bold mb-1">Author<span className="text-base text-gray-400">*</span></label>
                     <input
                         type="text"
-                        name="title"
-                        value={formData.title}
+                        name="author"
+                        value={formData.author}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
                     />
-                    {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
+                    {errors.author && <p className="text-red-600 text-sm mt-1">{errors.author}</p>}
                 </div>
-                <div className="w-full">
-                    <label className="block text-lg font-bold mb-1">Title<span className="text-base text-gray-400">*</span></label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                    />
-                    {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
+
+                {/* Tags Input */}
+                <div>
+                    <label className="block text-lg font-bold mb-1">Tags</label>
+                    <div className="flex">
+                        <input
+                            type="text"
+                            value={formData.tagInput}
+                            onChange={handleTagInput}
+                            className="flex-1 px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+                        />
+                        <button
+                            type="button"
+                            onClick={handleAddTag}
+                            className="ml-2 px-4 py-2 bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md 
+                            hover:from-[#8b2347] hover:to-[#9b284f] 
+                            active:from-[#7d1f41] active:to-[#8f2449] 
+                            transition-all duration-300"
+                        >
+                            Add
+                        </button>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                        {formData.tags.map((tag, index) => (
+                            <div
+                                key={index}
+                                className="bg-gray-600 px-3 py-1 rounded-md text-sm flex items-center"
+                            >
+                                {tag}
+                                <button
+                                    type="button"
+                                    onClick={() => handleRemoveTag(index)}
+                                    className="ml-2 text-red-600 hover:text-red-600"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Submit Button */}
-                <div className="flex justify-center gap-10">
+                <div className="flex justify-center">
                     <button
                         // type="submit"
-                        className="py-2 px-8 font-sans font-semibold text-lg bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md 
-                        hover:from-[#8b2347] hover:to-[#9b284f] 
-                        active:from-[#7d1f41] active:to-[#8f2449] 
-                        transition-all duration-300"
-                    >
-                        Back
-                    </button>
-                    <button
-                        // type="submit"
+                        onClick={handleSubmit}
                         className="py-2 px-8 font-sans font-semibold text-lg bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md 
                         hover:from-[#8b2347] hover:to-[#9b284f] 
                         active:from-[#7d1f41] active:to-[#8f2449] 
