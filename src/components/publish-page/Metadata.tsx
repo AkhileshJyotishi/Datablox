@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/dataset-page/img1.svg"
-export default function Metadata() {
+export default function Metadata({ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }: { userData: any, setUserData: any, tabNo: any, setTabNo: any, setIsTabCompleted: any }) {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -10,6 +10,25 @@ export default function Metadata() {
         tags: [] as string[],
         tagInput: "",
     });
+    useEffect(() => {
+        // Whenever formData changes, update userData's 'access' property.
+        setUserData((prev: any) => ({
+            ...prev,
+            metadata: formData,
+        }));
+    }, [formData, setUserData]);
+
+    useEffect(() => {
+        // On mount or when userData changes,
+        // if formData.validate is empty and userData.access exists,
+        // initialize formData from userData.access.
+        if (formData.title === "" && userData?.metadata) {
+            // Only update if the data is different to avoid infinite loops.
+            if (JSON.stringify(formData) !== JSON.stringify(userData.metadata)) {
+                setFormData(userData.metadata);
+            }
+        }
+    }, [userData]);
 
     const [errors, setErrors] = useState({
         title: "",
@@ -60,6 +79,13 @@ export default function Metadata() {
 
         if (!newErrors.title && !newErrors.description && !newErrors.author) {
             console.log("Form submitted:", formData);
+            setTabNo((prev: any) => {
+                return prev + 1;
+            })
+            setIsTabCompleted((prev: any) => {
+                prev[tabNo] = true;
+                return prev;
+            })
         }
     };
 
@@ -74,7 +100,7 @@ export default function Metadata() {
                             width={130}
                             height={130}
                             alt="logo"
-                            // className='h-40'
+                        // className='h-40'
                         />
                     </div>
                 </div>
@@ -171,6 +197,7 @@ export default function Metadata() {
                 <div className="flex justify-center">
                     <button
                         // type="submit"
+                        onClick={handleSubmit}
                         className="py-2 px-8 font-sans font-semibold text-lg bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md 
                         hover:from-[#8b2347] hover:to-[#9b284f] 
                         active:from-[#7d1f41] active:to-[#8f2449] 
