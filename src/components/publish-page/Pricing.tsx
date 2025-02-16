@@ -1,204 +1,119 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+"use client"
+import React, { useEffect, useState } from "react"
+import Image from "next/image"
 import logo from "@/assets/dataset-page/img1.svg"
-export default function Pricing({userData, setUserData,tabNo, setTabNo, setIsTabCompleted }: {userData:any, setUserData: any,tabNo:any,setTabNo:any,setIsTabCompleted:any }) 
-{
-    const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-        author: "",
-        tags: [] as string[],
-        tagInput: "",
-    });
-    useEffect(() => {
-        setUserData((prev: any) => {
-            const updatedData = prev;
-            updatedData.metadata = formData;
-            return updatedData;
-        })
-        if(formData.title==""){
-            setFormData(userData.metadata);
-        }
-    }, [formData]);
-
-    const [errors, setErrors] = useState({
-        title: "",
-        description: "",
-        author: "",
-    });
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-
-        // Clear error when user starts typing
-        if (errors[name as keyof typeof errors]) {
-            setErrors({ ...errors, [name]: "" });
-        }
-    };
-
-    const handleTagInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, tagInput: e.target.value });
-    };
-
-    const handleAddTag = () => {
-        if (formData.tagInput.trim() !== "") {
-            setFormData({
-                ...formData,
-                tags: [...formData.tags, formData.tagInput.trim()],
-                tagInput: "",
-            });
-        }
-    };
-
-    const handleRemoveTag = (index: number) => {
-        setFormData({
-            ...formData,
-            tags: formData.tags.filter((_, i) => i !== index),
-        });
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        let newErrors = { title: "", description: "", author: "" };
-
-        if (!formData.title.trim()) newErrors.title = "Title is required.";
-        if (!formData.description.trim()) newErrors.description = "Description is required.";
-        if (!formData.author.trim()) newErrors.author = "Author is required.";
-
-        setErrors(newErrors);
-
-        if (!newErrors.title && !newErrors.description && !newErrors.author) {
-            console.log("Form submitted:", formData);
-            setTabNo((prev:any)=>{
-                return prev+1;
-            })
-            setIsTabCompleted((prev:any)=>{
-                prev[tabNo]=true;
-                return prev;
-            })
-        }
-    };
-
-    return (
-        <div className="w-full mx-auto py-6 px-32 text-white">
-            <div className="mt-5 mb-10 flex w-full gap-10 items-center">
-                <div className="flex flex-col">
-                    <div className="text-xl font-bold">Data NFT<span className="text-zinc-400 text-base">*</span></div>
-                    <div className=" ">
-                        <Image
-                            src={logo}
-                            width={130}
-                            height={130}
-                            alt="logo"
-                        // className='h-40'
-                        />
-                    </div>
-                </div>
-                <div className=" border border-zinc-700 w-full px-6 py-2">
-                    <div className="text-lg mb-2 text-zinc-200 font-bold">
-                        Ocean Data NFT — OCEAN-NFT
-                    </div>
-                    <div className="text-zinc-300">
-                        This NFT represents  an asset in the Ocean Protocol v4 ecosystem.
-                    </div>
-                </div>
+export default function PublishPage({
+  userData,
+  setUserData,
+  tabNo,
+  setTabNo,
+  setIsTabCompleted,
+}: {
+  userData: any
+  setUserData: any
+  tabNo: any
+  setTabNo: any
+  setIsTabCompleted: any
+}) {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setTabNo((prev: any) => {
+        return prev + 1;
+    })
+    setIsTabCompleted((prev: any) => {
+        prev[tabNo] = true;
+        return prev;
+    })
+  }
+  const [selectTab, setSelectTab] = useState(1);
+  return (
+    <div className="mx-auto flex w-full items-center px-32 pb-3 pt-6 text-white">
+      <div className="px-auto mb-10 mt-5 flex w-full flex-col items-center justify-center">
+        <div className="flex w-4/5 items-center justify-center border-b border-zinc-700 py-5 text-lg">
+          <button
+            className={`flex w-32 items-center justify-center gap-3 border border-zinc-700 py-2 font-bold ${selectTab==1?"bg-white text-black":"bg-black text-white"}`}
+            onClick={()=>setSelectTab(1)}
+            >
+            <div className={`h-5 w-5 rounded-full ${selectTab==1?"border-[6px] border-[#b02d5b] bg-white":"border border-zinc-700 bg-zinc-900"} `}>
             </div>
-            <div className="space-y-10">
-                {/* Title Field */}
-                <div>
-                    <label className="block text-lg font-bold mb-1">Title<span className="text-base text-gray-400">*</span></label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                    />
-                    {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
-                </div>
-
-                {/* Description Field */}
-                <div>
-                    <label className="block text-lg font-bold mb-1">Description<span className="text-base text-gray-400">*</span></label>
-                    <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                        rows={3}
-                        className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                    />
-                    {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
-                </div>
-
-                {/* Author Field */}
-                <div>
-                    <label className="block text-lg font-bold mb-1">Author<span className="text-base text-gray-400">*</span></label>
-                    <input
-                        type="text"
-                        name="author"
-                        value={formData.author}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                    />
-                    {errors.author && <p className="text-red-600 text-sm mt-1">{errors.author}</p>}
-                </div>
-
-                {/* Tags Input */}
-                <div>
-                    <label className="block text-lg font-bold mb-1">Tags</label>
-                    <div className="flex">
-                        <input
-                            type="text"
-                            value={formData.tagInput}
-                            onChange={handleTagInput}
-                            className="flex-1 px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                        />
-                        <button
-                            type="button"
-                            onClick={handleAddTag}
-                            className="ml-2 px-4 py-2 bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md 
-                            hover:from-[#8b2347] hover:to-[#9b284f] 
-                            active:from-[#7d1f41] active:to-[#8f2449] 
-                            transition-all duration-300"
-                        >
-                            Add
-                        </button>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                        {formData.tags.map((tag, index) => (
-                            <div
-                                key={index}
-                                className="bg-gray-600 px-3 py-1 rounded-md text-sm flex items-center"
-                            >
-                                {tag}
-                                <button
-                                    type="button"
-                                    onClick={() => handleRemoveTag(index)}
-                                    className="ml-2 text-red-600 hover:text-red-600"
-                                >
-                                    ✕
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Submit Button */}
-                <div className="flex justify-center">
-                    <button
-                        // type="submit"
-                        onClick={handleSubmit}
-                        className="py-2 px-8 font-sans font-semibold text-lg bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md 
-                        hover:from-[#8b2347] hover:to-[#9b284f] 
-                        active:from-[#7d1f41] active:to-[#8f2449] 
-                        transition-all duration-300"
-                    >
-                        Submit
-                    </button>
-                </div>
-            </div>
+            FIXED
+          </button>
+          <button
+            onClick={()=>setSelectTab(2)}
+            className={`flex w-32 items-center justify-center gap-3 border-zinc-700 py-2 font-bold  ${selectTab==2?"bg-white text-black":"bg-black text-white"}`}
+          >
+            <div className={`h-5 w-5 rounded-full  ${selectTab==2?"border-[6px] border-[#b02d5b] bg-white":"border border-zinc-700 bg-zinc-900"}`}></div>
+            FREE
+          </button>
+          {/* <button className="">Free</button> */}
         </div>
-    );
+        <div className="flex w-4/5 items-center border-zinc-700 py-5 text-lg">
+          {selectTab==1?<Tab1 />:<Tab2/>}
+        </div>
+
+        <div className="mt-5 flex justify-center">
+          <button
+            // type="submit"
+            onClick={handleSubmit}
+            className="rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-8 py-2 font-sans text-lg font-semibold text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+const Tab1 = () => {
+  const [isChecked, setIsChecked] = useState(false)
+
+  return (
+    <div className="mt-4 w-full">
+      <div className="text-base text-zinc-400">
+        Set your price for accessing this dataset. The datatoken for this dataset will be worth the entered amount of
+        the selected base token.
+      </div>
+      <div className="mb-6 mt-6">
+        <div className="text-base font-bold">Price</div>
+        <div className="font-base mt-1 flex w-full items-center justify-center border border-zinc-700 bg-zinc-800 px-3 py-6 font-bold text-zinc-300">
+          <button
+            className={`flex w-32 items-center justify-center gap-2 border border-zinc-600 bg-none py-2 font-bold text-white`}
+          >
+            SONIC
+          </button>
+          <input
+            type="number"
+            className={`flex w-32 items-center focus:outline-none px-2 justify-center gap-2 border border-zinc-600 bg-black/35 py-2  text-white`}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const Tab2 = () => {
+  const [isChecked, setIsChecked] = useState(false)
+
+  return (
+    <div className="mt-4 w-full">
+      <div className="text-base text-zinc-400">
+        Set your dataset as free. The datatoken for this dataset will be given for free via creating a faucet.
+      </div>
+      <div className="mt-5">
+        <div className="text-base font-bold">Price</div>
+        <div
+          className="font-base mt-3 flex w-full cursor-pointer items-center gap-3 border border-zinc-700 bg-zinc-800 px-3 py-3 font-bold text-zinc-100"
+          onClick={() => setIsChecked(!isChecked)}
+        >
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={() => setIsChecked(!isChecked)}
+            className={`h-5 w-5 cursor-pointer border-2 border-[#b02d5b] ${isChecked ? "bg-[#b02d5b]" : "bg-zinc-700"}`}
+          />
+          <span>I want this asset to be free. I understand network fees are still to be paid.</span>
+        </div>
+      </div>
+    </div>
+  )
 }
