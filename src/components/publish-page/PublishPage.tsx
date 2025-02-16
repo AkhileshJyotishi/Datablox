@@ -4,189 +4,47 @@ import Image from "next/image";
 import logo from "@/assets/dataset-page/img1.svg"
 export default function PublishPage({userData, setUserData,tabNo, setTabNo, setIsTabCompleted }: {userData:any, setUserData: any,tabNo:any,setTabNo:any,setIsTabCompleted:any }) 
 {
-    const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-        author: "",
-        tags: [] as string[],
-        tagInput: "",
-    });
-    useEffect(() => {
-        setUserData((prev: any) => {
-            const updatedData = prev;
-            updatedData.metadata = formData;
-            return updatedData;
-        })
-        if(formData.title==""){
-            setFormData(userData.metadata);
-        }
-    }, [formData]);
-
-    const [errors, setErrors] = useState({
-        title: "",
-        description: "",
-        author: "",
-    });
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-
-        // Clear error when user starts typing
-        if (errors[name as keyof typeof errors]) {
-            setErrors({ ...errors, [name]: "" });
-        }
-    };
-
-    const handleTagInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, tagInput: e.target.value });
-    };
-
-    const handleAddTag = () => {
-        if (formData.tagInput.trim() !== "") {
-            setFormData({
-                ...formData,
-                tags: [...formData.tags, formData.tagInput.trim()],
-                tagInput: "",
-            });
-        }
-    };
-
-    const handleRemoveTag = (index: number) => {
-        setFormData({
-            ...formData,
-            tags: formData.tags.filter((_, i) => i !== index),
-        });
-    };
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        let newErrors = { title: "", description: "", author: "" };
-
-        if (!formData.title.trim()) newErrors.title = "Title is required.";
-        if (!formData.description.trim()) newErrors.description = "Description is required.";
-        if (!formData.author.trim()) newErrors.author = "Author is required.";
-
-        setErrors(newErrors);
-
-        if (!newErrors.title && !newErrors.description && !newErrors.author) {
-            console.log("Form submitted:", formData);
-            setTabNo((prev:any)=>{
-                return prev+1;
-            })
-            setIsTabCompleted((prev:any)=>{
-                prev[tabNo]=true;
-                return prev;
-            })
-        }
     };
-
     return (
-        <div className="w-full mx-auto py-6 px-32 text-white">
-            <div className="mt-5 mb-10 flex w-full gap-10 items-center">
-                <div className="flex flex-col">
-                    <div className="text-xl font-bold">Data NFT<span className="text-zinc-400 text-base">*</span></div>
-                    <div className=" ">
-                        <Image
-                            src={logo}
-                            width={130}
-                            height={130}
-                            alt="logo"
-                        // className='h-40'
-                        />
+        <div className="w-full flex items-center mx-auto pt-6 pb-3 px-32 text-white">
+            <div className="mt-5 mb-10 px-auto flex flex-col items-center justify-center w-full ">
+               <div className="py-5 text-lg border-b w-3/4 border-zinc-700">
+                    <div className="flex items-center gap-3">
+                        <div className="py-1 px-3 font-bold rounded-full border border-zinc-700 w-fit flex items-center text-sm gap-3">
+                            1
+                        </div>
+                        <span className="font-extrabold"> Create Tokens & Pricing </span> <span className="px-2 h-fit py-[2px] bg-black border text-sm text-gray-400 border-zinc-700">1 Transaction </span>
                     </div>
-                </div>
-                <div className=" border border-zinc-700 w-full px-6 py-2">
-                    <div className="text-lg mb-2 text-zinc-200 font-bold">
-                        Ocean Data NFT — OCEAN-NFT
+                    <div className="text-lg px-3 mt-3 text-zinc-500">
+                        The Data NFT representing your asset, the Datatokens defining access to it, and the pricing schema are all created in a single transaction.
                     </div>
-                    <div className="text-zinc-300">
-                        This NFT represents  an asset in the Ocean Protocol v4 ecosystem.
+               </div>
+               <div className="py-8 text-lg border-b w-3/4 border-zinc-700">
+                    <div className="flex items-center gap-3">
+                        <div className="py-1 px-3 font-bold rounded-full border border-zinc-700 w-fit flex items-center text-sm gap-3">
+                            2
+                        </div>
+                        <span className="font-extrabold"> Construct & Encrypt DDO </span> 
                     </div>
-                </div>
-            </div>
-            <div className="space-y-10">
-                {/* Title Field */}
-                <div>
-                    <label className="block text-lg font-bold mb-1">Title<span className="text-base text-gray-400">*</span></label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                    />
-                    {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
-                </div>
-
-                {/* Description Field */}
-                <div>
-                    <label className="block text-lg font-bold mb-1">Description<span className="text-base text-gray-400">*</span></label>
-                    <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                        rows={3}
-                        className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                    />
-                    {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
-                </div>
-
-                {/* Author Field */}
-                <div>
-                    <label className="block text-lg font-bold mb-1">Author<span className="text-base text-gray-400">*</span></label>
-                    <input
-                        type="text"
-                        name="author"
-                        value={formData.author}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                    />
-                    {errors.author && <p className="text-red-600 text-sm mt-1">{errors.author}</p>}
-                </div>
-
-                {/* Tags Input */}
-                <div>
-                    <label className="block text-lg font-bold mb-1">Tags</label>
-                    <div className="flex">
-                        <input
-                            type="text"
-                            value={formData.tagInput}
-                            onChange={handleTagInput}
-                            className="flex-1 px-3 py-2 rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-                        />
-                        <button
-                            type="button"
-                            onClick={handleAddTag}
-                            className="ml-2 px-4 py-2 bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md 
-                            hover:from-[#8b2347] hover:to-[#9b284f] 
-                            active:from-[#7d1f41] active:to-[#8f2449] 
-                            transition-all duration-300"
-                        >
-                            Add
-                        </button>
+                    <div className="text-lg px-3 mt-3 text-zinc-500">
+                    Entered metadata is transformed into a structured document (DDO) where the file URLs, and the whole DDO itself are encrypted.
                     </div>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                        {formData.tags.map((tag, index) => (
-                            <div
-                                key={index}
-                                className="bg-gray-600 px-3 py-1 rounded-md text-sm flex items-center"
-                            >
-                                {tag}
-                                <button
-                                    type="button"
-                                    onClick={() => handleRemoveTag(index)}
-                                    className="ml-2 text-red-600 hover:text-red-600"
-                                >
-                                    ✕
-                                </button>
-                            </div>
-                        ))}
+               </div>
+               <div className="py-8 text-lg border-b w-3/4 border-zinc-700">
+                    <div className="flex items-center gap-3">
+                        <div className="py-1 px-3 font-bold rounded-full border border-zinc-700 w-fit flex items-center text-sm gap-3">
+                            3
+                        </div>
+                        <span className="font-extrabold"> Publish DDO </span> <span className="px-2 h-fit py-[2px] bg-black border text-sm text-gray-400 border-zinc-700">1 Transaction </span>
                     </div>
-                </div>
-
-                {/* Submit Button */}
-                <div className="flex justify-center">
+                    <div className="text-lg px-3 mt-3 text-zinc-500">
+                        The encrypted DDO is stored on-chain as part of the Data NFT. Indexers like Aquarius can decrypt the DDO for displaying purposes, but the file URLs can only be decrypted by exchanging the respective datatokens for this asset.
+                    </div>
+               </div>
+               {/* Submit Button */}
+               <div className="flex mt-9 justify-center">
                     <button
                         // type="submit"
                         onClick={handleSubmit}
@@ -199,6 +57,7 @@ export default function PublishPage({userData, setUserData,tabNo, setTabNo, setI
                     </button>
                 </div>
             </div>
+            
         </div>
     );
 }
