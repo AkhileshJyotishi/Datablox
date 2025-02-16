@@ -3,7 +3,7 @@ import Errors from "@/errors"
 import EIP6963Web3Provider from "./EIP6963"
 import WalletConnector from "./interface"
 import type { WalletMetadata, WalletUIProperties } from "./metadata"
-import { kiichainMetadata } from "./metadata"
+import { SonicChainMetadata } from "./metadata"
 
 declare global {
   interface WindowEventMap {
@@ -88,7 +88,7 @@ class EIP6963Provider implements WalletConnector {
 
     try {
       // Step 1: Switch to the expected chain
-      await this.switchOrAddChain(this.provider, kiichainMetadata)
+      await this.switchOrAddChain(this.provider, SonicChainMetadata)
 
       // Step 2: Request accounts
       await this.provider.send("eth_requestAccounts", [])
