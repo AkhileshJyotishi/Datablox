@@ -28,7 +28,7 @@ export default function Dataset() {
                 BUY FOR 1 DAY
             </button>
             <div className="text-xs text-gray-500 mt-3">
-                To use this dataset, you will buy 1 QUEFIS-86 and immediately send it back to the publisher.
+            To access this dataset, you will purchase 1 Sonic and instantly return it to the publisher for verification.
             </div>
         </div>
         <div className="px-6 text-zinc-600 border-t border-zinc-700 flex flex-col justify-center items-center py-3">

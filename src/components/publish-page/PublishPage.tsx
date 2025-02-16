@@ -15,10 +15,10 @@ export default function PublishPage({userData, setUserData,tabNo, setTabNo, setI
                         <div className="py-1 px-3 font-bold rounded-full border border-zinc-700 w-fit flex items-center text-sm gap-3">
                             1
                         </div>
-                        <span className="font-extrabold"> Create Tokens & Pricing </span> <span className="px-2 h-fit py-[2px] bg-black border text-sm text-gray-400 border-zinc-700">1 Transaction </span>
+                        <span className="font-extrabold"> Generate Tokens & Set Pricing </span> <span className="px-2 h-fit py-[2px] bg-black border text-sm text-gray-400 border-zinc-700">1 Transaction </span>
                     </div>
                     <div className="text-lg px-3 mt-3 text-zinc-500">
-                        The Data NFT representing your asset, the Datatokens defining access to it, and the pricing schema are all created in a single transaction.
+                        A Data NFT is created to represent your dataset, along with Datatokens that control access and define pricing — all in a single transaction.
                     </div>
                </div>
                <div className="py-8 text-lg border-b w-3/4 border-zinc-700">
@@ -26,10 +26,10 @@ export default function PublishPage({userData, setUserData,tabNo, setTabNo, setI
                         <div className="py-1 px-3 font-bold rounded-full border border-zinc-700 w-fit flex items-center text-sm gap-3">
                             2
                         </div>
-                        <span className="font-extrabold"> Construct & Encrypt DDO </span> 
+                        <span className="font-extrabold"> Process & Secure Metadata </span> 
                     </div>
                     <div className="text-lg px-3 mt-3 text-zinc-500">
-                    Entered metadata is transformed into a structured document (DDO) where the file URLs, and the whole DDO itself are encrypted.
+                        Your dataset metadata is structured into a Decentralized Data Object (DDO). File URLs and sensitive details are encrypted for security.
                     </div>
                </div>
                <div className="py-8 text-lg border-b w-3/4 border-zinc-700">
@@ -37,10 +37,10 @@ export default function PublishPage({userData, setUserData,tabNo, setTabNo, setI
                         <div className="py-1 px-3 font-bold rounded-full border border-zinc-700 w-fit flex items-center text-sm gap-3">
                             3
                         </div>
-                        <span className="font-extrabold"> Publish DDO </span> <span className="px-2 h-fit py-[2px] bg-black border text-sm text-gray-400 border-zinc-700">1 Transaction </span>
+                        <span className="font-extrabold">  Publish Securely  </span> <span className="px-2 h-fit py-[2px] bg-black border text-sm text-gray-400 border-zinc-700">1 Transaction </span>
                     </div>
                     <div className="text-lg px-3 mt-3 text-zinc-500">
-                        The encrypted DDO is stored on-chain as part of the Data NFT. Indexers like Aquarius can decrypt the DDO for displaying purposes, but the file URLs can only be decrypted by exchanging the respective datatokens for this asset.
+                        The encrypted DDO is stored on-chain within the Data NFT. Indexers can decrypt metadata for display, but actual file access is only granted by exchanging Datatokens.
                     </div>
                </div>
                {/* Submit Button */}
