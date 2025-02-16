@@ -55,7 +55,7 @@ export default async function Page({
             <Dataset />
             <RelatedDataset/>
           </div>
-      </div>
+        </div>
     </section>
     </>
   );

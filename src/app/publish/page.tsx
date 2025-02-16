@@ -5,7 +5,7 @@ import Preview from '@/components/publish-page/Preview';
 import Pricing from '@/components/publish-page/Pricing';
 import PublishPage from '@/components/publish-page/PublishPage';
 import React, { useState } from 'react'
-import { PiCheckCircleFill } from 'react-icons/pi';
+import { MdCheck } from "react-icons/md";
 
 const Tabs = [
     { tab: 1, name: "Metadata" },
@@ -37,15 +37,15 @@ const TabButton = ({
             onClick={() => setTabNo(tab)}
         >
             <div className={`text-sm border p-0  rounded-full h-[28px] w-[28px] flex justify-center items-center ${selected ?
-                    `${isCompleted ? " text-green-700 bg-none" : "text-zine-600 bg-white"} border-gray-200 ` :
-                    `${isCompleted ? " bg-green-700 text-black" : "text-white"} border-gray-200`
+                    `${isCompleted ? " text-green-700 bg-white" : "text-zine-600 bg-white"} border-gray-200 ` :
+                    `${isCompleted ? " bg-green-700 text-white" : "text-white"} border-gray-200`
 
                 }
                 `}>
                 {
                     !isCompleted ?
                         tab :
-                        <PiCheckCircleFill className="w-full h-full" />
+                        <MdCheck className="font-bold text-lg" />
                 }
             </div>
             <div className="text-zinc-200">
@@ -71,11 +71,10 @@ export default function page() {
     return (
         <div className="heading border bg-zinc-900 border-zinc-700">
             <div className="px-10 bg-zinc-800 flex  border-b border-zinc-700 items-center justify-around py-5">
-                {Tabs.map((elem) => (
+                {Tabs.map((elem, ind) => (
                     <>
-                        <div className="w-full flex justify-center items-center">
+                        <div className="w-full flex justify-center items-center" key={ind}>
                             <TabButton
-                                key={elem.tab}
                                 buttonName={elem.name}
                                 selected={elem.tab === tabNo}
                                 isCompleted={isTabCompleted[elem.tab]}
@@ -83,13 +82,13 @@ export default function page() {
                                 setTabNo={setTabNo}
                             />
                         </div>
-                        {elem.tab != 5 && <div className="border border-t h-0 border-zinc-700 w-[800px]"></div>}
+                        {elem.tab != 5 && <div key={ind} className="border border-t h-0 border-zinc-700 w-[800px]"></div>}
                     </>
                 ))}
             </div>
             {/* display tab according to tabNo */}
-            {TabForm.map((tab) => (
-                tab.tabNo === tabNo && <div key={tab.tabNo}>{tab.element}</div>
+            {TabForm.map((tab,ind) => (
+                tab.tabNo === tabNo && <div key={ind}>{tab.element}</div>
             ))}
         </div>
     )

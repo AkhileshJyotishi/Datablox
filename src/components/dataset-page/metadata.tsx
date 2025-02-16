@@ -17,7 +17,7 @@ export default function Metadata({  description, tags }: MetadataProps) {
       feature1:"asfa",
       feature2: "dfkdfalj",
       feature3: "askdasj",
-      feature4: "dfkdfalj",
+      // feature4: "dfkdfalj",
       // feature5: "dfkdfalj",
       // feature6: "dfkdfalj",
       // feature7: "dfkdfalj",
