@@ -1,14 +1,16 @@
 import { defineChain } from "viem"
 
 const kiichain = defineChain({
-  id: 123454321,
-  name: "Kiichain Testnet",
-  nativeCurrency: { name: "Ether", symbol: "kii", decimals: 18 },
+  id: 57054,
+  name: "Sonic Blaze Testnet",
+  nativeCurrency: { name: "Sonic", symbol: "S", decimals: 18 },
   rpcUrls: {
-    default: { http: ["https://a.sentry.testnet.kiivalidator.com:8645"] },
+    default: { 
+      http: ["https://rpc.blaze.soniclabs.com"] 
+    },
   },
   blockExplorers: {
-    default: { name: "Kii Explorer", url: "https://app.kiichain.io/kiichain" },
+    default: { name: "Sonic Explorer", url: "https://testnet.sonicscan.org" },
   },
   contracts: {},
 })
