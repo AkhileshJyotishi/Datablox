@@ -99,18 +99,18 @@ export default function SonicLogo() {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(29.6488 28.2319) rotate(90) scale(28 28.8597)"
         >
-          <stop stop-color="#1C294B" />
+          <stop stopColor="#1C294B" />
           <stop
             offset="0.317213"
-            stop-color="#FF4433"
+            stopColor="#FF4433"
           />
           <stop
             offset="0.597213"
-            stop-color="#FE9A4C"
+            stopColor="#FE9A4C"
           />
           <stop
             offset="1"
-            stop-color="#E0E0E0"
+            stopColor="#E0E0E0"
           />
         </radialGradient>
         <radialGradient
@@ -121,18 +121,18 @@ export default function SonicLogo() {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(29.6488 28.2319) rotate(90) scale(28 28.8597)"
         >
-          <stop stop-color="#1C294B" />
+          <stop stopColor="#1C294B" />
           <stop
             offset="0.317213"
-            stop-color="#FF4433"
+            stopColor="#FF4433"
           />
           <stop
             offset="0.597213"
-            stop-color="#FE9A4C"
+            stopColor="#FE9A4C"
           />
           <stop
             offset="1"
-            stop-color="#E0E0E0"
+            stopColor="#E0E0E0"
           />
         </radialGradient>
         <radialGradient
@@ -143,18 +143,18 @@ export default function SonicLogo() {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(29.6488 28.2319) rotate(90) scale(28 28.8597)"
         >
-          <stop stop-color="#1C294B" />
+          <stop stopColor="#1C294B" />
           <stop
             offset="0.317213"
-            stop-color="#FF4433"
+            stopColor="#FF4433"
           />
           <stop
             offset="0.597213"
-            stop-color="#FE9A4C"
+            stopColor="#FE9A4C"
           />
           <stop
             offset="1"
-            stop-color="#E0E0E0"
+            stopColor="#E0E0E0"
           />
         </radialGradient>
         <radialGradient
@@ -165,18 +165,18 @@ export default function SonicLogo() {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(29.6488 28.2319) rotate(90) scale(28 28.8597)"
         >
-          <stop stop-color="#1C294B" />
+          <stop stopColor="#1C294B" />
           <stop
             offset="0.317213"
-            stop-color="#FF4433"
+            stopColor="#FF4433"
           />
           <stop
             offset="0.597213"
-            stop-color="#FE9A4C"
+            stopColor="#FE9A4C"
           />
           <stop
             offset="1"
-            stop-color="#E0E0E0"
+            stopColor="#E0E0E0"
           />
         </radialGradient>
         <radialGradient
@@ -187,18 +187,18 @@ export default function SonicLogo() {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(29.6488 28.2319) rotate(90) scale(28 28.8597)"
         >
-          <stop stop-color="#1C294B" />
+          <stop stopColor="#1C294B" />
           <stop
             offset="0.317213"
-            stop-color="#FF4433"
+            stopColor="#FF4433"
           />
           <stop
             offset="0.597213"
-            stop-color="#FE9A4C"
+            stopColor="#FE9A4C"
           />
           <stop
             offset="1"
-            stop-color="#E0E0E0"
+            stopColor="#E0E0E0"
           />
         </radialGradient>
         <radialGradient
@@ -209,18 +209,18 @@ export default function SonicLogo() {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(29.6488 28.2319) rotate(90) scale(28 28.8597)"
         >
-          <stop stop-color="#1C294B" />
+          <stop stopColor="#1C294B" />
           <stop
             offset="0.317213"
-            stop-color="#FF4433"
+            stopColor="#FF4433"
           />
           <stop
             offset="0.597213"
-            stop-color="#FE9A4C"
+            stopColor="#FE9A4C"
           />
           <stop
             offset="1"
-            stop-color="#E0E0E0"
+            stopColor="#E0E0E0"
           />
         </radialGradient>
       </defs>

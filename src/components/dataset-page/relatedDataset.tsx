@@ -16,20 +16,6 @@ export default function RelatedDataset() {
             price: "10",
             sales: "160",
         },
-        {
-            chain:"Polygon",
-            operator: "Persea-72",
-            Heading: "Aggregated 1 hour BTC/USDT candles",
-            price: "19,812",
-            sales: "160",
-        },
-        {
-            chain:"Polygon",
-            operator: "Tasang-85",
-            Heading: "Ocean CEX Aggregator:ETH/USDT",
-            price: "5,912",
-            sales: "160",
-        },
     ];
   return (
     <div className="w-full h-full mt-10">
