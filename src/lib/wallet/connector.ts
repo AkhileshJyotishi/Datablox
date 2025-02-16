@@ -10,6 +10,7 @@ const constructWalletConnector = () => {
       walletConnectors.push(new EIP6963Provider(wallet))
     }
   }
+  console.log("hello")
 
   return walletConnectors
 }
