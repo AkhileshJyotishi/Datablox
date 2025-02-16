@@ -10,6 +10,7 @@ interface IAuthContext {
   handleConnectCancellation: (wallet: WalletConnector) => Promise<boolean>
   clearSession: (wallet: WalletConnector) => Promise<boolean>
   login: (wallet: EIP6963Provider) => Promise<void>
+  connectToWallet: (wallet: WalletConnector) => Promise<boolean>
 }
 
 const AuthContext = React.createContext<IAuthContext>({} as IAuthContext)
@@ -95,6 +96,7 @@ export const AuthProvider: IProvider = ({ children }: IProvider) => {
       }
 
       console.log("Error connecting wallet: ", e.message)
+      return false;
     }
   }
 
@@ -142,6 +144,7 @@ export const AuthProvider: IProvider = ({ children }: IProvider) => {
         handleConnectCancellation,
         clearSession,
         login: handleLogin,
+        connectToWallet,
       }}
     >
       {children}
