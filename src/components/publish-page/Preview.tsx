@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/dataset-page/img1.svg"
-export default function Preview() {
+export default function Preview({ setUserData,tabNo, setTabNo, setIsTabCompleted }: { setUserData: any,tabNo:any,setTabNo:any,setIsTabCompleted:any }) {
     const [formData, setFormData] = useState({
         title: "",
         description: "",
