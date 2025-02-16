@@ -62,11 +62,11 @@ export default function page() {
     const [userData, setUserData] = useState<any>({});
 
     const TabForm = [
-        { tabNo: 1, element: <Metadata setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
-        { tabNo: 2, element: <Access setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
-        { tabNo: 3, element: <Pricing setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
-        { tabNo: 4, element: <Preview setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
-        { tabNo: 5, element: <PublishPage setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
+        { tabNo: 1, element: <Metadata userData={userData} setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
+        { tabNo: 2, element: <Access userData={userData} setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
+        { tabNo: 3, element: <Pricing userData={userData} setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
+        { tabNo: 4, element: <Preview userData={userData} setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
+        { tabNo: 5, element: <PublishPage userData={userData} setUserData={setUserData} tabNo={tabNo} setTabNo={setTabNo} setIsTabCompleted={setIsTabCompleted}/> },
     ]
     return (
         <div className="heading border bg-zinc-900 border-zinc-700">
