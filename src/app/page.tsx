@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const HomePage: NextPage = () => {
   return <>
-    <Marketplace />
+    
   </>
 }
 

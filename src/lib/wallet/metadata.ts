@@ -74,7 +74,7 @@ const metadata: WalletMetadata[] = [
   },
 ]
 
-export const kiichainMetadata: Web3ChainData = {
+export const SonicChainMetadata: Web3ChainData = {
   chainId: "0xDEE6", // 123454321 in hex
   chainName: "Sonic Blaze Testnet",
   nativeCurrency: {
