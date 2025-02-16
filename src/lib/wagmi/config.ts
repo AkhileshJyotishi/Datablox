@@ -1,15 +1,15 @@
 import { getDefaultConfig } from "connectkit"
 import { createConfig, http } from "wagmi"
 
-import { KiiChain } from "@/kiichain"
+import { sonicChain } from "@/sonic"
 
 const config = createConfig(
   getDefaultConfig({
-    chains: [KiiChain],
+    chains: [sonicChain],
     transports: {
-      [KiiChain.id]: http(),
+      [sonicChain.id]: http(),
     },
-    appName: "Arc",
+    appName: "token-fusion",
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
   })
 )

@@ -1,6 +1,6 @@
 import { defineChain } from "viem"
 
-const kiichain = defineChain({
+const sonicChain = defineChain({
   id: 57054,
   name: "Sonic Blaze Testnet",
   nativeCurrency: { name: "Sonic", symbol: "S", decimals: 18 },
@@ -15,4 +15,4 @@ const kiichain = defineChain({
   contracts: {},
 })
 
-export default kiichain
+export default sonicChain
