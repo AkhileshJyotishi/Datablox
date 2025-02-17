@@ -102,7 +102,7 @@ export default function Metadata({
   }
 
   return (
-    <div className="mx-auto w-full px-32 py-6 text-white">
+    <div className="mx-auto w-full px-16 md:px-32 py-6 text-white">
       <div className="mb-10 mt-5 flex w-full items-center gap-10">
         <div className="flex flex-col">
           <div className="text-xl font-bold">

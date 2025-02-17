@@ -14,7 +14,7 @@ interface DataPacketProps {
 }
 const DataPacket: React.FC<DataPacketProps> = ({ data }) => {
     return (
-        <div className="border border-[#303030] bg-[#141414] text-gray-400 p-5 max-w-[380px] rounded-md transition-transform duration-200 hover:-translate-y-1 cursor-pointer h-[280px] flex flex-col">
+        <div className="border border-[#303030] bg-[#141414] text-gray-400 p-5  rounded-md transition-transform duration-200 hover:-translate-y-1 cursor-pointer  flex flex-col">
             <div className="flex items-center">
                 <span className="px-2">
                     <HiDownload />

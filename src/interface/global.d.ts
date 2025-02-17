@@ -31,3 +31,17 @@ declare interface IAnchor {
   url: string
   target?: string
 }
+
+
+export interface MetadataState {
+  title: string;
+  description: string;
+  author: string;
+  tags: string[];
+}
+
+export interface MetadataErrors {
+  title: string;
+  description: string;
+  author: string;
+}
