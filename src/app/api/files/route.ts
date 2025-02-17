@@ -1,18 +1,26 @@
-import { NextResponse, type NextRequest } from "next/server";
-import { pinata } from "@/utils/config"
+// app/api/key/route.ts
+import { NextResponse } from "next/server";
+import { pinata } from "@/utils/config";
 
-export async function POST(request: NextRequest) {
+export const dynamic = "force-dynamic";
+
+export async function GET() {
   try {
-    const data = await request.formData();
-    const file: File | null = data.get("file") as unknown as File;
-    const uploadData = await pinata.upload.file(file)
-    const url = await pinata.gateways.convert(uploadData.IpfsHash)
-    return NextResponse.json(url, { status: 200 });
-  } catch (e) {
-    console.log(e);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    const uuid = crypto.randomUUID();
+    const keyData = await pinata.keys.create({
+      keyName: uuid,
+      permissions: {
+        endpoints: {
+          pinning: {
+            pinFileToIPFS: true,
+          },
+        },
+      },
+      maxUses: 1,
+    });
+    return NextResponse.json(keyData, { status: 200 });
+  } catch (error) {
+    console.error("Error creating temporary key:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
