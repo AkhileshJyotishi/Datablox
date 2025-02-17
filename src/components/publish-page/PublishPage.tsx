@@ -1,7 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import logo from "@/assets/dataset-page/img1.svg"
 import axios from "axios";
 import { useAccount } from "wagmi";
 import { toast } from "sonner";
