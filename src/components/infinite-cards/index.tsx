@@ -19,6 +19,7 @@ export const InfiniteMovingCards = ({
     description: string;
     price: string;
     sales: string;
+    id:number;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";

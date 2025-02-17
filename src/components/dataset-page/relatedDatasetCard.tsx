@@ -8,6 +8,7 @@ interface DataPacketProps {
         Heading: string;
         price: string;
         sales: string;
+        id:number;
     };
 }
 const RelatedDataPacket: React.FC<DataPacketProps> = ({ data }) => {
