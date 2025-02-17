@@ -19,7 +19,7 @@ export default function Access({
     setIsTabCompleted: any;
 }) {
     const [formData, setFormData] = useState({
-        validate: "",
+        providerUrl: "",
         IPFS: "",
         samplefile: "",
         timeout: 25,
@@ -38,7 +38,7 @@ export default function Access({
         // On mount or when userData changes,
         // if formData.validate is empty and userData.access exists,
         // initialize formData from userData.access.
-        if (formData.validate === "" && userData?.access) {
+        if (formData.providerUrl === "" && userData?.access) {
             // Only update if the data is different to avoid infinite loops.
             if (JSON.stringify(formData) !== JSON.stringify(userData.access)) {
                 setFormData(userData.access);
@@ -49,7 +49,7 @@ export default function Access({
 
     // Define errors using the same keys as your form fields
     const [errors, setErrors] = useState({
-        validate: "",
+        providerUrl: "",
         IPFS: "",
         samplefile: "",
         timeout: "",
@@ -78,14 +78,14 @@ export default function Access({
         e.preventDefault();
         // Create an errors object with the same keys as your state
         let newErrors = {
-            validate: "",
+            providerUrl: "",
             IPFS: "",
             samplefile: "",
             timeout: "",
         };
 
-        if (!formData.validate.trim())
-            newErrors.validate = "Provider URL is required.";
+        if (!formData.providerUrl.trim())
+            newErrors.providerUrl = "Provider URL is required.";
         if (!formData.IPFS.trim()) newErrors.IPFS = "IPFS is required.";
         if (!formData.samplefile.trim())
             newErrors.samplefile = "Sample file is required.";
@@ -96,7 +96,7 @@ export default function Access({
 
         // If there are no error messages, submit the form
         if (
-            !newErrors.validate &&
+            !newErrors.providerUrl &&
             !newErrors.IPFS &&
             !newErrors.samplefile &&
             !newErrors.timeout
@@ -170,8 +170,8 @@ export default function Access({
                     <div className="flex gap-2 mt-2">
                         <input
                             type="text"
-                            name="validate"
-                            value={formData.validate}
+                            name="providerUrl"
+                            value={formData.providerUrl}
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 text-sm rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
                         />
@@ -184,8 +184,8 @@ export default function Access({
                             Validate
                         </button>
                     </div>
-                    {errors.validate && (
-                        <p className="text-red-600 text-sm mt-1">{errors.validate}</p>
+                    {errors.providerUrl && (
+                        <p className="text-red-600 text-sm mt-1">{errors.providerUrl}</p>
                     )}
                 </div>
 
