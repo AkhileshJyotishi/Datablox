@@ -3,11 +3,31 @@ import dynamic from 'next/dynamic';
 import React, { useState, useMemo } from 'react';
 import { MdCheck } from "react-icons/md";
 
-const PublishPage = dynamic(() => import('@/components/publish-page/PublishPage'), { ssr: false, loading: () => <p>Loading...</p> });
-const Pricing = dynamic(() => import('@/components/publish-page/Pricing'), { ssr: false, loading: () => <p>Loading...</p> });
-const Preview = dynamic(() => import('@/components/publish-page/Preview'), { ssr: false, loading: () => <p>Loading...</p> });
-const Metadata = dynamic(() => import('@/components/publish-page/Metadata'), { ssr: false, loading: () => <p>Loading...</p> });
-const Access = dynamic(() => import('@/components/publish-page/Access'), { ssr: false, loading: () => <p>Loading...</p> });
+
+const SkeletonLoader = () => {
+    return (
+      <section className="px-12 mt-12 mb-10 relative animate-pulse">
+        <h1 className="text-zinc-700 font-bold flex text-6xl mt-14 mb-2 items-center text-center">
+          <span className="pb-2 bg-gray-700 h-10 w-48 rounded-md"></span>
+          <span className="scale-90 px-2 bg-gray-700 h-10 w-12 ml-2 rounded-md"></span>
+        </h1>
+        <h1 className="text-zinc-600 w-4/5 text-xl mb-6 mt-5 bg-gray-700 h-6 rounded-md"></h1>
+        <div className="min-h-10 mt-16 flex flex-col gap-4">
+          <div className="bg-gray-700 h-24 w-full rounded-md"></div>
+          <div className="bg-gray-700 h-24 w-full rounded-md"></div>
+          <div className="bg-gray-700 h-24 w-full rounded-md"></div>
+        </div>
+      </section>
+    );
+  };
+  
+//   export default SkeletonLoader;
+  
+const PublishPage = dynamic(() => import('@/components/publish-page/PublishPage'), { ssr: false, loading: () => <SkeletonLoader/> });
+const Pricing = dynamic(() => import('@/components/publish-page/Pricing'), { ssr: false, loading: () => <SkeletonLoader/> });
+const Preview = dynamic(() => import('@/components/publish-page/Preview'), { ssr: false, loading: () => <SkeletonLoader/> });
+const Metadata = dynamic(() => import('@/components/publish-page/Metadata'), { ssr: false, loading: () => <SkeletonLoader/> });
+const Access = dynamic(() => import('@/components/publish-page/Access'), { ssr: false, loading: () => <SkeletonLoader/> });
 
 type TabButtonProps = {
     tab: number;
@@ -44,7 +64,7 @@ export default function Page() {
     ], [userData, tabNo, setUserData, setTabNo, setIsTabCompleted]);
 
     return (
-        <div className="heading border bg-zinc-900 border-zinc-700">
+        <div className="heading border backdrop-blur-lg border-zinc-700">
             <div className="px-20 flex border-b border-zinc-700 items-center justify-center py-5">
                 {TabForm.map((elem, ind) => (
                     <div key={ind} className={`flex justify-start items-center ${elem.tabNo!==5 && "w-full"}`}>

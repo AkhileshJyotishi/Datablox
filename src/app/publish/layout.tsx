@@ -13,7 +13,7 @@ const Layout = ({
     return (
         <>
         
-            <section className="px-12 md:px-36 mt-40 mb-10 relative ">
+            <section className="  mt-12 mb-10 relative ">
                 <h1 className="text-zinc-200 font-bold flex text-6xl mt-14 mb-2 items-center text-center">
                     <span className="pb-2"> Publish into </span>
                     <span className="scale-90 px-2">

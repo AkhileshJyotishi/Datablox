@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import logo from "@/assets/dataset-page/img1.svg"
+import TextInput from "@/ui/text-input"
+import TagsInput from "../tags-input"
 export default function Metadata({
   userData,
   setUserData,
@@ -19,7 +21,7 @@ export default function Metadata({
     title: "",
     description: "",
     author: "",
-    tags: [] as string[],
+    tags: [] as readonly string[],
     tagInput: "",
   })
   useEffect(() => {
@@ -58,26 +60,11 @@ export default function Metadata({
     }
   }
 
-  const handleTagInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, tagInput: e.target.value })
+  const handleTagsChange = (newTags: readonly string[]) => {
+    setFormData((prev) => ({ ...prev, tags: newTags }))
   }
 
-  const handleAddTag = () => {
-    if (formData.tagInput.trim() !== "") {
-      setFormData({
-        ...formData,
-        tags: [...formData.tags, formData.tagInput.trim()],
-        tagInput: "",
-      })
-    }
-  }
 
-  const handleRemoveTag = (index: number) => {
-    setFormData({
-      ...formData,
-      tags: formData.tags.filter((_, i) => i !== index),
-    })
-  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -114,7 +101,7 @@ export default function Metadata({
               width={130}
               height={130}
               alt="logo"
-              // className='h-40'
+            // className='h-40'
             />
           </div>
         </div>
@@ -126,7 +113,7 @@ export default function Metadata({
           </div>
         </div>
       </div>
-      <div className="space-y-10">
+      <div className="flex flex-col gap-10">
         {/* Title Field */}
         <div>
           <label className="mb-1 block text-lg font-bold">
@@ -137,7 +124,7 @@ export default function Metadata({
             name="title"
             value={formData.title}
             onChange={handleInputChange}
-            className="w-full rounded-md border border-gray-600 bg-zinc-900 px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+            className="w-full rounded-md border border-gray-600 bg-transparent px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
           />
           {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
         </div>
@@ -152,7 +139,7 @@ export default function Metadata({
             value={formData.description}
             onChange={handleInputChange}
             rows={3}
-            className="w-full rounded-md border border-gray-600 bg-zinc-900 px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+            className="w-full rounded-md border border-gray-600  px-3 py-2 bg-transparent text-white focus:outline-none focus:ring-1 focus:ring-red-800"
           />
           {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description}</p>}
         </div>
@@ -162,51 +149,26 @@ export default function Metadata({
           <label className="mb-1 block text-lg font-bold">
             Author<span className="text-base text-gray-400">*</span>
           </label>
-          <input
+          <TextInput
             type="text"
             name="author"
+
             value={formData.author}
             onChange={handleInputChange}
-            className="w-full rounded-md border border-gray-600 bg-zinc-900 px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+            className="w-full rounded-md border border-gray-600  px-3 py-2 bg-transparent text-white focus:outline-none focus:ring-1 focus:ring-red-800"
           />
           {errors.author && <p className="mt-1 text-sm text-red-600">{errors.author}</p>}
         </div>
-
-        {/* Tags Input */}
         <div>
-          <label className="mb-1 block text-lg font-bold">Tags</label>
-          <div className="flex">
-            <input
-              type="text"
-              value={formData.tagInput}
-              onChange={handleTagInput}
-              className="flex-1 rounded-md border border-gray-600 bg-zinc-900 px-3 py-2 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-            />
-            <button
-              type="button"
-              onClick={handleAddTag}
-              className="ml-2 rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-4 py-2 text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]"
-            >
-              Add
-            </button>
-          </div>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {formData.tags.map((tag, index) => (
-              <div
-                key={index}
-                className="flex items-center rounded-md bg-gray-600 px-3 py-1 text-sm"
-              >
-                {tag}
-                <button
-                  type="button"
-                  onClick={() => handleRemoveTag(index)}
-                  className="ml-2 text-red-600 hover:text-red-600"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
+
+          <label className=" block text-lg font-bold mb-1">Tags</label>
+          <TagsInput
+            predefinedTags={["climate", "ecommerce", "medical", "agriculture"]}
+            value={formData.tags}
+            onTagsChange={handleTagsChange}
+            placeholder="Add tags..."
+            className="bg-white"
+          />
         </div>
 
         {/* Submit Button */}
