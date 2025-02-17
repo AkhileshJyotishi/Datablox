@@ -11,42 +11,11 @@ export default function Table({ SampleData }: TableProps) {
     return <p className="text-zinc-400 text-center">No data available.</p>;
   }
 
-  // Extract column headers dynamically
-  const tableHeaders = Object.keys(SampleData[0]);
-
   return (
-    <div className="overflow-x-auto w-full">
-      <table className="w-full min-w-[600px] max-w-[600px] border-collapse border border-zinc-500">
-        {/* Table Header */}
-        <thead>
-          <tr className="bg-zinc-700 text-zinc-300">
-            {tableHeaders.map((header, index) => (
-              <th 
-                key={index} 
-                className="border border-gray-700 px-4 py-2 text-left min-w-[150px]"
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-
-        {/* Table Body */}
-        <tbody>
-          {SampleData.map((row, rowIndex) => (
-            <tr key={rowIndex} className="hover:bg-gray-800/50">
-              {tableHeaders.map((header, colIndex) => (
-                <td 
-                  key={colIndex} 
-                  className="border border-gray-700 px-4 py-2 text-zinc-400 min-w-[150px]"
-                >
-                  {row[header]}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="overflow-x-auto w-full bg-zinc-900 p-4 rounded-md border border-zinc-700">
+      <pre className="text-zinc-300 text-sm whitespace-pre-wrap">
+        {JSON.stringify(SampleData, null, 2)}
+      </pre>
     </div>
   );
 }
