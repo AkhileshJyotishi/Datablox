@@ -7,7 +7,7 @@ import logo from "@/assets/dataset-page/img1.svg";
 
 export default function CompleteMetaData({ metadata }: { metadata: any }) {
     return (
-        <section className="min-h-screen px-36 mt-[10%]">
+        <section className="min-h-screen px-36 ">
             <h1 className="text-zinc-300 font-semibold text-7xl mt-12 mb-6 text-center">
                 {metadata?.title || "Untitled Dataset"}
             </h1>

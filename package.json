@@ -43,6 +43,7 @@
     "js-cookie": "^3.0.5",
     "jszip": "^3.10.1",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.475.0",
     "marked": "^14.1.2",
     "mini-svg-data-uri": "^1.4.4",
     "minidenticons": "^4.2.1",
