@@ -65,11 +65,11 @@ const page = () => {
   return (
    
      
-      <section className="container mx-auto px-6 relative z-10 flex justify-center items-center  min-h-[calc(100vh-100px)]">
+      <section className="container -mt-10 mx-auto px-6 relative z-10 flex justify-center items-center  min-h-[calc(100vh-100px)]">
         <div className="max-w-4xl mx-auto text-center ">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Transform Your Research with
+            Transforming Data Markets with
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 {" "}
                 AI Power
@@ -83,8 +83,7 @@ const page = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-gray-400 text-xl mb-8 max-w-2xl mx-auto"
           >
-            Upload your research papers and let our AI transform them into engaging presentations, podcasts, and visual
-            content.
+            Buy, sell, and monetize datasets seamlessly. AI-powered, blockchain-secured, and built for trust
           </motion.p>
 
           <motion.div
@@ -93,11 +92,11 @@ const page = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <button  className="bg-purple-600 hover:bg-purple-700 text-white px-8">
+            <button  className="bg-purple-600 py-2 flex hover:bg-purple-700 text-white px-8">
               <FileText className="mr-2 h-5 w-5" />
               Upload Paper
             </button>
-            <button   className="text-white border-purple-500 hover:bg-purple-500/20">
+            <button   className="text-white py-2 flex border-purple-500 hover:bg-purple-500/20">
               <Sparkles className="mr-2 h-5 w-5" />
               See Examples
             </button>

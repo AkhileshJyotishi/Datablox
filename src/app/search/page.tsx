@@ -1,43 +1,38 @@
 import DataPacket from "@/components/marketplace/DataPacket";
 import axios from "axios";
 import React from "react";
-import { motion } from "framer-motion"
 import NotFoundPage from "./NotFoundPage";
+import DataPacketGrid from "./GridComponent";
+
+interface Metadata {
+  id: number;
+  operator: string;
+  chain: string;
+  Heading: string;
+  price: string;
+  sales: string;
+  address?: string;
+  description?: string;
+}
 
 export default async function Page({ searchParams }: { searchParams: { query?: string } }) {
   const query = searchParams?.query || "";
-  let metadatas = [];
+  let metadatas: Metadata[] = [];  // ✅ Explicit type added
+
   try {
-    const RelevantTags = await axios.post(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-search-results`,{
-      searchQuery:query
-    })
-    metadatas = RelevantTags.data.metadatas;
-    console.log(metadatas)
+    const RelevantTags = await axios.post(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-search-results`, {
+      searchQuery: query,
+    });
+
+    metadatas = RelevantTags.data.metadatas as Metadata[]; // ✅ Ensure TypeScript knows its type
+    console.log(metadatas);
   } catch (error) {
-    
+    console.error("Error fetching metadata:", error);
   }
 
   return (
     <div>
-      {
-        (metadatas && metadatas?.length>0) ?
-        metadatas.map((metadata:any,index:number) => {
-          const data = {
-            operator:`TSANG_${index}54`,
-            chain:"Sonic",
-            Heading:metadata.title,
-            address:metadata.address,
-            description:metadata.description,
-            price:metadata.price,
-            sales:metadata.sales || 0,
-            id:metadata.id
-          }
-          return (
-            <DataPacket data={data} key={index}/>
-          )
-        }) :
-        <NotFoundPage/>
-      }
+      {metadatas.length > 0 ? <DataPacketGrid dataset={metadatas} query={query} /> : <NotFoundPage />}
     </div>
   );
 }

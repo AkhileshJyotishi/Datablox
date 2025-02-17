@@ -14,6 +14,7 @@ interface DataPacketProps {
         address?: string;
         description?: string;
     };
+    isSearchPage?: boolean
 }
 // chain:string;
 // operator: string;
@@ -25,11 +26,11 @@ interface DataPacketProps {
 {/* <div className="flex items-center"> */ }
 
 
-const DataPacket: React.FC<DataPacketProps> = ({ data }) => {
+const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage=false }) => {
     return (
         <Link href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data.id}`} 
         >
-            <div className="border backdrop-blur-sm border-[#303030] relative bg-transparent p-6 rounded-3xl overflow-hidden h-full cursor-pointer">
+            <div className={`${isSearchPage?"":"border border-[#303030]"} backdrop-blur-sm relative bg-transparent p-6 rounded-3xl overflow-hidden h-full cursor-pointer`}>
                 <div className="flex items-center text-white">
                     <span className="px-2">
                         <HiDownload />
