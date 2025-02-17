@@ -1,4 +1,5 @@
 "use client"
+import MetadataSkeleton from '@/components/publish-page/meta-skeleton';
 import dynamic from 'next/dynamic';
 import React, { useState, useMemo } from 'react';
 import { MdCheck } from "react-icons/md";
@@ -26,7 +27,7 @@ const SkeletonLoader = () => {
 const PublishPage = dynamic(() => import('@/components/publish-page/PublishPage'), { ssr: false, loading: () => <SkeletonLoader/> });
 const Pricing = dynamic(() => import('@/components/publish-page/Pricing'), { ssr: false, loading: () => <SkeletonLoader/> });
 const Preview = dynamic(() => import('@/components/publish-page/Preview'), { ssr: false, loading: () => <SkeletonLoader/> });
-const Metadata = dynamic(() => import('@/components/publish-page/Metadata'), { ssr: false, loading: () => <SkeletonLoader/> });
+const Metadata = dynamic(() => import('@/components/publish-page/Metadata'), { ssr: false, loading: () => <MetadataSkeleton/> });
 const Access = dynamic(() => import('@/components/publish-page/Access'), { ssr: false, loading: () => <SkeletonLoader/> });
 
 type TabButtonProps = {
@@ -64,7 +65,7 @@ export default function Page() {
     ], [userData, tabNo, setUserData, setTabNo, setIsTabCompleted]);
 
     return (
-        <div className="heading border backdrop-blur-lg border-zinc-700">
+        <div className="min-w-[40rem] md:min-w-[80rem] max-w-7xl border backdrop-blur-lg border-zinc-700">
             <div className="px-20 flex border-b border-zinc-700 items-center justify-center py-5">
                 {TabForm.map((elem, ind) => (
                     <div key={ind} className={`flex justify-start items-center ${elem.tabNo!==5 && "w-full"}`}>
@@ -79,7 +80,7 @@ export default function Page() {
                     </div>
                 ))}
             </div>
-            {/* Display tab according to tabNo */}
+          
             {TabForm.find(tab => tab.tabNo === tabNo)?.element}
         </div>
     );

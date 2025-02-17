@@ -1,10 +1,6 @@
-"use client"
-import React, { useEffect, useState } from "react"
-import Image from "next/image"
-import logo from "@/assets/dataset-page/img1.svg"
-import Metadata from "../dataset-page/metadata"
-import Dataset from "../dataset-page/dataset"
-import RelatedDataset from "../dataset-page/relatedDataset"
+// "use client"
+import React from "react"
+
 import CompleteMetaData from "../dataset-page/CompleteMetaData"
 export default function PublishPage({
   userData,
@@ -44,8 +40,7 @@ export default function PublishPage({
   };
 
 
-  const [selectTab, setSelectTab] = useState(1)
   return (
-    <CompleteMetaData metadata={data} />
+    <CompleteMetaData metadata={data} pageName="preview" />
   )
 }

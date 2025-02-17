@@ -64,11 +64,11 @@ export const FloatingNav = ({
       <motion.div
      
         className={cn(
-          " relative z-10 inset-x-0 mt-8 mx-auto flex max-w-[80%] items-center justify-between space-x-4 rounded-full border border-transparent py-2 pl-8 pr-2 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] bg-transparent  dark:border-white/[0.2] ",
+          " relative z-10 inset-x-0 mt-8 mx-auto flex max-w-[80%] items-center justify-between space-x-4 rounded-full border border-transparent py-2 pl-8 pr-4 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] bg-transparent  dark:border-white/[0.2] ",
           className
         )}
       >
-        <div className="center gap-2.5 w-full">
+        <div className="center gap-4  w-full">
           {navItems.map((navItem, idx) => (
             <Link
               key={`link=${idx}`}
@@ -78,7 +78,7 @@ export const FloatingNav = ({
               )}
             >
               <span className="block sm:hidden">{navItem.icon}</span>
-              <span className="hidden text-sm sm:block">{navItem.name}</span>
+              <span className="hidden text-lg font-bold sm:block">{navItem.name}</span>
             </Link>
           ))}
            <div className='flex ml-auto text-gray-400 border border-[#303030] rounded-2xl p-3 items-center'>
