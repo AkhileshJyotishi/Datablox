@@ -29,7 +29,7 @@ export default async function Page({
         <h1 className="text-zinc-300 font-semibold text-7xl mt-12 mb-6 text-center">{data.dataName}</h1>
         <div className="flex flex-row gap-8 py-3 justify-center">
 
-          <div className="w-2/3 h-full border border-zinc-700 pb-8 bg-[#141414] bg-opacity-70  shadow-lg flex flex-col items-center justify-center">
+          <div className="w-2/3 h-full border border-zinc-700 pb-8 bg-[#141414]  shadow-lg flex flex-col items-center justify-center">
             <div className="border-b w-full h-full border-zinc-700 flex items-center justify-between">
                 <div className="border-r border-zinc-700 ">
                     <Image

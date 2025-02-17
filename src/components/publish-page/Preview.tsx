@@ -40,8 +40,8 @@ export default function PublishPage({
   return (
     <div className="mx-auto flex w-full items-center px-16 pb-3 pt-6 text-white">
       <div className="px-auto mb-10 mt-5 flex w-full flex-col items-center justify-center">
-        <div className="flex flex-row justify-center gap-8 py-3">
-          <div className="flex h-full w-2/3 flex-col items-center justify-center border border-zinc-700 bg-[#141414] bg-opacity-70 pb-8 shadow-lg">
+        <div className="flex flex-row justify-center  gap-8 py-3">
+          <div className="flex h-full w-2/3 flex-col items-center justify-center border border-zinc-700 bg-[#141414]  pb-8 shadow-lg">
             <div className="flex h-full w-full items-center justify-between border-b border-zinc-700">
               <div className="border-r border-zinc-700">
                 <Image
