@@ -17,6 +17,10 @@ const nextConfig = {
       {
         hostname: "example.com",
       },
+      
+      {
+        hostname: "images.unsplash.com",
+      }
     ],
   },
   compiler: {

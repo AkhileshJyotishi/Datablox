@@ -1,10 +1,12 @@
+"use client"
 import React from 'react'
-import limg from "@/assets/home/left.png"
-import rimg from "@/assets/home/right.png"
-import { HeroHighlight } from '../ui/hero-highlight'
-import { TypewriterEffect } from '../typewriter'
-import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
+
+import { motion } from "framer-motion"
+import { FileText, Sparkles } from "lucide-react"
+
 import { FaCopy, FaFileAlt, FaPenNib, FaColumns, FaArrowUp, FaBox, FaCompass } from "react-icons/fa";
+import { RoboAnimation } from '../robo-animation';
+
 
 const Skeleton = () => (
   <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
@@ -61,46 +63,87 @@ const page = () => {
 
   const words = [{ text: "AI" }, { text: "Agent" }, { text: "based" }, { text: "Data" }, { text: "nft" }, { text: "marketplace" }]
   return (
-    <>
-      <HeroHighlight>
-        <img className='absolute  right-2/3 w-[1200px] h-auto -bottom-6 rotate-180 ' src={limg.src} />
-        <img className='absolute  -left-1/2 md:left-[62%] w-[1600px] h-auto -top-14   ' src={rimg.src} />
-        <TypewriterEffect words={words} />
+   
+     
+      <section className="container mx-auto px-6 relative z-10 flex justify-center items-center  min-h-[calc(100vh-100px)]">
+        <div className="max-w-4xl mx-auto text-center ">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+              Transform Your Research with
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                {" "}
+                AI Power
+              </span>
+            </h1>
+          </motion.div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-gray-400 text-xl mb-8 max-w-2xl mx-auto"
+          >
+            Upload your research papers and let our AI transform them into engaging presentations, podcasts, and visual
+            content.
+          </motion.p>
 
-      </HeroHighlight>
-      <HeroHighlight>
-        <div className='relative mx-auto mt-12 gap-4'>
-          <div className="px-8">
-            <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black dark:text-white">
-              Packed with thousands of features
-            </h4>
-
-            <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
-              From Image generation to video generation, Everything AI has APIs for
-              literally everything. It can even create this website copy for you.
-            </p>
-          </div>
-          <BentoGrid className=" mx-auto">
-            {items.map((item, i) => (
-              <BentoGridItem
-                key={i}
-                title={item.title}
-                description={item.description}
-                header={item.header}
-                icon={item.icon}
-                className={i === 3 || i === 6 ? "md:col-span-2" : ""}
-              />
-            ))}
-          </BentoGrid>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <button  className="bg-purple-600 hover:bg-purple-700 text-white px-8">
+              <FileText className="mr-2 h-5 w-5" />
+              Upload Paper
+            </button>
+            <button   className="text-white border-purple-500 hover:bg-purple-500/20">
+              <Sparkles className="mr-2 h-5 w-5" />
+              See Examples
+            </button>
+          </motion.div>
         </div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 ">
+        <RoboAnimation />
+      </div>
+      </section>
+ 
+    
 
-      </HeroHighlight>
 
 
-    </>
+
   )
 }
 
 export default page
 
+
+{/* <TypewriterEffect words={words} /> */ }
+
+{/* 
+      <div className='relative   mx-auto mt-12 gap-4'>
+        <div className="px-8">
+          <h4 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black dark:text-white">
+            Packed with thousands of features
+          </h4>
+
+          <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
+            From Image generation to video generation, Everything AI has APIs for
+            literally everything. It can even create this website copy for you.
+          </p>
+        </div>
+        <BentoGrid className=" mx-auto">
+          {items.map((item, i) => (
+            <BentoGridItem
+              key={i}
+              title={item.title}
+              description={item.description}
+              header={item.header}
+              icon={item.icon}
+              className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+            />
+          ))}
+        </BentoGrid>
+      </div> 
+      */}
