@@ -1,13 +1,7 @@
 import React from "react"
-// import clsx from "clsx"
 import { PiWarningCircleFill } from "react-icons/pi"
 import { MultiValue } from "react-select"
 import CreatableSelect from "react-select/creatable"
-
-// import CloseIcon from "@/components/icons/closeIcon"
-// import AddIcon from "@/components/icons/plus"
-// import { SecondaryTag } from "../badges"
-// import TextInput from "../textInput"
 
 interface TagsInputProps {
   predefinedTags: string[]
@@ -24,7 +18,6 @@ const TagsInput: React.FC<TagsInputProps> = ({
   predefinedTags,
   onTagsChange,
   id,
-  // className,
   initialtags,
   errorMessage,
   placeholder,
@@ -45,7 +38,6 @@ const TagsInput: React.FC<TagsInputProps> = ({
   const val = value?.map((mp) => ({ label: mp, value: mp }))
   return (
       <div className="flex flex-row justify-between w-full gap-1 p-1">
-      
         <CreatableSelect
           isMulti
           id={id}
@@ -56,11 +48,11 @@ const TagsInput: React.FC<TagsInputProps> = ({
             handleTagsChange(val)
           }}
           closeMenuOnSelect
-          className="rounded-md w-full border  px-3 py-1  border-gray-600 outline-none ring-0 ring-offset-0 ring-transparent text-white   "
+          className="rounded-md w-full border px-3 py-1 border-gray-600 outline-none ring-0 ring-offset-0 ring-transparent text-white bg-transparent"
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
-              border: "none",
+              border: "0px solid #4A4A4A",
               backgroundColor: "transparent",
               color: "white",
             }),
@@ -70,33 +62,33 @@ const TagsInput: React.FC<TagsInputProps> = ({
                 backgroundColor: isDisabled
                   ? undefined
                   : isSelected
-                    ? "red"
+                    ? "#9e2750"
                     : isFocused
-                      ? "#101014"
+                      ? "#b02d5b"
                       : "#464E55",
-                color: isFocused ? "white" : "black",
+                color: isFocused ? "black" : "#E5E5E5",
                 ":active": {
                   ...styles[":active"],
-                  backgroundColor: !isDisabled ? (isSelected ? "#161A1F" : "#161A1F") : undefined,
+                  backgroundColor: !isDisabled ? (isSelected ? "transparent" : "tranparent") : undefined,
                 },
               }
             },
             multiValueLabel: (styles) => ({
               ...styles,
-              color: "white",
+              color: "#E5E5E5",
               gap: "4px",
             }),
             multiValueRemove: (styles) => ({
               ...styles,
-              color: "#101014",
+              color: "#E5E5E5",
               ":hover": {
-                backgroundColor: "#00B87D",
+                backgroundColor: "#9e2750",
                 color: "white",
               },
             }),
             menuList: (styles) => ({
               ...styles,
-              backgroundColor: "black",
+              backgroundColor: "#292F34",
               zIndex: 18,
             }),
           }}
@@ -115,7 +107,6 @@ const TagsInput: React.FC<TagsInputProps> = ({
           value={val}
         />
       </div>
-
   )
 }
 

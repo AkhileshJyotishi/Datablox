@@ -209,7 +209,7 @@ export default function Access({
               name="providerUrl"
               value={formData.providerUrl}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 text-sm rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+              className="w-full px-3 py-2 text-sm rounded-md bg-transparent border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
             />
             <button
               className="uppercase font-bold text-sm ml-2 px-4 py-2 bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449] transition-all duration-300"
@@ -227,7 +227,7 @@ export default function Access({
           <label className="text-md font-bold">
             IPFS File<span className="text-zinc-400 text-base">*</span>
           </label>
-          <div className="w-full max-w-4xl mx-auto min-h-96 border border-dashed bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 rounded-lg">
+          <div className="w-full max-w-4xl mx-auto min-h-96 border border-dashed bg-white dark:bg-black border-gray-400 dark:border-gray-400 rounded-lg">
             <FileUpload onChange={handleFileUpload} />
           </div>
           {files.length > 0 && (
@@ -279,7 +279,7 @@ export default function Access({
               placeholder="https://file.com/file.json"
               value={formData.samplefile}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 text-sm rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+              className="w-full px-3 py-2 text-sm rounded-md bg-transparent border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
             />
             <button
               className="uppercase font-bold text-sm ml-2 px-4 py-2 bg-gradient-to-r from-[#9e2750] to-[#b02d5b] text-white rounded-md hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449] transition-all duration-300"
@@ -304,7 +304,7 @@ export default function Access({
               placeholder="7 days"
               value={formData.timeout}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 text-sm rounded-md bg-zinc-900 border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+              className="w-full px-3 py-2 text-sm rounded-md bg-transparent border border-gray-600 text-white focus:outline-none focus:ring-1 focus:ring-red-800"
             />
           </div>
           {errors.timeout && (

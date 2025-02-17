@@ -89,7 +89,7 @@ export default function Metadata({
   }
 
   return (
-    <div className="mx-auto w-full px-16 md:px-32 py-6 text-white">
+    <div className="mx-auto w-full px-16 md:px-32 py-6 text-white ">
       <div className="mb-10 mt-5 flex w-full items-center gap-10">
         <div className="flex flex-col">
           <div className="text-xl font-bold">
@@ -143,22 +143,6 @@ export default function Metadata({
           />
           {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description}</p>}
         </div>
-
-        {/* Author Field */}
-        <div>
-          <label className="mb-1 block text-lg font-bold">
-            Author<span className="text-base text-gray-400">*</span>
-          </label>
-          <TextInput
-            type="text"
-            name="author"
-
-            value={formData.author}
-            onChange={handleInputChange}
-            className="w-full rounded-md border border-gray-600  px-3 py-2 bg-transparent text-white focus:outline-none focus:ring-1 focus:ring-red-800"
-          />
-          {errors.author && <p className="mt-1 text-sm text-red-600">{errors.author}</p>}
-        </div>
         <div>
 
           <label className=" block text-lg font-bold mb-1">Tags</label>
@@ -170,6 +154,24 @@ export default function Metadata({
             className="bg-white"
           />
         </div>
+        {/* Author Field */}
+        <div>
+          <label className="mb-1 block text-lg font-bold">
+            Author<span className="text-base text-gray-400">*</span>
+          </label>
+          <input
+            type="text"
+            name="author"
+            value={formData.author}
+            onChange={handleInputChange}
+            className="w-full rounded-md border border-gray-600  px-3 py-2 bg-transparent text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+          />
+          {errors.author && <p className="mt-1 text-sm text-red-600">{errors.author}</p>}
+
+
+          
+        </div>
+
 
         {/* Submit Button */}
         <div className="flex justify-center">

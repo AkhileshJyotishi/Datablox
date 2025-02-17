@@ -88,7 +88,7 @@ const Tab1 = ({ price, setPrice }: { price: number, setPrice: any }) => {
       </div>
       <div className="mb-6 mt-6">
         <div className="text-base font-bold">Price</div>
-        <div className="font-base mt-1 flex w-full items-center justify-center border border-zinc-700 bg-zinc-800 px-3 py-6 font-bold text-zinc-300">
+        <div className="font-base mt-1 flex w-full items-center justify-center border border-gray-400 bg-transparent px-3 py-6 font-bold text-zinc-300">
           <button
             className={`flex w-32 items-center justify-center gap-2 border border-zinc-600 bg-none py-2 font-bold text-white`}
           >

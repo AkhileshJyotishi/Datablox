@@ -62,17 +62,17 @@ export default function Metadata({created_at, description, tags }: MetadataProps
         </div>
       </h2>
       <div className="mb-4 px-4">
-        <h3 className="text-xl font-semibold mb-2 text-zinc-300">Description</h3>
-        <p className="text-zinc-400">{description}</p>
+        <h3 className="text-2xl font-semibold mb-2 text-zinc-300">Description</h3>
+        <p className="text-white/75 text-lg italic">{description}</p>
       </div>
       <div className='px-4'>
-        <h3 className="text-xl font-semibold mt-2 text-zinc-300">Tags</h3>
+        <h3 className="text-2xl font-semibold mt-2 text-zinc-300">Tags</h3>
         <div className="flex flex-wrap gap-2 mt-3">
           <Tags tags={tags} />
         </div>
       </div>
       <div className='px-4 mt-6'>
-        <h3 className="text-xl font-semibold text-zinc-300 mb-2">Sample Data</h3>
+        <h3 className="text-2xl font-semibold text-zinc-300 mb-2">Sample Data</h3>
         <Table SampleData={SampleData} />
       </div>
     </div>
