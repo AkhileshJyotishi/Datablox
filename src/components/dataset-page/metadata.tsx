@@ -6,15 +6,16 @@ interface MetadataProps {
   // owner: string;
   description: string;
   tags: string[];
+  created_at:string;
 }
 
 
 
-export default function Metadata({  description, tags }: MetadataProps) {
+export default function Metadata({created_at, description, tags }: MetadataProps) {
   const SampleData = [
     {
-      srNo:"1",
-      feature1:"asfa",
+      srNo: "1",
+      feature1: "asfa",
       feature2: "dfkdfalj",
       feature3: "askdasj",
       // feature4: "dfkdfalj",
@@ -24,22 +25,41 @@ export default function Metadata({  description, tags }: MetadataProps) {
       // feature8: "dfkdfalj",
       // feature9: "dfkdfalj",
     },
-    
+
   ]
   const tableHeaders = Object.keys(SampleData[0]);
 
+  function timeAgo(timestamp: string): string {
+    const now = new Date();
+    const past = new Date(timestamp);
+    const seconds = Math.floor((now.getTime() - past.getTime()) / 1000);
+
+    if (seconds < 60) return `${seconds} seconds ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes} minutes ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours} hours ago`;
+    const days = Math.floor(hours / 24);
+    if (days < 30) return `${days} days ago`;
+    const months = Math.floor(days / 30);
+    if (months < 12) return `${months} months ago`;
+    const years = Math.floor(months / 12);
+
+    return `${years} years ago`;
+  }
+
   return (
-    <div className="">
+    <div className="w-full">
       <h2 className="text-lg font-mono text-zinc-700 mb-6 flex">
-          <FaArrowDown className="mt-2 ml-2"/> 
-          <PiLineVerticalLight  className="mt-1 mr-1 text-2xl"/> 
-          <div className="mt-1">
-            DATASET
-          </div>
-          <PiLineVerticalLight  className="mt-1 mr-1 text-2xl"/> 
-          <div className="mt-1">
-            Published 2 years ago
-          </div>
+        <FaArrowDown className="mt-2 ml-2" />
+        <PiLineVerticalLight className="mt-1 mr-1 text-2xl" />
+        <div className="mt-1">
+          DATASET
+        </div>
+        <PiLineVerticalLight className="mt-1 mr-1 text-2xl" />
+        <div className="mt-1">
+          Published {timeAgo(created_at)}
+        </div>
       </h2>
       <div className="mb-4 px-4">
         <h3 className="text-xl font-semibold mb-2 text-zinc-300">Description</h3>
@@ -48,12 +68,12 @@ export default function Metadata({  description, tags }: MetadataProps) {
       <div className='px-4'>
         <h3 className="text-xl font-semibold mt-2 text-zinc-300">Tags</h3>
         <div className="flex flex-wrap gap-2 mt-3">
-          <Tags/>
+          <Tags tags={tags} />
         </div>
       </div>
       <div className='px-4 mt-6'>
         <h3 className="text-xl font-semibold text-zinc-300 mb-2">Sample Data</h3>
-        <Table SampleData={SampleData}/>
+        <Table SampleData={SampleData} />
       </div>
     </div>
   );
@@ -61,26 +81,26 @@ export default function Metadata({  description, tags }: MetadataProps) {
 
 
 
-function Tags() {
-    const tags = [
-        "defi",
-        "orderbook",
-        "desights",
-        "gitcoin-grant-protocol",
-        
-    ];
+function Tags({ tags }: { tags: any }) {
+  // const tags = [
+  //     "defi",
+  //     "orderbook",
+  //     "desights",
+  //     "gitcoin-grant-protocol",
 
-    return (
-            <div className='flex gap-2 flex-wrap'>
-                {
-                    tags.map((tag,index)=>{
-                        return(
-                            <div className='border border-[#303030] text-gray-400 items-center justify-center px-3 cursor-pointer hover:text-[#ff4092]' key={index}>
-                                {tag}
-                            </div>
-                        )
-                    })
-                }
+  // ];
+
+  return (
+    <div className='flex gap-2 flex-wrap'>
+      {
+        tags.map((tag: any, index: number) => {
+          return (
+            <div className='border border-[#303030] text-gray-400 items-center justify-center px-3 cursor-pointer hover:text-[#ff4092]' key={index}>
+              {tag}
             </div>
-    )
+          )
+        })
+      }
+    </div>
+  )
 }

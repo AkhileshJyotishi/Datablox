@@ -12,9 +12,7 @@ const Layout = ({
   
     return (
         <>
-            {/* <Header /> */}
-            <MarketHeader/>
-            <section className="px-36 mb-10">
+            <section className="px-36 mb-10 mt-[10%]">
                 <h1 className="text-zinc-200 font-bold flex text-6xl mt-14 mb-2 items-center text-center">
                     <span className="pb-2"> Publish into </span>
                     <span className="scale-90 px-2">
@@ -23,10 +21,10 @@ const Layout = ({
                     </span>
                     
                 </h1>
-                <h1 className="text-zinc-300 w-4/5 text-xl mb-6">
+                <h1 className="text-zinc-300 w-4/5 text-xl mb-6 mt-5">
                     Highlight the important features of your dataset or algorithm to make it more discoverable and catch the interest of data consumers.
                 </h1>
-                <div className="min-h-10 ">
+                <div className="min-h-10 mt-16">
                     {children}
                 </div>
             </section>
