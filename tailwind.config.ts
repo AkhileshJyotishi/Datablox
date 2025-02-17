@@ -63,7 +63,7 @@ const config: Config = {
           6: "#E54E51",
         },
         primary: "#000",
-        secondary: "#000",
+        secondary: "#2A1346",
         graph: {
           red: "#FF6A6A",
           green: "#1AC069",

@@ -80,7 +80,7 @@ export const FloatingNav = ({
           className
         )}
       >
-        <div className="center gap-2.5">
+        <div className="center gap-2.5 w-full">
           {navItems.map((navItem, idx) => (
             <Link
               key={`link=${idx}`}
@@ -93,8 +93,8 @@ export const FloatingNav = ({
               <span className="hidden text-sm sm:block">{navItem.name}</span>
             </Link>
           ))}
-           <div className='flex ml-auto text-gray-400 border border-[#303030] p-3 items-center'>
-                    <input type="text" className='bg-transparent outline-none w-[300px]' placeholder='Search...' />
+           <div className='flex ml-auto text-gray-400 border border-[#303030] rounded-2xl p-3 items-center'>
+                    <input type="text" className='bg-transparent outline-none ' placeholder='Search...' />
                     <CiSearch size={20} />
                   </div>
         </div>

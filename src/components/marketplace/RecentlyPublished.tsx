@@ -62,7 +62,7 @@ export default function RecentlyPublished() {
     return (
         <div className='w-[95%] mx-auto'>
             <p className='text-xl my-8 text-gray-400 font-bold'>Recently Published</p>
-            <div className='flex items-center justify-between gap-4 flex-wrap'>
+            <div className=' relative z-0 grid grid-cols-1 gap-4 md:grid-cols-3'>
                 {datasets.map((dataset, index) => (
                     <DataPacket key={index} data={dataset} />
                 ))}
