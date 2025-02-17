@@ -30,51 +30,7 @@ const TagsInput: React.FC<TagsInputProps> = ({
   placeholder,
   value,
 }) => {
-  // const [tags, setTags] = useState<string[]>(initialtags ?? [])
-  // const [inputValue, setInputValue] = useState<string>("")
-  // const [suggestions, setSuggestions] = useState<string[]>([])
-
-  // const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const inputText = e.target.value
-  //   setInputValue(inputText)
-  //   let matchedTags: string[] = []
-  //   if (predefinedTags.length > 0) {
-  //     matchedTags = predefinedTags.filter((tag) =>
-  //       tag.toLowerCase().includes(inputText.toLowerCase().trim())
-  //     )
-  //   }
-
-  //   setSuggestions(matchedTags)
-  // }
-
-  // const addTag = (tagText?: string) => {
-  //   if (tagText) {
-  //     onTagsChange([...tags, tagText])
-  //     setTags((tags) => [...tags, tagText])
-  //     setInputValue("")
-  //     setSuggestions([])
-  //   } else if (inputValue.trim() !== "") {
-  //     onTagsChange([...tags, inputValue])
-  //     setTags([...tags, inputValue])
-  //     setInputValue("")
-  //     setSuggestions([])
-  //   }
-  // }
-
-  // const removeTag = (tagText: string) => {
-  //   const updatedTags = tags.filter((tag) => tag !== tagText)
-  //   setTags(updatedTags)
-  //   onTagsChange(updatedTags)
-  // }
-  // const handleBlur = () => {
-  //   setSuggestions([])
-  // }
-
-  // const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === "Enter") {
-  //     addTag()
-  //   }
-  // }
+ 
   const handleTagsChange = (
     val: MultiValue<{
       label: string
@@ -88,7 +44,6 @@ const TagsInput: React.FC<TagsInputProps> = ({
   const predefinedInit = (predefinedTags ?? []).map((tag) => ({ label: tag, value: tag }))
   const val = value?.map((mp) => ({ label: mp, value: mp }))
   return (
-    <div className="flex flex-col items-start w-full ">
       <div className="flex flex-row justify-between w-full gap-1 p-1">
       
         <CreatableSelect
@@ -101,7 +56,7 @@ const TagsInput: React.FC<TagsInputProps> = ({
             handleTagsChange(val)
           }}
           closeMenuOnSelect
-          className="rounded-md w-full border-[0.01px] border-[#505054] outline-none ring-0 ring-offset-0 ring-transparent text-text   "
+          className="rounded-md w-full border  px-3 py-1  border-gray-600 outline-none ring-0 ring-offset-0 ring-transparent text-white   "
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
@@ -161,14 +116,6 @@ const TagsInput: React.FC<TagsInputProps> = ({
         />
       </div>
 
-
-      {errorMessage ? (
-        <span className="flex gap-1 p-1 text-accent_red text-[12px] items-center">
-          <PiWarningCircleFill />
-          <div>{errorMessage}</div>
-        </span>
-      ) : null}
-    </div>
   )
 }
 

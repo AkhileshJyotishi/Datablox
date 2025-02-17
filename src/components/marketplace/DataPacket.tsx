@@ -21,7 +21,7 @@ interface DataPacketProps {
 
 const DataPacket: React.FC<DataPacketProps> = ({ data }) => {
     return (
-        <div className="border  border-[#303030] relative bg-transparent p-6 rounded-3xl overflow-hidden ">
+        <div className="border  border-[#303030] relative bg-transparent p-6 rounded-3xl overflow-hidden h-full">
             
             <div className="flex items-center text-white">
                 <span className="px-2">

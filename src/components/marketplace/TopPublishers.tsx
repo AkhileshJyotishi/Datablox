@@ -14,14 +14,24 @@ export default function TopPublishers() {
     ];
 
     return (
-        <div className='w-[95%] mx-auto'>
-            <p className='text-xl my-8 text-gray-400 font-bold'>Top Publishers</p>
+        <div className='w-full mx-auto'>
+
+            <p className='text-2xl my-8 text-gray-400 font-extrabold'>Top Publishers</p>
             {/* <div className='flex items-center gap-4 flex-wrap'> */}
             <div className="relative z-0 grid grid-cols-1 gap-4 md:grid-cols-3">
+
                 {publishers.map((publisher, index) => (
-                    <div key={index} className="border border-[#303030] bg-[#141414] text-gray-400 p-5  rounded-md transition-transform duration-200 hover:-translate-y-1 cursor-pointer  flex gap-3 items-center ">
-                        <span className='text-gray-400 text-lg'>{index + 1}</span>
-                        <div className='flex gap-3 items-center'>
+                    <div key={index}
+                        className="group/feature border border-[#303030]  text-gray-400 p-5  rounded-md transition-transform duration-200 hover:-translate-y-1 cursor-pointer  flex gap-3 items-center "
+
+                    >
+                        {index < 4 && (
+                            <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none -z-1" />
+                        )}
+                        {index >= 4 && (
+                            <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none -z-1" />
+                        )}
+                        <div className='flex gap-3 items-center z-50 relative'>
                             <img src={avatar.src} className='rounded-full h-10' alt="" />
                             <div className='flex-col flex justify-center'>
                                 <div className='text-white font-bold'>{publisher.address}</div>
