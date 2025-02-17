@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/landing-page/Header";
 import { LiaEthereum } from "react-icons/lia";
 import SonicLogo from "@/assets/publish-page/sonicLogo.svg"
+import MarketHeader from "@/components/marketplace/MarketHeader";
 // ${selected ? "bg-blue-500 text-white" : "bg-gray-700 text-gray-300"} 
                 //  ${isCompleted ? "border-2 border-green-400" : ""}`
 
@@ -11,7 +12,8 @@ const Layout = ({
   
     return (
         <>
-            <Header />
+            {/* <Header /> */}
+            <MarketHeader/>
             <section className="px-36 mb-10">
                 <h1 className="text-zinc-200 font-bold flex text-6xl mt-14 mb-2 items-center text-center">
                     <span className="pb-2"> Publish into </span>
