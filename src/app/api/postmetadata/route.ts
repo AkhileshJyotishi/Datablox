@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import axios from "axios";
 import { NextResponse } from "next/server";
 
 const supabaseURL = process.env.SUPABASE_URL;
@@ -33,8 +34,10 @@ export async function POST(request: Request) {
             samplefile: body.access.samplefile,
             timeout: body.access.timeout,
             price: body.price,
-            owner: body.owner,
-        };
+            owner: body.owner, // wallet address 
+            tokenId:body.tokenId
+        }; 
+
 
         if (!(supabaseURL && supabaseAnonKey)) {
             throw new Error("Supabase URL or anon key is not defined");

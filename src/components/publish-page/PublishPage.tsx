@@ -19,10 +19,12 @@ export default function PublishPage({ userData, setUserData, tabNo, setTabNo, se
             return;
         }
         try {
+            // 
             setLoading(true);
             const response = await axios.post('/api/postmetadata', {
                 ...userData,
                 owner: address
+                // tokenId:
             })
             if (response.status == 200) {
                 setLoading(false);
