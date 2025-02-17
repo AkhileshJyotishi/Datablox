@@ -1,30 +1,31 @@
-"use client";
-import React, { useState } from "react";
-import { PlaceholdersAndVanishInput } from "../placeholder-search";
-import { useRouter } from "next/navigation";
+"use client"
+import React, { useState } from "react"
+import { PlaceholdersAndVanishInput } from "../placeholder-search"
+import { useRouter } from "next/navigation"
 
 const Search = () => {
-  const router = useRouter();
-  const [query, setQuery] = useState("");
+  const router = useRouter()
+  const [query, setQuery] = useState("")
 
   const placeholders = [
-    "What's the first rule of Fight Club?",
-    "Who is Tyler Durden?",
-    "Where is Andrew Laeddis Hiding?",
-    "Write a Javascript method to reverse a string",
-    "How to assemble your own PC?",
-  ];
+    "Find AI training datasets for image recognition",
+    "Looking for financial market trends? Try 'Stock Market Data'",
+    "Search for medical imaging datasets (X-ray, MRI, CT scans)",
+    "Explore NLP datasets for chatbot training",
+    "Discover climate change datasets for research",
+    "Find blockchain transaction datasets for analysis",
+  ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
+    setQuery(e.target.value)
+  }
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!query.trim()) return; // Prevent empty queries
-    router.push(`/search?query=${encodeURIComponent(query)}`);
-    console.log("submitted:", query);
-  };
+    e.preventDefault()
+    if (!query.trim()) return // Prevent empty queries
+    router.push(`/search?query=${encodeURIComponent(query)}`)
+    console.log("submitted:", query)
+  }
 
   return (
     <>
@@ -34,7 +35,7 @@ const Search = () => {
         onSubmit={onSubmit}
       />
     </>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search
