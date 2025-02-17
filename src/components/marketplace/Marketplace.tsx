@@ -9,32 +9,25 @@ import { BackgroundCellCore } from '../misc/BackgroundCellAnimation'
 import { PlaceholdersAndVanishInput } from '../placeholder-search'
 import Search from './search-bar'
 import { InfiniteMovingCards } from '../infinite-cards'
-
+ 
 export default function Marketplace() {
 
+  
+  
   const tags = [
-    "defi",
-    "orderbook",
-    "desights",
-    "gitcoin-grant-protocol",
-    "fdd",
-    "odc",
-    "bounty",
-    "dimitra",
-    "grant-applications",
-    "data",
     "AI",
-    "data-challenge",
-    "trade",
-    "financial",
-    "gitcoin",
-    "fantom",
-    "health",
-    "grant-votes",
-    "unicef",
-    "ai"
+    "machine-learning",
+    "deep-learning",
+    "computer-vision",
+    "natural-language-processing",
+    "financial-data",
+    "blockchain",
+    "cryptocurrency",
+    "healthcare",
+    "medical-imaging",
+    "speech-recognition",
+    "autonomous-vehicles"
   ];
-
   const testimonials = [
     {
       quote:
@@ -167,13 +160,7 @@ export default function Marketplace() {
           </div>
           <div className='flex gap-2 flex-wrap mt-4 max-w-5xl justify-center p-2 mx-auto'>
             {
-              tags.map((tag, index) => {
-                return (
-                  <div className='border border-[#303030] text-gray-400 items-center justify-center px-3 cursor-pointer hover:text-[#ff4092]' key={index}>
-                    {tag}
-                  </div>
-                )
-              })
+              <TagComp tags={tags}/>
             }
           </div>
           <div className='mt-24'>
@@ -193,5 +180,20 @@ export default function Marketplace() {
         </div>
       </div>
     </div>
+  )
+}
+
+
+export function TagComp({tags}:{tags:string[]}){
+  return (
+    <>
+    {tags.map((tag:any, index:number) => {
+      return (
+        <div className='border border-[#303030] text-gray-400 items-center justify-center px-3 cursor-pointer hover:text-[#ff4092]' key={index}>
+          {tag}
+        </div>
+      )
+    })}
+    </>
   )
 }
