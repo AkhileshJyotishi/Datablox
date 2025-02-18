@@ -1,8 +1,233 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/home/akhilesh/arc/erc1155/contracts/DatasetOwnership.sol": {
-      "lastModificationDate": 1739884768592,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/contracts/DatasetERC20.sol": {
+      "lastModificationDate": 1739888953031,
+      "contentHash": "af2aa8a0b1c2026fbee63c45dcf3aed9",
+      "sourceName": "contracts/DatasetERC20.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [],
+      "artifacts": [
+        "DatasetTokenERC20"
+      ]
+    },
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1739897047544,
+      "contentHash": "227a6eb2225701c12d9c959b758b6333",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./extensions/IERC20Metadata.sol",
+        "../../utils/Context.sol",
+        "../../interfaces/draft-IERC6093.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1739897047495,
+      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+      "lastModificationDate": 1739897047503,
+      "contentHash": "267d92fe4de67b1bdb3302c08f387dbf",
+      "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IERC1155Errors",
+        "IERC20Errors",
+        "IERC721Errors"
+      ]
+    },
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1739897047613,
+      "contentHash": "8f19f64d2adadf448840908bbaf431c8",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "lastModificationDate": 1739897047614,
+      "contentHash": "794db3115001aa372c79326fcfd44b1f",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    },
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/contracts/DatasetOwnership.sol": {
+      "lastModificationDate": 1739896130270,
       "contentHash": "f9847a70bc2944a4217d0d566a8bfd69",
       "sourceName": "contracts/DatasetOwnership.sol",
       "solcConfig": {
@@ -41,8 +266,8 @@
         "DatasetOwnership"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
-      "lastModificationDate": 1739883334393,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
+      "lastModificationDate": 1739897047513,
       "contentHash": "7c7e5fac496b72e79ede7720a44a887c",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/ERC1155.sol",
       "solcConfig": {
@@ -85,44 +310,8 @@
         "ERC1155"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1739883334228,
-      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/Arrays.sol": {
-      "lastModificationDate": 1739883334136,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/Arrays.sol": {
+      "lastModificationDate": 1739897047432,
       "contentHash": "d7ecd50ca59f27485f37e919aeb0392a",
       "sourceName": "@openzeppelin/contracts/utils/Arrays.sol",
       "solcConfig": {
@@ -162,8 +351,8 @@
         "Arrays"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
-      "lastModificationDate": 1739883334473,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "lastModificationDate": 1739897047536,
       "contentHash": "7c03c1e37c3dc24eafb76dc2b8a5c3a6",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -200,46 +389,8 @@
         "ERC165"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
-      "lastModificationDate": 1739883334314,
-      "contentHash": "267d92fe4de67b1bdb3302c08f387dbf",
-      "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "IERC1155Errors",
-        "IERC20Errors",
-        "IERC721Errors"
-      ]
-    },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
-      "lastModificationDate": 1739883334575,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
+      "lastModificationDate": 1739897047604,
       "contentHash": "1c608119423d96df908c14227957bd75",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/IERC1155.sol",
       "solcConfig": {
@@ -276,8 +427,8 @@
         "IERC1155"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
-      "lastModificationDate": 1739883334577,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
+      "lastModificationDate": 1739897047604,
       "contentHash": "f8867afd172ace7ffa75d3752d785770",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol",
       "solcConfig": {
@@ -314,8 +465,8 @@
         "IERC1155MetadataURI"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Utils.sol": {
-      "lastModificationDate": 1739883334440,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Utils.sol": {
+      "lastModificationDate": 1739897047521,
       "contentHash": "346f1d25727e87df31335bbbc03a6c20",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Utils.sol",
       "solcConfig": {
@@ -353,8 +504,8 @@
         "ERC1155Utils"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/SlotDerivation.sol": {
-      "lastModificationDate": 1739883334645,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/SlotDerivation.sol": {
+      "lastModificationDate": 1739897047664,
       "contentHash": "b1b4d2a2542c75ed7ce12036009f3617",
       "sourceName": "@openzeppelin/contracts/utils/SlotDerivation.sol",
       "solcConfig": {
@@ -389,8 +540,8 @@
         "SlotDerivation"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/Comparators.sol": {
-      "lastModificationDate": 1739883334222,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/Comparators.sol": {
+      "lastModificationDate": 1739897047495,
       "contentHash": "0e57405a6f979853cbfeb0df3546c3a3",
       "sourceName": "@openzeppelin/contracts/utils/Comparators.sol",
       "solcConfig": {
@@ -425,8 +576,8 @@
         "Comparators"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
-      "lastModificationDate": 1739883334645,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
+      "lastModificationDate": 1739897047664,
       "contentHash": "e656d64c4ce918f3d13030b91c935134",
       "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
       "solcConfig": {
@@ -461,8 +612,8 @@
         "StorageSlot"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
-      "lastModificationDate": 1739883334624,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "lastModificationDate": 1739897047632,
       "contentHash": "2b2665ae9bdb1af440658741a77fe213",
       "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
@@ -500,8 +651,8 @@
         "Math"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/Panic.sol": {
-      "lastModificationDate": 1739883334637,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/Panic.sol": {
+      "lastModificationDate": 1739897047656,
       "contentHash": "2133dc13536b4a6a98131e431fac59e1",
       "sourceName": "@openzeppelin/contracts/utils/Panic.sol",
       "solcConfig": {
@@ -536,8 +687,8 @@
         "Panic"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
-      "lastModificationDate": 1739883334642,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol": {
+      "lastModificationDate": 1739897047661,
       "contentHash": "2adca1150f58fc6f3d1f0a0f22ee7cca",
       "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
       "solcConfig": {
@@ -572,8 +723,8 @@
         "SafeCast"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-      "lastModificationDate": 1739883334579,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1739897047609,
       "contentHash": "bf0119eb2a570f219729ff38b6cd1df8",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -608,8 +759,8 @@
         "IERC165"
       ]
     },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
-      "lastModificationDate": 1739883334578,
+    "/Users/shubhamroy/Desktop/Coding/git_for_mac/token-fusion/erc1155/node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
+      "lastModificationDate": 1739897047605,
       "contentHash": "a1c249dfb5f349be0b4fc85e635dfd59",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol",
       "solcConfig": {
@@ -644,157 +795,6 @@
       ],
       "artifacts": [
         "IERC1155Receiver"
-      ]
-    },
-    "/home/akhilesh/arc/erc1155/contracts/DatasetERC20.sol": {
-      "lastModificationDate": 1739884752474,
-      "contentHash": "af2aa8a0b1c2026fbee63c45dcf3aed9",
-      "sourceName": "contracts/DatasetERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
-      ],
-      "versionPragmas": [],
-      "artifacts": [
-        "DatasetTokenERC20"
-      ]
-    },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-      "lastModificationDate": 1739883334484,
-      "contentHash": "227a6eb2225701c12d9c959b758b6333",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC20.sol",
-        "./extensions/IERC20Metadata.sol",
-        "../../utils/Context.sol",
-        "../../interfaces/draft-IERC6093.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "ERC20"
-      ]
-    },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1739883334582,
-      "contentHash": "8f19f64d2adadf448840908bbaf431c8",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "IERC20"
-      ]
-    },
-    "/home/akhilesh/arc/erc1155/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
-      "lastModificationDate": 1739883334583,
-      "contentHash": "794db3115001aa372c79326fcfd44b1f",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "IERC20Metadata"
       ]
     }
   }
