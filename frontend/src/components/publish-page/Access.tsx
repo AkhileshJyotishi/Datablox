@@ -92,8 +92,8 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
       const ipfsUrl = await pinata.gateways.convert(uploadResult.IpfsHash)
       console.log("IPFS URL:", ipfsUrl)
 
-      setUserData((prev:any)=>{
-        return {...prev, access: {...prev.access, IPFS: ipfsUrl}}
+      setUserData((prev: any) => {
+        return { ...prev, access: { ...prev.access, IPFS: ipfsUrl } }
       })
       toast("File successfully uploaded to IPFS")
     } catch (error) {
@@ -106,16 +106,19 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
 
   //    function mintDatasetToken(uint256 amount, string memory datasetUri, string memory tokenName, string memory tokenSymbol, uint256 price) external  {
 
-  const createContract = async (uri: string) => {
+  const createContract = async (uri: string, tokenName: string, tokenSymbol: string, price: number) => {
     const val = await writeContract({
       ...wagmiContractConfigOwner,
       functionName: "mintDatasetToken",
-      args: [BigInt(1000), uri,title,],
+      args: [BigInt(1000), uri, tokenName, tokenSymbol, BigInt(price)],
     })
-    console.log(val)
+    console.log(val);
+    return val;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
+    //contract function
+    // await createContract("formData.IPFS", "ocean","OCN",1);
     e.preventDefault()
     const newErrors: Errors = {
       providerUrl: "",
@@ -133,8 +136,10 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
 
     // If there are no error messages, proceed
     if (!newErrors.providerUrl && !newErrors.IPFS && !newErrors.samplefile && !newErrors.timeout) {
-      await createContract(userData.access.IPFS)
-      console.log("Form submitted:", userData.access)
+      const tokenId = await createContract(userData.access.IPFS,userData.metadata.title,(userData.metadata.title).slice(0,3).toUpperCase(),userData.access.price);
+      userData.tokenId = tokenId;
+
+      console.log("Form submitted:", userData.access,tokenId)
       setTabNo((prev) => prev + 1)
       setIsTabCompleted((prev) => {
         const updated = [...prev]
@@ -142,6 +147,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
         return updated
       })
     }
+
   }
 
   return (
