@@ -2,11 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Interface, type ContractRunner } from "ethers";
-import type {
-  Ownable,
-  OwnableInterface,
-} from "../../../../@openzeppelin/contracts/access/Ownable";
+import { Contract, Interface, type ContractRunner } from "ethers"
+import type { Ownable, OwnableInterface } from "../../../../@openzeppelin/contracts/access/Ownable"
 
 const _abi = [
   {
@@ -83,14 +80,14 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
-] as const;
+] as const
 
 export class Ownable__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): OwnableInterface {
-    return new Interface(_abi) as OwnableInterface;
+    return new Interface(_abi) as OwnableInterface
   }
   static connect(address: string, runner?: ContractRunner | null): Ownable {
-    return new Contract(address, _abi, runner) as unknown as Ownable;
+    return new Contract(address, _abi, runner) as unknown as Ownable
   }
 }

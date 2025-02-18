@@ -1,7 +1,0 @@
-node_modules
-public
-.cache
-.husky
-package.json
-yarn.lock
-.next
