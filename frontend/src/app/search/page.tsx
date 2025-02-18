@@ -23,7 +23,6 @@ export default async function Page({ searchParams }: { searchParams: { query?: s
     const RelevantTags = await axios.post(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-search-results`, {
       searchQuery: query,
     })
-
     metadatas = RelevantTags.data.metadatas as Metadata[] // ✅ Ensure TypeScript knows its type
     console.log(metadatas)
   } catch (error) {

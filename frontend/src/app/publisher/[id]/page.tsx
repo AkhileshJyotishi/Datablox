@@ -1,54 +1,46 @@
-"use client"
-import { motion } from "framer-motion"
-import { Building2, Download } from "lucide-react"
-import { datasets } from "@/constants/dataset"
+import axios from "axios"
 import DataPacket from "@/components/marketplace/DataPacket"
-import { FaRegFileAlt } from "react-icons/fa";
-export default async function PublisherPage() {
-  const data = {
-    address: "3i0zx0qr90zdlk3q09zxjl",
-    datasetCount: "12",
-    totalSales: "200",
-  }
-  return (
-    <div className="container relative z-10 mx-auto max-w-7xl px-4 py-16">
-      <Heading
-        address={data.address}
-        datasetCount={data.datasetCount}
-        totalSales={data.totalSales}
-      />
-      <div className="mx-auto mb-7 mt-7 grid grid-cols-3 gap-4">
-        {datasets.map((data, index) => (
-          <DataPacket
-            key={index}
-            data={data}
-          />
-        ))}
-      </div>
-    </div>
-  )
+import { Heading } from "./HeadingComp"
+
+interface Metadata {
+  id: number
+  operator: string
+  chain: string
+  title: string
+  price: string
+  sales: string
+  address?: string
+  description?: string
 }
 
-function Heading({ address, datasetCount, totalSales }: { address: string; datasetCount: string; totalSales: string }) {
+export default async function PublisherPage() {
+  let PublisherDataset: Metadata[] = []
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-publisher-data?publisherAddress=0xA1B2C3D4E5F67890ABCDEF1234567890ABCDEF12`
+    )
+    PublisherDataset = response.data.metadatas
+    // console.log("My data=", response.data.metadatas)
+  } catch (error) {
+    // console.error("Error fetching metadata:", error)
+  }
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="mb-12 rounded-xl border border-white/20  p-6 backdrop-blur-sm"
-    >
-      <h1 className="mb-2 text-3xl font-bold text-white">Publisher</h1>
-      <p className="mb-4 text-gray-300">{address}</p>
-      <div className="flex items-center space-x-6">
-        <div className="flex items-center text-gray-300">
-          <FaRegFileAlt className="mr-2 h-5 w-5 text-white" />
-          <span>{datasetCount} Datasets</span>
-        </div>
-        <div className="flex items-center text-gray-300">
-          <Download className="mr-2 h-5 w-5 text-white" />
-          <span>{totalSales} Sales</span>
-        </div>
-      </div>
-    </motion.div>
+      <>
+    <div className="container relative z-10 mx-auto max-w-7xl px-4 py-16">
+      {PublisherDataset.length > 0 && (
+          <Heading
+            address="0xA1B2C3D4E5F67890ABCDEF1234567890ABCDEF12"
+            datasetCount={PublisherDataset.length}
+            totalSales={
+              PublisherDataset?.length
+                ? PublisherDataset.reduce((acc, item) => acc + Number(item.sales || 0), 0).toString()
+                : "0"
+            }
+            dataset={PublisherDataset}
+          />
+        )}
+    </div>
+        </>
   )
 }
