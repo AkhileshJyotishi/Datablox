@@ -56,6 +56,8 @@ async function askAgent({ userResponse, fileData }: { userResponse: string; file
     console.log("Agent 'example' loaded successfully!")
 
     const userPrompt = userResponse
+
+    const prompt = "this is file data "
     const systemPrompt = fileData
 
     const actionResponse = await fetch(`${backendURL}/agent/action`, {
