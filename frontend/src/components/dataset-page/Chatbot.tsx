@@ -3,11 +3,11 @@ import React, { useState, useRef, useEffect } from 'react'
 import { SearchBox } from './searchBox'
 import Avatar from '@/assets/avatar/floating-robot.png'
 import axios from 'axios'
+import ReactMarkdown from "react-markdown";
+
 
 const placeholders = [
   "Find AI training datasets for image recognition",
-  "Looking for financial market trends? Try 'Stock Market Data'",
-  "Search for medical imaging datasets (X-ray, MRI, CT scans)",
   "Explore NLP datasets for chatbot training",
   "Discover climate change datasets for research",
   "Find blockchain transaction datasets for analysis",
@@ -43,7 +43,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
 
     try {
       setThinking(true)
-      console.log(currentQuery,ipfs);
+      console.log("this is the data ", currentQuery, ipfs);
       const response = await axios.post(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-chat-result`, {
         userResponse: currentQuery,
         ipfsUrl: ipfs,
@@ -88,7 +88,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
                   className="w-10 h-10 rounded-full"
                 />
                 <div className="backdrop-blur-2xl bg-gray-900 text-gray-300 p-2 rounded-lg max-w-[60%]">
-                  {message}
+                  <ReactMarkdown>{message}</ReactMarkdown>
                 </div>
               </div>
             )
@@ -96,7 +96,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
             return (
               <div key={index} className="flex justify-end">
                 <div className="bg-blue-500 text-white p-2 rounded-lg max-w-[60%]">
-                  {message}
+                  <ReactMarkdown>{message}</ReactMarkdown>
                 </div>
               </div>
             )
