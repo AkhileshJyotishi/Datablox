@@ -8,17 +8,17 @@ import clsx from "clsx"
 import { datasets } from "@/constants/dataset"
 import Chatbot from "./Chatbot"
 
-export default function CompleteMetaData({ metadata, pageName = "preview" }: { metadata: any; pageName: string }) {
+export default function CompleteMetaData({ metadata, pageName = "xx" }: { metadata: any; pageName?: string }) {
   return (
     <section className={clsx("px-12 md:px-36", pageName == "preview" ? "" : "min-h-screen")}>
       <h1 className="mb-6 mt-12 text-center text-7xl font-semibold text-zinc-300">
         {metadata?.title || "Untitled Dataset"}
       </h1>
-      <div className="flex gap-5">
-        <div className="flex flex-col justify-center gap-8 py-3">
+      <div className="flex mx-auto justify-center gap-5">
+        <div className={`${pageName!=="preview"?"w-[65%]":"w-full"} flex flex-col justify-center gap-8 py-3`}>
           {/* Main Dataset Information */}
-          <div className="flex h-full flex-col items-center justify-center border border-zinc-700 pb-8 shadow-lg backdrop-blur-sm">
-            <div className="flex h-full w-full items-center justify-between border-b border-zinc-700">
+          <div className={`flex  h-full flex-col items-center justify-center border border-zinc-700 pb-8 shadow-lg backdrop-blur-sm`}>
+            <div className="flex h-full w-full items-center border-b border-zinc-700">
               <div className="border-r border-zinc-700">
                 <Image
                   src={logo}
@@ -27,7 +27,7 @@ export default function CompleteMetaData({ metadata, pageName = "preview" }: { m
                   alt="logo"
                 />
               </div>
-              <div className="h-full w-full px-3 text-white">
+              <div className="px-3 text-white">
                 Owned by <span className="text-sm text-[#ff4092]">{metadata?.author || "Unknown"}</span>
               </div>
             </div>
@@ -36,16 +36,16 @@ export default function CompleteMetaData({ metadata, pageName = "preview" }: { m
               description={metadata?.description || "No description available"}
               tags={metadata?.tags || []}
             />
+            <Dataset />
           </div>
 
           {/* Sidebar */}
         </div>
-        <div className="w-[80%] py-3">
-          <Chatbot ipfs={metadata.ipfs} />
-        </div>
-      </div>
-      <div className="flex h-full w-1/3 flex-col items-center justify-center bg-opacity-70 shadow-lg">
-        <Dataset />
+        {pageName !== "preview" && (
+          <div className="py-3 max-h-[80vh]" style={{}}>
+            <Chatbot ipfs={metadata.ipfs} />
+          </div>
+        )}
       </div>
       <RelatedDataset relatedData={datasets} />
     </section>
