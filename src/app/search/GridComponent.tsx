@@ -35,12 +35,12 @@ const DataPacketGrid: React.FC<DataPacketGridProps> = ({ dataset, query }) => {
     "autonomous-vehicles",
   ]
   return (
-    <div className="mt-16">
-      <Search />
+    <div>
+      {/* <Search />
       <div className="mx-auto mt-3 flex max-w-5xl flex-wrap justify-center gap-2 p-2">
         <TagComp tags={tags} />
-      </div>
-      <SparklesPreview/>
+      </div> */}
+      {/* <SparklesPreview/> */}
       <div className="mt-10 flex flex-col gap-x-10 text-4xl text-white/80">
         <div className="mt-2 text-3xl font-semibold text-white ">🔍 Here's what we found for 
 
@@ -51,7 +51,7 @@ const DataPacketGrid: React.FC<DataPacketGridProps> = ({ dataset, query }) => {
       </div>
       <div className="mx-auto mb-7 mt-7 grid max-w-7xl grid-cols-3 gap-4">
         {dataset.map((data, index) => (
-          <DataPacket data={data} />
+          <DataPacket key={index} data={data} />
         ))}
       </div>
     </div>
