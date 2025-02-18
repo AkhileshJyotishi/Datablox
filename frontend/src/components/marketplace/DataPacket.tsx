@@ -73,7 +73,7 @@ const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false }) =
           {data.price != "Free" && <span className="mx-2 text-sm">mSonic</span>}
         </div>
         <div className="my-2 mt-auto flex gap-1 px-2 text-lg text-gray-400">
-          <span className="font-bold">{data.sales}</span>
+          <span className="font-bold">{data.sales||0}</span>
           <span>sales</span>
         </div>
 
