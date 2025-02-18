@@ -1,0 +1,56 @@
+@layer utilities {
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .center-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .no-scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  /* Text */
+
+  .major-title {
+    @apply font-[600];
+    @apply text-[1.4rem] sm:text-[1.6rem] 2xl:text-3xl;
+    @apply !text-[#DBD9D9];
+  }
+
+  .major-title-clr {
+    @apply font-[600];
+    @apply text-[1.4rem] sm:text-[1.6rem] 2xl:text-3xl;
+  }
+
+  .major-title-nc {
+    @apply text-[1.4rem] sm:text-[1.6rem] 2xl:text-3xl;
+  }
+
+  .major-subtitle {
+    @apply font-[400];
+    @apply text-[1.2rem] 2xl:text-xl;
+    @apply !text-[#DBD9D9];
+  }
+
+  .major-subtitle-nc {
+    @apply text-[1.2rem] 2xl:text-xl;
+  }
+
+  .major-subtitle-clr {
+    @apply font-[400];
+    @apply text-[1.2rem] 2xl:text-xl;
+  }
+
+  /* Animations */
+  .raise-on-hover {
+    @apply transition-transform duration-300 ease-in-out hover:-translate-x-0.5 hover:-translate-y-0.5;
+  }
+}

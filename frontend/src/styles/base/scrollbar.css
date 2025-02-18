@@ -1,0 +1,16 @@
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+::-webkit-scrollbar-track {
+  /* ... */
+}
+
+::-webkit-scrollbar-thumb {
+  /* ... */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /* ... */
+}
