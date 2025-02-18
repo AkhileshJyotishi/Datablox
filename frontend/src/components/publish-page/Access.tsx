@@ -123,16 +123,18 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
 
   //    function mintDatasetToken(uint256 amount, string memory datasetUri, string memory tokenName, string memory tokenSymbol, uint256 price) external  {
 
-  const createContract = async (uri: string) => {
+  const createContract = async (uri: string, tokenName : string, tokenSymbol: string, price : number) => {
     const val = await writeContract({
       ...wagmiContractConfigOwner,
       functionName: "mintDatasetToken",
-      args: [BigInt(1000), uri,title,],
+      args: [BigInt(1000), "uri",tokenName,tokenSymbol,BigInt(price)],
     })
-    console.log(val)
+    console.log(val);
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
+    //contract function
+    // await createContract("formData.IPFS", "ocean","OCN",1);
     e.preventDefault()
     const newErrors: Errors = {
       providerUrl: "",
@@ -150,7 +152,8 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
 
     // If there are no error messages, proceed
     if (!newErrors.providerUrl && !newErrors.IPFS && !newErrors.samplefile && !newErrors.timeout) {
-      await createContract(formData.IPFS)
+      // token name and token symbol
+      
       console.log("Form submitted:", formData)
       setTabNo((prev) => prev + 1)
       setIsTabCompleted((prev) => {
@@ -199,8 +202,8 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
             <span className="text-base text-zinc-400">*</span>
           </label>
           <div className="mt-2 flex gap-2">
-            <input
-              type="text"
+            <input 
+            type="text"
               name="providerUrl"
               value={formData.providerUrl}
               onChange={handleInputChange}
