@@ -1,3 +1,4 @@
+import DataPacket from "@/components/marketplace/DataPacket";
 import axios from "axios";
 import React from "react";
 
@@ -11,8 +12,23 @@ export default async function Page({ searchParams }: { searchParams: { query?: s
 
   return (
     <div>
-      <h1>Search Results</h1>
-      {query ? <p>Showing results for: <strong>{query}</strong></p> : <p>No search query provided.</p>}
+      {
+        metadatas.map((metadata:any,index:number) => {
+          const data = {
+            operator:`TSANG_${index}54`,
+            chain:"Sonic",
+            Heading:metadata.title,
+            address:metadata.address,
+            description:metadata.description,
+            price:metadata.price,
+            sales:metadata.sales || 0,
+            id:metadata.id
+          }
+          return (
+            <DataPacket data={data} key={index}/>
+          )
+        })
+      }
     </div>
   );
 }
