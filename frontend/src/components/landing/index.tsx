@@ -66,7 +66,7 @@ const page = () => {
     { text: "marketplace" },
   ]
   return (
-    <section className="container relative z-10 mx-auto -mt-10 flex min-h-[calc(100vh-100px)] items-center justify-center px-6">
+    <section className="container relative z-10 mx-auto pb-14 flex min-h-[calc(100vh-100px)] items-center justify-center px-6">
       <div className="mx-auto max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
