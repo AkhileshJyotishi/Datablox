@@ -6,7 +6,8 @@ import { FileUpload } from "../ui/file-upload"
 import { pinata } from "@/utils/config"
 import { toast } from "sonner"
 import { useWriteContract } from "wagmi"
-import { wagmiContractConfig } from "@/services/contract"
+import { wagmiContractConfigOwner } from "@/services/contract"
+import { title } from "process"
 
 interface AccessProps {
   userData: any
@@ -120,11 +121,13 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
     }
   }
 
+  //    function mintDatasetToken(uint256 amount, string memory datasetUri, string memory tokenName, string memory tokenSymbol, uint256 price) external  {
+
   const createContract = async (uri: string) => {
     const val = await writeContract({
-      ...wagmiContractConfig,
+      ...wagmiContractConfigOwner,
       functionName: "mintDatasetToken",
-      args: [BigInt(1000), uri],
+      args: [BigInt(1000), uri,title,],
     })
     console.log(val)
   }
