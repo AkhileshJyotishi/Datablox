@@ -36,7 +36,7 @@ export default function CompleteMetaData({ metadata, pageName = "xx" }: { metada
               description={metadata?.description || "No description available"}
               tags={metadata?.tags || []}
             />
-            <Dataset />
+            <Dataset metadata={metadata}/>
           </div>
 
           {/* Sidebar */}
@@ -47,7 +47,7 @@ export default function CompleteMetaData({ metadata, pageName = "xx" }: { metada
           </div>
         )}
       </div>
-      <RelatedDataset relatedData={datasets} />
+      <RelatedDataset title={metadata.title} />
     </section>
   )
 }

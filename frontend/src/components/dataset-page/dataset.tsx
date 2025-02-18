@@ -2,7 +2,17 @@ import { Button } from "@/ui/button"
 import React from "react"
 import { FaFilePdf } from "react-icons/fa"
 import { RiFileList3Line } from "react-icons/ri"
-export default function Dataset() {
+interface Metadata {
+  id: number
+  operator: string
+  chain: string
+  title: string
+  price: string
+  sales: string
+  address?: string
+  description?: string
+}
+export default function Dataset({metadata}:{metadata:Metadata}) {
   const datasetSize = "1.2 MB" // Dummy value—replace with real data if available.
   const price = "$10"
   const sales = "99";
@@ -17,10 +27,10 @@ export default function Dataset() {
             Size <span className="text-md text-[#ff4092]"> {datasetSize}</span>
           </div>
           <div className="text-sans text-lg font-normal">
-            Price <span className="text-md text-[#ff4092]"> {price}</span>
+            Price <span className="text-md text-[#ff4092]"> {metadata.price}</span>
           </div>
           <div className="text-sans text-lg font-normal">
-            Sales <span className="text-md text-[#ff4092]"> {sales}</span>
+            Sales <span className="text-md text-[#ff4092]"> {metadata.sales || 0}</span>
           </div>
         </div>
       </div>
