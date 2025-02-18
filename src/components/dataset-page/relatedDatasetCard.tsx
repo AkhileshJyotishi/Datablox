@@ -5,7 +5,7 @@ interface DataPacketProps {
     data: {
         chain:string;
         operator: string;
-        Heading: string;
+        title: string;
         price: string;
         sales: string;
         id:number;
@@ -27,7 +27,7 @@ const RelatedDataPacket: React.FC<DataPacketProps> = ({ data }) => {
                 <span className="text-xs px-3">{data.chain}</span>
             </div>
             <div className="text-lg text-white font-bold mt-3 px-2">
-                {data.Heading}
+                {data.title}
             </div>
             <div className="text-sm text-gray-200  mt-2 px-2">
                 <span className="font-bold">{data.price}</span>

@@ -68,6 +68,7 @@
     "react-spinners": "^0.14.1",
     "remark-gfm": "^4.0.0",
     "rodal": "^2.1.0",
+    "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
     "solc": "^0.8.27",
     "sonner": "^1.5.0",

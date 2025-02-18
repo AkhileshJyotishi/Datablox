@@ -14,19 +14,11 @@
   "extends": [
     "eslint:recommended",
     "next/core-web-vitals",
-    "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
     "react/react-in-jsx-scope": "warn",
-    "no-unused-vars": 1,
     "react/no-unescaped-entities": 0,
     "no-useless-escape": "warn",
     "simple-import-sort/imports": "error",
@@ -34,9 +26,11 @@
     "react/prop-types": "warn",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/no-duplicate-enum-values": "off"
+    "@typescript-eslint/no-duplicate-enum-values": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-expressions":"off"
   },
-  "plugins": ["prettier", "simple-import-sort", "@typescript-eslint"],
+  "plugins": ["simple-import-sort", "@typescript-eslint"],
   "overrides": [
     {
       "files": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],

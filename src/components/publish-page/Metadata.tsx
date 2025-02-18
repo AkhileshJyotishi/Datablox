@@ -68,7 +68,7 @@ export default function Metadata({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    let newErrors = { title: "", description: "", author: "" }
+    const newErrors = { title: "", description: "", author: "" }
 
     if (!formData.title.trim()) newErrors.title = "Title is required."
     if (!formData.description.trim()) newErrors.description = "Description is required."

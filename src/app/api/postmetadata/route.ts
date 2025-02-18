@@ -22,7 +22,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
     try {
-        let body = await request.json();
+        const body = await request.json();
         console.log(body);
         const metadata = {
             title: body.metadata.title,
