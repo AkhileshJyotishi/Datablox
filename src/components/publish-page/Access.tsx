@@ -5,6 +5,9 @@ import { TbReload } from "react-icons/tb";
 import { FileUpload } from "../ui/file-upload";
 import { pinata } from "@/utils/config";
 import { toast } from "sonner";
+import { useWriteContract } from 'wagmi'
+import { wagmiContractConfig } from '@/services/contract'
+
 
 interface AccessProps {
   userData: any;
@@ -54,6 +57,9 @@ export default function Access({
 
   // File state from the FileUpload component
   const [files, setFiles] = useState<File[]>([]);
+
+  //contract write
+  const { data: hash, writeContract } = useWriteContract();
 
   // Random change parameter state
   const changeParam = [
@@ -128,7 +134,16 @@ export default function Access({
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const createContract = async (uri : string) => {
+    const val = await writeContract({
+      ...wagmiContractConfig,
+      functionName : "mintDatasetToken",
+      args:[BigInt(1000), uri]
+    });
+    console.log(val);
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let newErrors: Errors = {
       providerUrl: "",
@@ -154,6 +169,7 @@ export default function Access({
       !newErrors.samplefile &&
       !newErrors.timeout
     ) {
+      await createContract(formData.IPFS);
       console.log("Form submitted:", formData);
       setTabNo((prev) => prev + 1);
       setIsTabCompleted((prev) => {

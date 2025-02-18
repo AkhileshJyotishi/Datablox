@@ -24,11 +24,12 @@ contract DatasetOwnership is ERC1155 {
     /// @notice Seller mints a dataset token with a unique URI.
     /// @param amount Number of tokens (fractions) for this dataset.
     /// @param datasetUri The URI pointing to the dataset file.
-    function mintDatasetToken(uint256 amount, string memory datasetUri) external  {
+    function mintDatasetToken(uint256 amount, string memory datasetUri, string memory _metadata) external  {
          // Store the unique URI for this dataset token.
          _datasetUris[currentTokenId] = datasetUri;
          // Mint the token to the owner.
-         _mint(msg.sender, currentTokenId, amount, "");
+         bytes memory metadata = bytes(_metadata);
+         _mint(msg.sender, currentTokenId, amount, metadata);
          currentTokenId++;
     }
 
