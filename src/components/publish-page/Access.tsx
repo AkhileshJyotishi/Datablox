@@ -130,7 +130,7 @@ export default function Access({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    let newErrors: Errors = {
+    const newErrors: Errors = {
       providerUrl: "",
       IPFS: "",
       samplefile: "",

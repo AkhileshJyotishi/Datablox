@@ -14,8 +14,8 @@ export const InfiniteMovingCards = ({
   items: {
     operator: string;
     chain: string;
-    Heading: string;
-    address: string;
+    title: string;
+    owner: string;
     description: string;
     price: string;
     sales: string;

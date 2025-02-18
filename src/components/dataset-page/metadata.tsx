@@ -89,6 +89,8 @@ function Tags({ tags }: { tags: any }) {
   //     "gitcoin-grant-protocol",
 
   // ];
+  tags = JSON.parse(tags);
+  console.log(tags);
 
   return (
     <div className='flex gap-2 flex-wrap'>
