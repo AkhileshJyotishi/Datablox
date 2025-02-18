@@ -5,20 +5,20 @@ import Link from "next/link";
 
 interface DataPacketProps {
     data: {
-        id:number;
+        id: number;
         operator: string;
         chain: string;
-        Heading: string;
+        title: string;
         price: string;
         sales: string;
-        address?: string;
+        owner?: string;
         description?: string;
     };
     isSearchPage?: boolean
 }
 // chain:string;
 // operator: string;
-// Heading: string;
+// title: string;
 // price: string;
 // sales: string;
 
@@ -26,11 +26,11 @@ interface DataPacketProps {
 {/* <div className="flex items-center"> */ }
 
 
-const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage=false }) => {
+const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false }) => {
     return (
-        <Link href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data.id}`} 
+        <Link href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data.id}`}
         >
-            <div className={`${isSearchPage?"":"border border-[#303030]"} backdrop-blur-sm relative bg-transparent p-6 rounded-3xl overflow-hidden h-full cursor-pointer`}>
+            <div className={`${isSearchPage ? "" : "border border-[#303030]"} backdrop-blur-sm relative bg-transparent p-6 rounded-3xl overflow-hidden h-full cursor-pointer`}>
                 <div className="flex items-center text-white">
                     <span className="px-2">
                         <HiDownload />
@@ -38,21 +38,36 @@ const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage=false }) => 
                     <span className="border text-xs border-[#303030] border-t-0 border-b-0 px-3">
                         DATASET
                     </span>
-                    <span className="border text-xs border-[#303030] border-t-0 border-b-0 px-3">
+                    {/* <span className="border text-xs border-[#303030] border-t-0 border-b-0 px-3">
                         {data.operator}
-                    </span>
-                    <span className="text-xs px-3">{data.chain}</span>
+                    </span> */}
+                    <span className="text-xs uppercase px-3">{data.chain || "Sonic"}</span>
                 </div>
-                <div className="text-xl text-white font-extrabold mt-3 px-2">
-                    {data.Heading}
+                <div className="text-xl text-white font-extrabold mt-3 px-2"
+                    style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                    }}
+                >
+                    {data.title}
                 </div>
-                <div className="text-base text-gray-400 mt-2 px-2">{data.address}</div>
-                <div className="text-sm text-gray-400 my-2 px-2 flex-grow overflow-hidden">
+                <div className="text-base text-gray-400 mt-2 px-2 truncate w-[200px]">{data.owner}</div>
+                <div
+                    className="text-sm text-gray-400 my-2 px-2"
+                    style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                    }}
+                >
                     {data.description}
                 </div>
                 <div className="text-base text-gray-200  mt-2 px-2">
                     <span className="font-bold">{data.price}</span>
-                    {data.price!="Free" && <span className="mx-2 text-sm">mOcean</span>}
+                    {data.price != "Free" && <span className="mx-2 text-sm">mSonic</span>}
                 </div>
                 <div className="text-lg text-gray-400 my-2 px-2 flex gap-1 mt-auto">
                     <span className="font-bold">{data.sales}</span>
@@ -63,7 +78,7 @@ const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage=false }) => 
                 <Grid size={20} />
 
             </div>
-            
+
         </Link>
     );
 }

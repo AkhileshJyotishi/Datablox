@@ -1,9 +1,4 @@
-import Dataset from '@/components/dataset-page/dataset';
-import Metadata from '@/components/dataset-page/metadata';
-import Image from 'next/image';
 import React from 'react';
-import logo from "@/assets/dataset-page/img1.svg";
-import RelatedDataset from '@/components/dataset-page/relatedDataset';
 import NoDataFound from './noDataFound';
 import CompleteMetaData from '@/components/dataset-page/CompleteMetaData';
 
@@ -29,6 +24,6 @@ export default async function Page({ params }: { params: { datasetId: string } }
   }
 
   return (
-    <CompleteMetaData metadata={metadata} />
+    <CompleteMetaData metadata={metadata} pageName='preview'/>
   );
 }

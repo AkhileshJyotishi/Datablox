@@ -145,7 +145,7 @@ export default function Access({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let newErrors: Errors = {
+    const newErrors: Errors = {
       providerUrl: "",
       IPFS: "",
       samplefile: "",

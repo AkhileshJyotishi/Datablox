@@ -2,15 +2,15 @@ import React from 'react'
 import avatar from '@/assets/avatar/avatar1.png'
 export default function TopPublishers() {
     const publishers = [
-        { avatar: "Avatar", address: "0xbEFb…e219", sales: 275 },
-        { avatar: "Avatar", address: "0xd70B…90D8", sales: 264 },
-        { avatar: "Avatar", address: "autobotocean.eth", sales: 222 },
-        { avatar: "Avatar", address: "0x4Ab0…0f6a", sales: 186 },
-        { avatar: "Avatar", address: "0x6fd7…F7b5", sales: 182 },
-        { avatar: "Avatar", address: "0xF5dc…5497", sales: 161 },
-        { avatar: "Avatar", address: "datachallenges.eth", sales: 153 },
-        { avatar: "Avatar", address: "0x2321…2FE4", sales: 109 },
-        { avatar: "Avatar", address: "0x43a3…5026", sales: 0 }
+        { avatar: "Avatar", owner: "0xbEFb…e219", sales: 275 },
+        { avatar: "Avatar", owner: "0xd70B…90D8", sales: 264 },
+        { avatar: "Avatar", owner: "autobotocean.eth", sales: 222 },
+        { avatar: "Avatar", owner: "0x4Ab0…0f6a", sales: 186 },
+        { avatar: "Avatar", owner: "0x6fd7…F7b5", sales: 182 },
+        { avatar: "Avatar", owner: "0xF5dc…5497", sales: 161 },
+        { avatar: "Avatar", owner: "datachallenges.eth", sales: 153 },
+        { avatar: "Avatar", owner: "0x2321…2FE4", sales: 109 },
+        { avatar: "Avatar", owner: "0x43a3…5026", sales: 0 }
     ];
 
     return (
@@ -34,7 +34,7 @@ export default function TopPublishers() {
                         <div className='flex gap-3 items-center z-50 relative'>
                             <img src={avatar.src} className='rounded-full h-10' alt="" />
                             <div className='flex-col flex justify-center'>
-                                <div className='text-white font-bold'>{publisher.address}</div>
+                                <div className='text-white font-bold'>{publisher.owner}</div>
                                 <div>
                                     <span className='text-white font-bold'>{publisher.sales}</span>
                                     <span className='ml-2'>sales</span>
