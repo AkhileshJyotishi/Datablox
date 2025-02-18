@@ -83,19 +83,21 @@ export const FloatingNav = ({
           </Link>
           {navItems.map((navItem, idx) => (
             <Link key={`link-${idx}`} href={navItem.link} className="relative flex items-center space-x-1 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300">
-              <span className="block sm:hidden">{navItem.icon}</span>
-              <span className="hidden text-lg font-bold sm:block">{navItem.name}</span>
+              <div>
+                <span className="block sm:hidden">{navItem.icon}</span>
+                <span className="hidden text-lg font-bold sm:block">{navItem.name}</span>
+              </div>
             </Link>
           ))}
-          
+
           {/* Search Box */}
           <div className="flex ml-auto text-gray-400 border border-[#303030] rounded-2xl p-3 items-center">
-            <input 
-              type="text" 
-              className="bg-transparent outline-none" 
-              placeholder="Search..." 
+            <input
+              type="text"
+              className="bg-transparent outline-none"
+              placeholder="Search..."
               value={query}
-              onChange={handleChange} 
+              onChange={handleChange}
               onKeyDown={handleKeyDown}
             />
             <CiSearch size={20} onClick={handleSearch} className="cursor-pointer" />

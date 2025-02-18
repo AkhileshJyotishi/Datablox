@@ -8,7 +8,7 @@ interface Metadata {
   id: number;
   operator: string;
   chain: string;
-  Heading: string;
+  title: string;
   price: string;
   sales: string;
   address?: string;
