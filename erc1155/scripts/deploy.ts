@@ -1,27 +1,18 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+    const baseUri = "https://example.com/metadata/"; // Update with actual base URI
+    
+    console.log("Deploying DatasetOwnership contract...");
+    const DatasetOwnership = await ethers.getContractFactory("DatasetOwnership");
+    const datasetOwnership = await DatasetOwnership.deploy(baseUri);
 
-  const lockedAmount = ethers.parseEther("0.001");
-
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
-
-  await lock.waitForDeployment();
-
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
-  );
+    await datasetOwnership.waitForDeployment();
+    var val = await datasetOwnership.getAddress();
+    console.log(`DatasetOwnership deployed to: ${val}`);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
+    console.error(error);
+    process.exit(1);
 });
