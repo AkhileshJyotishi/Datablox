@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: { datasetId: string } }
   return (
     <CompleteMetaData
       metadata={metadata}
-      pageName="preview"
+      // pageName="preview"
     />
   )
 }
