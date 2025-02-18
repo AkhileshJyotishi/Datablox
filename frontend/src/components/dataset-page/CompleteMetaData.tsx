@@ -10,7 +10,7 @@ import Chatbot from "./Chatbot"
 
 export default function CompleteMetaData({ metadata, pageName = "xx" }: { metadata: any; pageName?: string }) {
   return (
-    <section className={clsx("px-12 md:px-36", pageName == "preview" ? "" : "min-h-screen")}>
+    <section className={clsx("px-12 md:px-36 mb-10", pageName == "preview" ? "" : "min-h-screen")}>
       <h1 className="mb-6 mt-12 text-center text-7xl font-semibold text-zinc-300">
         {metadata?.title || "Untitled Dataset"}
       </h1>
