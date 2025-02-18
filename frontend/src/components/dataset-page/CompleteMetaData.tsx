@@ -9,6 +9,7 @@ import { datasets } from "@/constants/dataset"
 import Chatbot from "./Chatbot"
 
 export default function CompleteMetaData({ metadata, pageName = "preview" }: { metadata: any; pageName: string }) {
+  console.log("this is metadata ",metadata);
   return (
     <section className={clsx("px-12 md:px-36", pageName == "preview" ? "" : "min-h-screen")}>
       <h1 className="mb-6 mt-12 text-center text-7xl font-semibold text-zinc-300">
@@ -41,7 +42,7 @@ export default function CompleteMetaData({ metadata, pageName = "preview" }: { m
           {/* Sidebar */}
         </div>
         <div className="w-[80%] py-3">
-          <Chatbot ipfs={metadata.ipfs} />
+          <Chatbot ipfs={metadata.IPFS} />
         </div>
       </div>
       <div className="flex h-full w-1/3 flex-col items-center justify-center bg-opacity-70 shadow-lg">
