@@ -4,6 +4,8 @@ import TopPublishers from './TopPublishers'
 import Search from './search-bar'
 import { InfiniteMovingCards } from '../infinite-cards'
 import { datasets } from '@/constants/dataset'
+import Buy from '../Buy'
+import BuyData from '../Buy'
  
 export default function Marketplace() {
   const tags = [
@@ -58,7 +60,9 @@ export default function Marketplace() {
         <div className="relative z-50 mb-3 mt-10 select-none">
           <div className="mt-8 flex flex-col items-center justify-center gap-3 py-10 text-gray-200">
             <div className="text-6xl font-bold">AI Data Market</div>
+            <BuyData title="string"  tokenId={2} duration={2}></BuyData>
             <div className="text-2xl">
+              
               A next-gen marketplace to discover, publish, and trade AI-verified datasets securely on the Sonic Network.
             </div>
           </div>
