@@ -1,12 +1,12 @@
 /*
 Deploying DatasetOwnership contract...
-DatasetOwnership deployed to: 0x1E078df479B8Af6F2e15E519AbF5F56D6AeAf128
-datasetERC20Ownership deployed to: 0xE04661d187982D6d46472FAF5D3324A24a200CC5
+DatasetOwnership deployed to: 0x6f75Fe8E041C18C87b8d153D89106b2DB9b81713
+datasetERC20Ownership deployed to: 0x5dA0987ECD09e7203CD2c9534E76d47a001318Ae
 */
 
 export const wagmiContractConfigOwner = {
-  address: "0x1E078df479B8Af6F2e15E519AbF5F56D6AeAf128",
-  abi: [
+  address: "0x6f75Fe8E041C18C87b8d153D89106b2DB9b81713",
+  abi:  [
     {
       "inputs": [
         {
@@ -261,6 +261,25 @@ export const wagmiContractConfigOwner = {
         }
       ],
       "name": "URI",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenid",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerTokenId",
       "type": "event"
     },
     {
@@ -615,7 +634,7 @@ export const wagmiContractConfigOwner = {
 } as const
 
 export const wagmiContractConfig20 = {
-  address: "0xE04661d187982D6d46472FAF5D3324A24a200CC5",
+  address: "0x5dA0987ECD09e7203CD2c9534E76d47a001318Ae",
   abi: [
     {
       "inputs": [
