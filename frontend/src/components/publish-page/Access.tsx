@@ -1,13 +1,15 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { TbReload } from "react-icons/tb"
 import { FileUpload } from "../ui/file-upload"
 import { pinata } from "@/utils/config"
 import { toast } from "sonner"
-import { useWriteContract } from "wagmi"
+import { useWriteContract,useWaitForTransactionReceipt } from "wagmi"
 import { wagmiContractConfigOwner } from "@/services/contract"
 import { title } from "process"
+import { getTransactionReceipt } from '@wagmi/core'
+import {config} from '../../config/index'
 
 interface AccessProps {
   userData: any
@@ -46,7 +48,8 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
   const [files, setFiles] = useState<File[]>([])
 
   //contract write
-  const { data: hash, writeContract } = useWriteContract()
+  const { data: hash, writeContractAsync,  } = useWriteContract()
+  
 
   // Random change parameter state
   const changeParam = [
@@ -77,6 +80,10 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
     setFiles(uploadedFiles)
     console.log("Selected files:", uploadedFiles)
   }
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({
+      hash,
+    })
 
   const uploadFileToIPFS = async () => {
     if (!files.length) return
@@ -105,21 +112,54 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
   }
 
   //    function mintDatasetToken(uint256 amount, string memory datasetUri, string memory tokenName, string memory tokenSymbol, uint256 price) external  {
-
+  const [token,setToken]=useState(null);
+  const [tokenVal,setTokenVal] = useState("");
   const createContract = async (uri: string, tokenName: string, tokenSymbol: string, price: number) => {
-    const val = await writeContract({
+    const val = await writeContractAsync({
       ...wagmiContractConfigOwner,
       functionName: "mintDatasetToken",
       args: [BigInt(1000), uri, tokenName, tokenSymbol, BigInt(price)],
     })
+  
     console.log(val);
+    setTokenVal(val);
+    
+    if(isConfirmed) {
+      const rec = await getTransactionReceipt(config, {
+        hash: val, 
+      })
+      console.log(rec);
+    }
+    // if(isConfirmed) console.log( hash)
+    
     return val;
   }
+  async function getTokentData(val:any){
+    const rec = await getTransactionReceipt(config, {
+      hash: val, 
+    })
+    const decimalNumber = parseInt(rec.logs[1].data, 18);
+console.log(decimalNumber);
+const ans = parseInt(rec.logs[1].data.slice(2,66),16);
+    console.log(ans);
+    
+  }
+  useEffect(()=>{
+    if(isConfirmed){
+      const value = tokenVal;
+      console.log(value);
+      getTokentData(value);
+    }
+  },[isConfirmed])
+
+
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     //contract function
     // await createContract("formData.IPFS", "ocean","OCN",1);
     e.preventDefault()
+
     const newErrors: Errors = {
       providerUrl: "",
       IPFS: "",
@@ -156,6 +196,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
       <div className="text-md font-bold">
         Data Token<span className="text-base text-zinc-400">*</span>
       </div>
+    
       <div className="mb-10 mt-3 flex w-full items-center gap-10">
         <div className="flex flex-col">
           <div className="flex h-28 w-28 items-center justify-center rounded-full bg-black">
@@ -292,7 +333,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
             onClick={handleSubmit}
             className="rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-8 py-2 font-sans text-lg font-semibold text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]"
           >
-            Submit
+            {isConfirmed?"Submit":"Submitting...."}
           </button>
         </div>
       </div>
