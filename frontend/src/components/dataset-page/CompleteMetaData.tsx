@@ -43,7 +43,7 @@ export default function CompleteMetaData({ metadata, pageName = "xx" }: { metada
         </div>
         {pageName !== "preview" && (
           <div className="py-3 max-h-[80vh]" style={{}}>
-            <Chatbot ipfs={metadata.ipfs} />
+            <Chatbot ipfs={metadata.IPFS} />
           </div>
         )}
       </div>
