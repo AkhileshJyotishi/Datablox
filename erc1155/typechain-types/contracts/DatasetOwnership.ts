@@ -31,10 +31,11 @@ export interface DatasetOwnershipInterface extends Interface {
       | "burnExpiredOwnership"
       | "buyPartialOwnership"
       | "currentTokenId"
+      | "datasetOwners"
+      | "datasetTokens"
       | "getDatasetUri"
       | "isApprovedForAll"
       | "mintDatasetToken"
-      | "ownershipExpiry"
       | "safeBatchTransferFrom"
       | "safeTransferFrom"
       | "setApprovalForAll"
@@ -45,7 +46,7 @@ export interface DatasetOwnershipInterface extends Interface {
   getEvent(
     nameOrSignatureOrTopic:
       | "ApprovalForAll"
-      | "PartialOwnershipMinted"
+      | "PartialOwnershipPurchased"
       | "TransferBatch"
       | "TransferSingle"
       | "URI"
@@ -72,6 +73,14 @@ export interface DatasetOwnershipInterface extends Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "datasetOwners",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "datasetTokens",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "getDatasetUri",
     values: [BigNumberish]
   ): string;
@@ -81,11 +90,7 @@ export interface DatasetOwnershipInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "mintDatasetToken",
-    values: [BigNumberish, string]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ownershipExpiry",
-    values: [AddressLike, BigNumberish]
+    values: [BigNumberish, string, string, string, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "safeBatchTransferFrom",
@@ -129,6 +134,14 @@ export interface DatasetOwnershipInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "datasetOwners",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "datasetTokens",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getDatasetUri",
     data: BytesLike
   ): Result;
@@ -138,10 +151,6 @@ export interface DatasetOwnershipInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "mintDatasetToken",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ownershipExpiry",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -185,7 +194,7 @@ export namespace ApprovalForAllEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export namespace PartialOwnershipMintedEvent {
+export namespace PartialOwnershipPurchasedEvent {
   export type InputTuple = [
     buyer: AddressLike,
     tokenId: BigNumberish,
@@ -345,6 +354,14 @@ export interface DatasetOwnership extends BaseContract {
 
   currentTokenId: TypedContractMethod<[], [bigint], "view">;
 
+  datasetOwners: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+
+  datasetTokens: TypedContractMethod<
+    [arg0: BigNumberish],
+    [[string, string, bigint] & { token: string; uri: string; price: bigint }],
+    "view"
+  >;
+
   getDatasetUri: TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
 
   isApprovedForAll: TypedContractMethod<
@@ -354,15 +371,15 @@ export interface DatasetOwnership extends BaseContract {
   >;
 
   mintDatasetToken: TypedContractMethod<
-    [amount: BigNumberish, datasetUri: string],
+    [
+      amount: BigNumberish,
+      datasetUri: string,
+      tokenName: string,
+      tokenSymbol: string,
+      price: BigNumberish
+    ],
     [void],
     "nonpayable"
-  >;
-
-  ownershipExpiry: TypedContractMethod<
-    [arg0: AddressLike, arg1: BigNumberish],
-    [bigint],
-    "view"
   >;
 
   safeBatchTransferFrom: TypedContractMethod<
@@ -439,6 +456,16 @@ export interface DatasetOwnership extends BaseContract {
     nameOrSignature: "currentTokenId"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
+    nameOrSignature: "datasetOwners"
+  ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+  getFunction(
+    nameOrSignature: "datasetTokens"
+  ): TypedContractMethod<
+    [arg0: BigNumberish],
+    [[string, string, bigint] & { token: string; uri: string; price: bigint }],
+    "view"
+  >;
+  getFunction(
     nameOrSignature: "getDatasetUri"
   ): TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
   getFunction(
@@ -451,16 +478,15 @@ export interface DatasetOwnership extends BaseContract {
   getFunction(
     nameOrSignature: "mintDatasetToken"
   ): TypedContractMethod<
-    [amount: BigNumberish, datasetUri: string],
+    [
+      amount: BigNumberish,
+      datasetUri: string,
+      tokenName: string,
+      tokenSymbol: string,
+      price: BigNumberish
+    ],
     [void],
     "nonpayable"
-  >;
-  getFunction(
-    nameOrSignature: "ownershipExpiry"
-  ): TypedContractMethod<
-    [arg0: AddressLike, arg1: BigNumberish],
-    [bigint],
-    "view"
   >;
   getFunction(
     nameOrSignature: "safeBatchTransferFrom"
@@ -510,11 +536,11 @@ export interface DatasetOwnership extends BaseContract {
     ApprovalForAllEvent.OutputObject
   >;
   getEvent(
-    key: "PartialOwnershipMinted"
+    key: "PartialOwnershipPurchased"
   ): TypedContractEvent<
-    PartialOwnershipMintedEvent.InputTuple,
-    PartialOwnershipMintedEvent.OutputTuple,
-    PartialOwnershipMintedEvent.OutputObject
+    PartialOwnershipPurchasedEvent.InputTuple,
+    PartialOwnershipPurchasedEvent.OutputTuple,
+    PartialOwnershipPurchasedEvent.OutputObject
   >;
   getEvent(
     key: "TransferBatch"
@@ -550,15 +576,15 @@ export interface DatasetOwnership extends BaseContract {
       ApprovalForAllEvent.OutputObject
     >;
 
-    "PartialOwnershipMinted(address,uint256,uint256)": TypedContractEvent<
-      PartialOwnershipMintedEvent.InputTuple,
-      PartialOwnershipMintedEvent.OutputTuple,
-      PartialOwnershipMintedEvent.OutputObject
+    "PartialOwnershipPurchased(address,uint256,uint256)": TypedContractEvent<
+      PartialOwnershipPurchasedEvent.InputTuple,
+      PartialOwnershipPurchasedEvent.OutputTuple,
+      PartialOwnershipPurchasedEvent.OutputObject
     >;
-    PartialOwnershipMinted: TypedContractEvent<
-      PartialOwnershipMintedEvent.InputTuple,
-      PartialOwnershipMintedEvent.OutputTuple,
-      PartialOwnershipMintedEvent.OutputObject
+    PartialOwnershipPurchased: TypedContractEvent<
+      PartialOwnershipPurchasedEvent.InputTuple,
+      PartialOwnershipPurchasedEvent.OutputTuple,
+      PartialOwnershipPurchasedEvent.OutputObject
     >;
 
     "TransferBatch(address,address,address,uint256[],uint256[])": TypedContractEvent<
