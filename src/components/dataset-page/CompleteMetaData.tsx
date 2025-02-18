@@ -5,14 +5,15 @@ import Metadata from './metadata'
 import Image from 'next/image'
 import logo from "@/assets/dataset-page/img1.svg";
 import clsx from 'clsx'
+import { datasets } from '@/constants/dataset'
 
-export default function CompleteMetaData({ metadata,pageName="preview" }: { metadata: any,pageName:string }) {
+export default function CompleteMetaData({ metadata, pageName = "preview" }: { metadata: any, pageName: string }) {
     return (
-        <section className={clsx(" px-12 md:px-36 ",pageName=="preview"? "":"min-h-screen")}>
+        <section className={clsx(" px-12 md:px-36 ", pageName == "preview" ? "" : "min-h-screen")}>
             <h1 className="text-zinc-300 font-semibold text-7xl mt-12 mb-6 text-center">
                 {metadata?.title || "Untitled Dataset"}
             </h1>
-            <div className="flex flex-row gap-8 py-3 justify-center">
+            <div className="flex flex-col gap-8 py-3 justify-center">
                 {/* Main Dataset Information */}
                 <div className="w-2/3 h-full border border-zinc-700 pb-8 backdrop-blur-sm shadow-lg flex flex-col items-center justify-center">
                     <div className="border-b w-full h-full border-zinc-700 flex items-center justify-between">
@@ -33,8 +34,8 @@ export default function CompleteMetaData({ metadata,pageName="preview" }: { meta
                 {/* Sidebar */}
                 <div className="w-1/3 h-full bg-opacity-70 shadow-lg flex flex-col items-center justify-center">
                     <Dataset />
-                    <RelatedDataset />
                 </div>
+                <RelatedDataset relatedData={datasets} />
             </div>
         </section>
     )
