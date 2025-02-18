@@ -2,6 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { SearchBox } from './searchBox'
 import Avatar from '@/assets/avatar/floating-robot.png'
+import axios from 'axios'
+
 const placeholders = [
   "Find AI training datasets for image recognition",
   "Looking for financial market trends? Try 'Stock Market Data'",
@@ -19,6 +21,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
   const [chat, setChat] = useState<[string, string][]>([
     ["bot", "What do you want to know about this dataset?"],
   ])
+  const [thinking, setThinking] = useState(false)
 
   const chatContainerRef = useRef<HTMLDivElement>(null)
 
@@ -26,23 +29,47 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
     setQuery(e.target.value)
   }
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    // Prevent new submissions while waiting for a response
+    if (thinking) return
     if (!query.trim()) return
 
+    // Immediately show the user's message
     const userMessage: [string, string] = ["user", query]
+    setChat(prevChat => [...prevChat, userMessage])
+    const currentQuery = query
+    setQuery("")
 
-    const botResponse: [string, string] = ["bot", `Fetching details for: ${query}`]
+    try {
+      setThinking(true)
+      console.log(currentQuery,ipfs);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-chat-result`, {
+        userResponse: currentQuery,
+        ipfsUrl: ipfs,
+      })
 
-    setChat(prevChat => [...prevChat, userMessage, botResponse])
-    setQuery("") 
+      const aiResponse = response.data.aiResponse
+      const botResponse: [string, string] = ["bot", aiResponse]
+      setChat(prevChat => [...prevChat, botResponse])
+    } catch (error: any) {
+      console.error("Error fetching AI response:", error)
+      let errorMessage = "Something went wrong. Please try again later."
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.response?.data?.error || error.message
+      }
+      const botErrorResponse: [string, string] = ["bot", `Error: ${errorMessage}`]
+      setChat(prevChat => [...prevChat, botErrorResponse])
+    } finally {
+      setThinking(false)
+    }
   }
 
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
     }
-  }, [chat])
+  }, [chat, thinking])
 
   return (
     <div className='text-gray-400 flex-grow border-zinc-700 rounded-lg border backdrop-blur-xl h-full flex flex-col'>
@@ -75,6 +102,19 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
             )
           }
         })}
+        {/* Display a thinking indicator if the bot is processing */}
+        {thinking && (
+          <div className="flex items-start space-x-2">
+            <img
+              src={botAvatarUrl}
+              alt="Bot Avatar"
+              className="w-10 h-10 rounded-full"
+            />
+            <div className="backdrop-blur-2xl bg-gray-900 text-gray-300 p-2 rounded-lg max-w-[60%]">
+              <em>Bot is thinking...</em>
+            </div>
+          </div>
+        )}
       </div>
 
       <div>
