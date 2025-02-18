@@ -113,7 +113,7 @@ export default function Page() {
             <TabButton
               buttonName={elem.name}
               selected={elem.tabNo === tabNo}
-              isCompleted={isTabCompleted[elem.tabNo - 1]}
+              isCompleted={isTabCompleted[elem.tabNo]}
               tab={elem.tabNo}
               setTabNo={setTabNo}
             />
