@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { TbReload } from "react-icons/tb"
 import { FileUpload } from "../ui/file-upload"
 import { pinata } from "@/utils/config"
@@ -31,13 +31,6 @@ interface Errors {
 }
 
 export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }: AccessProps) {
-  const [formData, setFormData] = useState<FormData>({
-    providerUrl: "",
-    IPFS: "",
-    samplefile: "",
-    timeout: 25,
-  })
-
   const [errors, setErrors] = useState<Errors>({
     providerUrl: "",
     IPFS: "",
@@ -64,28 +57,16 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
   const getRandomIntInclusive = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min
   const [changeParamNumber, setChangeParamNumber] = useState(getRandomIntInclusive(0, 3))
 
-  // Update userData when formData changes
-  useEffect(() => {
-    setUserData((prev: any) => ({ ...prev, access: formData }))
-  }, [formData, setUserData])
-
-  // If there's existing user data, populate the form
-  useEffect(() => {
-    if (formData.providerUrl === "" && userData?.access) {
-      if (JSON.stringify(formData) !== JSON.stringify(userData.access)) {
-        setFormData(userData.access)
-      }
-    }
-  }, [userData, formData])
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
+    setUserData((prev: any) => ({
       ...prev,
-      [name]: name === "timeout" ? Number(value) : value,
+      access: {
+        ...prev.access,
+        [name]: name === "timeout" ? Number(value) : value,
+      },
     }))
 
-    // Clear error for the field if it exists
     if (errors[name as keyof Errors]) {
       setErrors((prev) => ({ ...prev, [name]: "" }))
     }
@@ -102,7 +83,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
     setIsUploading(true)
     try {
       // Get a temporary JWT key from your API route
-      const keyResponse = await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/files`)
+      const keyResponse = await fetch(`/api/files`)
       const keyData = await keyResponse.json()
 
       // Use the Pinata SDK to upload the file with the temporary key
@@ -110,7 +91,9 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
       const ipfsUrl = await pinata.gateways.convert(uploadResult.IpfsHash)
       console.log("IPFS URL:", ipfsUrl)
 
-      setFormData((prev) => ({ ...prev, IPFS: ipfsUrl }))
+      setUserData((prev:any)=>{
+        return {...prev, access: {...prev.access, IPFS: ipfsUrl}}
+      })
       toast("File successfully uploaded to IPFS")
     } catch (error) {
       console.error("Error uploading file to IPFS:", error)
@@ -138,17 +121,17 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
       timeout: "",
     }
 
-    if (!formData.providerUrl.trim()) newErrors.providerUrl = "Provider URL is required."
-    if (!formData.IPFS.trim()) newErrors.IPFS = "IPFS is required."
-    if (!formData.samplefile.trim()) newErrors.samplefile = "Sample file is required."
-    if (!formData.timeout || formData.timeout <= 0) newErrors.timeout = "Timeout must be greater than 0."
+    if (!userData?.access?.providerUrl.trim()) newErrors.providerUrl = "Provider URL is required."
+    if (!userData?.access?.IPFS.trim()) newErrors.IPFS = "IPFS is required."
+    if (!userData?.access?.samplefile?.trim()) newErrors.samplefile = "Sample file is required."
+    if (!userData?.access?.timeout || userData?.access?.timeout <= 0) newErrors.timeout = "Timeout must be greater than 0."
 
     setErrors(newErrors)
 
     // If there are no error messages, proceed
     if (!newErrors.providerUrl && !newErrors.IPFS && !newErrors.samplefile && !newErrors.timeout) {
-      await createContract(formData.IPFS)
-      console.log("Form submitted:", formData)
+      await createContract(userData.access.IPFS)
+      console.log("Form submitted:", userData.access)
       setTabNo((prev) => prev + 1)
       setIsTabCompleted((prev) => {
         const updated = [...prev]
@@ -199,7 +182,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
             <input
               type="text"
               name="providerUrl"
-              value={formData.providerUrl}
+              value={userData?.access?.providerUrl || ""}
               onChange={handleInputChange}
               className="w-full rounded-md border border-gray-600 bg-transparent px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
             />
@@ -265,7 +248,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
               type="text"
               name="samplefile"
               placeholder="https://file.com/file.json"
-              value={formData.samplefile}
+              value={userData?.access?.samplefile || ""}
               onChange={handleInputChange}
               className="w-full rounded-md border border-gray-600 bg-transparent px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
             />
@@ -286,7 +269,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
               type="number"
               name="timeout"
               placeholder="7 days"
-              value={formData.timeout}
+              value={userData?.access?.timeout || 25}
               onChange={handleInputChange}
               className="w-full rounded-md border border-gray-600 bg-transparent px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
             />
