@@ -1,11 +1,10 @@
 /*
-DatasetOwnership deployed to: 0x0e84081493C981D62225a0878efC6A4Faba4b2Bd
-datasetERC20Ownership deployed to: 0xCcAAebE8C3533f7B4031d39841f9DA0f28252315
-Waiting for the debugger to disconnect...
+DatasetOwnership deployed to: 0x62b116DBBE8B6cfCCC527Fcbd62B167dbB0B3C7F
+datasetERC20Ownership deployed to: 0x865b0170fa410d55817db936Ff856743B452b1aF
 */
 export const wagmiContractConfigOwner = {
-  address: "0x0e84081493C981D62225a0878efC6A4Faba4b2Bd",
-  abi:  [
+  address: "0x62b116DBBE8B6cfCCC527Fcbd62B167dbB0B3C7F",
+  abi:[
     {
       "inputs": [
         {
@@ -437,14 +436,43 @@ export const wagmiContractConfigOwner = {
           "internalType": "uint256",
           "name": "tokenId",
           "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
         }
       ],
-      "name": "getDatasetUri",
+      "name": "getBalance",
       "outputs": [
         {
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "getDatasetUri",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         }
       ],
       "stateMutability": "view",
@@ -633,7 +661,7 @@ export const wagmiContractConfigOwner = {
 } as const
 
 export const wagmiContractConfig20 = {
-  address: "0xCcAAebE8C3533f7B4031d39841f9DA0f28252315",
+  address: "0x865b0170fa410d55817db936Ff856743B452b1aF",
   abi: [
     {
       "inputs": [
