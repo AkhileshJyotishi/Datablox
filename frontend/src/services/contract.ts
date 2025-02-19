@@ -1,11 +1,10 @@
 /*
-Deploying DatasetOwnership contract...
-DatasetOwnership deployed to: 0x6f75Fe8E041C18C87b8d153D89106b2DB9b81713
-datasetERC20Ownership deployed to: 0x5dA0987ECD09e7203CD2c9534E76d47a001318Ae
+DatasetOwnership deployed to: 0x0e84081493C981D62225a0878efC6A4Faba4b2Bd
+datasetERC20Ownership deployed to: 0xCcAAebE8C3533f7B4031d39841f9DA0f28252315
+Waiting for the debugger to disconnect...
 */
-
 export const wagmiContractConfigOwner = {
-  address: "0x6f75Fe8E041C18C87b8d153D89106b2DB9b81713",
+  address: "0x0e84081493C981D62225a0878efC6A4Faba4b2Bd",
   abi:  [
     {
       "inputs": [
@@ -443,9 +442,9 @@ export const wagmiContractConfigOwner = {
       "name": "getDatasetUri",
       "outputs": [
         {
-          "internalType": "string",
+          "internalType": "uint256",
           "name": "",
-          "type": "string"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -634,7 +633,7 @@ export const wagmiContractConfigOwner = {
 } as const
 
 export const wagmiContractConfig20 = {
-  address: "0x5dA0987ECD09e7203CD2c9534E76d47a001318Ae",
+  address: "0xCcAAebE8C3533f7B4031d39841f9DA0f28252315",
   abi: [
     {
       "inputs": [
