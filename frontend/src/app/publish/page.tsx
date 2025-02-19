@@ -79,12 +79,12 @@ export default function Page() {
         name: "Metadata",
       },
       {
-        tabNo: 2,
+        tabNo: 3,
         element: <Access {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
         name: "Access",
       },
       {
-        tabNo: 3,
+        tabNo: 2,
         element: <Pricing {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
         name: "Pricing",
       },
