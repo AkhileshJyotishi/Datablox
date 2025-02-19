@@ -34,7 +34,7 @@ export default function BuyData({ title, ipfs, price, tokenId, duration }: { ipf
         contracts: [{
           ...wagmiContractConfigOwner,
           functionName: "getDatasetUri",
-          args: [BigInt(tokenId)],
+          args: [BigInt(tokenId), address],
         }]
       },)
       console.log('this val',val);
