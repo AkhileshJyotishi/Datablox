@@ -12,7 +12,6 @@ import CelebrationCard from "../Celebration.tsx/CelebrationCard"
 export default function CompleteMetaData({ metadata, pageName = "" }: { metadata: any; pageName?: string }) {
   return (
     <section className={clsx("px-12 md:px-36 mb-10", pageName == "preview" ? "" : "min-h-screen")}>
-      <CelebrationCard/>
       <h1 className="mb-6 mt-12 text-center text-7xl font-semibold text-zinc-300">
         {metadata?.title || "Untitled Dataset"}
       </h1>
@@ -38,7 +37,7 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
               description={metadata?.description || "No description available"}
               tags={metadata?.tags || []}
             />
-            <Dataset metadata={metadata} />
+            <Dataset metadata={metadata} pageName={pageName} />
           </div>
 
           {/* Sidebar */}
