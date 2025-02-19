@@ -3,7 +3,7 @@ import React from "react"
 import { FaFilePdf } from "react-icons/fa"
 import BuyData from "../Buy"
 import { useAccount } from "wagmi"
-export default function Dataset({ metadata }: { metadata: any }) {
+export default function Dataset({ metadata,pageName }: { metadata: any;pageName:any }) {
   const { address } = useAccount();
   console.log('this is metadata ', metadata)
   const datasetSize = "1.2 MB"
@@ -27,9 +27,9 @@ export default function Dataset({ metadata }: { metadata: any }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center px-6">
+      {pageName!="preview" && address!=metadata.owner && <div className="flex flex-col items-center justify-center px-6">
         <BuyData ipfs={metadata.IPFS} title={metadata.title} price={metadata.price} tokenId={metadata.tokenId} duration={metadata.timeout} />
-      </div>
+      </div>}
     </div>
   )
 }

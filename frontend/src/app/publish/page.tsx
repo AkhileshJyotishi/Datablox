@@ -79,18 +79,18 @@ export default function Page() {
         name: "Metadata",
       },
       {
-        tabNo: 3,
-        element: <Access {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
-        name: "Access",
-      },
-      {
         tabNo: 2,
         element: <Pricing {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
         name: "Pricing",
       },
       {
+        tabNo: 3,
+        element: <Access {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
+        name: "Access",
+      },
+      {
         tabNo: 4,
-        element: <Preview {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
+        element: <Preview {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }}  />,
         name: "Preview",
       },
       {

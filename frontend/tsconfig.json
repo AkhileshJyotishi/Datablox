@@ -33,7 +33,7 @@
     "**/*.tsx",
     "../.next/types/**/*.ts",
     ".next/types/**/*.ts"
-  ],
+, "src/components/Celebration.tsx"  ],
   "exclude": [
     "node_modules"
   ]
