@@ -13,7 +13,7 @@ import confetti from "canvas-confetti";
 import { ScratchToReveal } from "@/components/Celebration.tsx/ScratchToReveal";
 
 
-export default function BuyData({ title, ipfs, price, tokenId, duration }: { ipfs: string; title: string; price: number; tokenId: number; duration: number }) {
+export default function BuyData({ title, ipfs, price, tokenId, duration, pageName }: { ipfs: string; title: string; price: number; tokenId: number; duration: number; pageName?: string }) {
   //contract write
   const { data: hash, writeContract } = useWriteContract()
   const { address } = useAccount();
@@ -113,9 +113,15 @@ export default function BuyData({ title, ipfs, price, tokenId, duration }: { ipf
             <div className="items-center justify-center flex flex-col">
               <button
                 className="rounded-md bg-gradient-to-r from-[#d93678] to-[#e94c8e] px-6 py-2 font-bold text-white transition-all duration-300 hover:from-[#b92e66] hover:to-[#d63f7c] active:from-[#a02858] active:to-[#bf356b]"
-                onClick={() => buyData()}
+                onClick={() => {
+                  if(pageName=="realtime"){
+                    handleClick();
+                  }else{
+                    buyData()
+                  }
+                }}
               >
-                Buy now
+                {pageName=="realtime"?"Subscribe":"Buy now"}
               </button>
               <div className="max-w-80 text-xs mt-3 text-center text-gray-400">
                 To access this dataset, you will purchase 1 Sonic and instantly return it to the publisher for verification.
