@@ -18,6 +18,7 @@ contract DatasetOwnership is ERC1155 {
     mapping(uint256 => address) public datasetOwners;
 
     event PartialOwnershipPurchased(address indexed buyer, uint256 indexed tokenId, uint256 expiryTime);
+    event ownerTokenId(address indexed owner, uint256 indexed tokenid);
     
     constructor(string memory baseUri) ERC1155(baseUri) {}
 
@@ -26,7 +27,9 @@ contract DatasetOwnership is ERC1155 {
         datasetTokens[currentTokenId] = DatasetToken(newToken, datasetUri, price);
         _mint(msg.sender, currentTokenId, amount, "");
         datasetOwners[currentTokenId] = msg.sender;
+        emit ownerTokenId(msg.sender,currentTokenId);
         currentTokenId++;
+        
     }
 
     function buyPartialOwnership(uint256 tokenId, uint256 duration) external payable {
@@ -35,7 +38,7 @@ contract DatasetOwnership is ERC1155 {
         DatasetToken storage datasetToken = datasetTokens[tokenId];
         require(msg.value >= datasetToken.price, "Insufficient payment");
         payable(owner).transfer(msg.value);
-        require(datasetToken.token.transfer(msg.sender, 10), "ERC20 minting failed");
+        require(datasetToken.token.transfer(msg.sender, 10 * 10**18), "ERC20 minting failed");
         emit PartialOwnershipPurchased(msg.sender, tokenId, block.timestamp + duration);
     }
 
@@ -43,8 +46,12 @@ contract DatasetOwnership is ERC1155 {
         _burn(account, tokenId, amount);
     }
 
-    function getDatasetUri(uint256 tokenId) external view returns (string memory) {
-        require(datasetTokens[tokenId].token.balanceOf(msg.sender) >= 10 * 10**18, "Insufficient ERC20 tokens for access");
+    function getDatasetUri(uint256 tokenId, address _address) external view returns ( string memory) {
+        require(datasetTokens[tokenId].token.balanceOf(_address) >= 10, "Insufficient ERC20 tokens for access");
         return datasetTokens[tokenId].uri;
+    }
+
+    function getBalance(uint256 tokenId, address _address) external view returns (uint256) {
+        return datasetTokens[tokenId].token.balanceOf(_address);
     }
 }

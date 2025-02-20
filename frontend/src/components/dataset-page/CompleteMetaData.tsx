@@ -1,3 +1,4 @@
+'use client'
 import React from "react"
 import Dataset from "./dataset"
 import RelatedDataset from "./relatedDataset"
@@ -7,8 +8,8 @@ import logo from "@/assets/dataset-page/img1.svg"
 import clsx from "clsx"
 import { datasets } from "@/constants/dataset"
 import Chatbot from "./Chatbot"
-
-export default function CompleteMetaData({ metadata, pageName = "xx" }: { metadata: any; pageName?: string }) {
+import CelebrationCard from "../Celebration.tsx/CelebrationCard"
+export default function CompleteMetaData({ metadata, pageName = "" }: { metadata: any; pageName?: string }) {
   return (
     <section className={clsx("px-12 md:px-36 mb-10", pageName == "preview" ? "" : "min-h-screen")}>
       <h1 className="mb-6 mt-12 text-center text-7xl font-semibold text-zinc-300">
@@ -36,7 +37,7 @@ export default function CompleteMetaData({ metadata, pageName = "xx" }: { metada
               description={metadata?.description || "No description available"}
               tags={metadata?.tags || []}
             />
-            <Dataset metadata={metadata}/>
+            <Dataset metadata={metadata} pageName={pageName} />
           </div>
 
           {/* Sidebar */}
