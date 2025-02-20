@@ -5,7 +5,6 @@ import BuyData from "../Buy"
 import { useAccount } from "wagmi"
 export default function Dataset({ metadata,pageName }: { metadata: any;pageName:any }) {
   const { address } = useAccount();
-  console.log('this is metadata ', metadata)
   const datasetSize = "1.2 MB"
   const price = metadata.price;
   const sales = metadata.sales || 0;
