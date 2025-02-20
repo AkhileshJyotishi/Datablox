@@ -1,5 +1,5 @@
 const data = {
-  "Real Madrid vs Man City": {
+  1: {
     title: "Influencer Impact on Real Madrid vs Man City: Twitter Fan & Analysis Dataset (2025-02-20)",
     description:
       "This dataset captures the impact of influencers and fan reactions on Twitter during the Real Madrid vs Man City match on February 20, 2025. It includes tweets from verified accounts, sports analysts, and regular fans, covering match updates, tactical analysis, and emotional responses. The data includes tweet metadata such as sentiment scores, engagement metrics (likes, retweets, replies), hashtags, and media attachments, making it valuable for social media analysis, sentiment tracking, and sports engagement research",
@@ -1312,7 +1312,7 @@ const data = {
       },
     ],
   },
-  "Financial Market Sentiment Analysis": {
+  2: {
     title: "Financial Market Sentiment Analysis using Twitter (2025-02-20)",
     description:
       "This dataset aggregates Twitter data focused on financial market sentiment analysis. It includes tweets discussing stock tickers, economic news, and market trends along with tweet metadata, engagement metrics, sentiment scores, and user information. The data is ideal for analyzing investor sentiment and modeling market behavior.",
@@ -2517,3 +2517,4 @@ const data = {
   },
   
 }
+export default data;
