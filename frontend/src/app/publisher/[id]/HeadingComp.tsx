@@ -37,6 +37,7 @@ export function Heading({
       </div>
       <div className="mx-auto mb-7 mt-7 grid grid-cols-3 gap-4">
         {dataset.map((data: any, index: number) => {
+          if(data.length==0) return <></>;
           return (
             <DataPacket
               key={index}

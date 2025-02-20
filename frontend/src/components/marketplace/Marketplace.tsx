@@ -55,7 +55,7 @@ export default function Marketplace() {
   ]
 
   return (
-    <div className="relative">
+    <div className="relative max-w-7xl">
       <div className="relative flex justify-center overflow-hidden">
         <div className="relative z-50 mb-3 mt-10 select-none">
           <div className="mt-8 flex flex-col items-center justify-center gap-3 py-10 text-gray-200">
