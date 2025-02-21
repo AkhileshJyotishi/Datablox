@@ -25,7 +25,7 @@ export function RequestDataset() {
             <DialogTrigger asChild>
                 <Button variant="outline" className="rounded-md bg-gradient-to-r from-[#d93678] to-[#e94c8e] px-6 py-2 font-bold text-white transition-all duration-300 hover:from-[#b92e66] hover:to-[#d63f7c] active:from-[#a02858] active:to-[#bf356b]">Request New Dataset</Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md text-white bg-black">
+            <DialogContent className="sm:max-w-md text-white backdrop-blur-xl bg-[#FFFFFF]/5 border-[#d1d1e0]/10 shadow-lg">
                 <DialogHeader>
                     <DialogTitle>Request New Dataset</DialogTitle>
                     <DialogDescription className="text-white">
@@ -40,7 +40,7 @@ export function RequestDataset() {
                         <Input
                             id="username"
                             placeholder="@NarendraModi"
-                            className="col-span-3 bg-gray-700 text-white"
+                            className="col-span-3 bg-gray-700 text-white  border-[#d1d1e0]/10"
                         />
                     </div>
                     <div className="flex flex-col items-start gap-4">
@@ -50,7 +50,7 @@ export function RequestDataset() {
                         <Input
                             id="hashtags"
                             placeholder="#Elections #Votetowin #BJP"
-                            className="col-span-3 bg-gray-700 text-white"
+                            className="col-span-3 bg-gray-700 text-white  border-[#d1d1e0]/10"
                         />
                     </div>
                     <div className="flex flex-col items-start gap-4">
@@ -60,7 +60,7 @@ export function RequestDataset() {
                         <Textarea
                             id="other"
                             placeholder="Please provide any additional information we should extract from Tweets to create a more relevant dataset for your agency."
-                            className="col-span-3 bg-gray-700 text-white w-full p-4 rounded-lg border border-white"
+                            className="col-span-3 bg-gray-700 text-white w-full p-4 rounded-lg border  border-[#d1d1e0]/10"
                             rows={3}
                         />
                     </div>
