@@ -12,6 +12,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
     const metaDataId = searchParams.get("metadataid") as string | null
+    console.log("request came here with ",metaDataId);
 
     if (!metaDataId) {
       return NextResponse.json({ error: "Metadata ID is required" }, { status: 400 })

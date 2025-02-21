@@ -16,4 +16,9 @@ export const navItems = [
     link: "/marketplace",
     icon: <AiFillUsb className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
+  {
+    name: "Realtime Datasets",
+    link: "/realtime",
+    icon: <AiFillUsb className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
 ]
