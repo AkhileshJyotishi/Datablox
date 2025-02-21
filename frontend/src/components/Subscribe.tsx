@@ -90,8 +90,7 @@ export default function Subscribe({ title, ipfs, price, tokenId, duration, pageN
                         <button
                             className="rounded-md bg-gradient-to-r from-[#d93678] to-[#e94c8e] px-6 py-2 font-bold text-white transition-all duration-300 hover:from-[#b92e66] hover:to-[#d63f7c] active:from-[#a02858] active:to-[#bf356b]"
                             onClick={() => {
-                                console.log(ipfs);
-                                navigator.clipboard.writeText(ipfs)
+                                navigator.clipboard.writeText(ipfs+"&user="+address)
                                     .then(() => {
                                         console.log('Text copied to clipboard');
                                         toast("Url Copied Successfully");
