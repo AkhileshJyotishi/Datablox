@@ -31,9 +31,10 @@ interface DataPacketProps {
 }
 
 const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false, realtime }) => {
-  let redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data.id}`
+  console.log("data ",data);
+  let redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data?.id}`
   if(realtime){
-    redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/realtime/${data.id}`;
+    redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/realtime/${data?.id}`;
   }
   return (
     <Link href={redirectLink}>

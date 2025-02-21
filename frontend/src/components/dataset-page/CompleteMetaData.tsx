@@ -10,6 +10,7 @@ import { datasets } from "@/constants/dataset"
 import Chatbot from "./Chatbot"
 import CelebrationCard from "../Celebration.tsx/CelebrationCard"
 export default function CompleteMetaData({ metadata, pageName = "" }: { metadata: any; pageName?: string }) {
+  console.log("metadata ",metadata);
   return (
     <section className={clsx("px-12 md:px-36 mb-10", pageName == "preview" ? "" : "min-h-screen")}>
       <h1 className="mb-6 mt-12 text-center text-7xl font-semibold text-zinc-300">
