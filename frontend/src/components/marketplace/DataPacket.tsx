@@ -15,6 +15,7 @@ interface DataPacketProps {
     description?: string
   }
   isSearchPage?: boolean
+  realtime?:boolean
 }
 // chain:string;
 // operator: string;
@@ -29,9 +30,13 @@ interface DataPacketProps {
   /* <div className="flex items-center"> */
 }
 
-const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false }) => {
+const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false, realtime }) => {
+  let redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data.id}`
+  if(realtime){
+    redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/realtime/${data.id}`;
+  }
   return (
-    <Link href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data.id}`}>
+    <Link href={redirectLink}>
       <div
         className={`${isSearchPage ? "" : "border border-[#303030]"} relative h-full cursor-pointer overflow-hidden rounded-3xl bg-transparent p-6 backdrop-blur-sm`}
       >

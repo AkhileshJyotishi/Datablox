@@ -7,11 +7,12 @@ interface MetadataProps {
   description: string;
   tags: string[];
   created_at: string;
+  sampleData?:{}[];
 }
 
 
 
-export default function Metadata({ created_at, description, tags }: MetadataProps) {
+export default function Metadata({ created_at, description, tags,sampleData }: MetadataProps) {
   const SampleData = [
     {
       srNo: "1",
@@ -25,8 +26,11 @@ export default function Metadata({ created_at, description, tags }: MetadataProp
       // feature8: "dfkdfalj",
       // feature9: "dfkdfalj",
     },
-
+    
   ]
+  if(!sampleData){
+    sampleData = SampleData;
+  }
   const tableHeaders = Object.keys(SampleData[0]);
 
   function timeAgo(timestamp: string): string {
@@ -73,7 +77,7 @@ export default function Metadata({ created_at, description, tags }: MetadataProp
       </div>
       <div className='px-4 mt-6'>
         <h3 className="text-2xl font-semibold text-zinc-300 mb-2">Sample Data</h3>
-        <Table SampleData={SampleData} />
+        <Table SampleData={sampleData} />
       </div>
     </div>
   );

@@ -5,11 +5,8 @@ export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
         const id = searchParams.get("id");
-
-        const numericId = id ? Number(id) : NaN;
-
-        if (!isNaN(numericId) && (data as Record<number, any>)[numericId]) {
-            return NextResponse.json((data as Record<number, any>)[numericId].data, { status: 200 });
+        if (Number(id)) {
+            return NextResponse.json(data[Number(id)], { status: 200 });
         } else {
             return NextResponse.json("No dataset with this id", { status: 404 });
         }

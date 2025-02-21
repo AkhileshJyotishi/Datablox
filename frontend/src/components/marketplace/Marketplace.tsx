@@ -4,6 +4,7 @@ import TopPublishers from './TopPublishers'
 import Search from './search-bar'
 import { InfiniteMovingCards } from '../infinite-cards'
 import { datasets } from '@/constants/dataset'
+import realtime from '@/constants/realtime'
  
 export default function Marketplace() {
   const tags = [
@@ -20,9 +21,6 @@ export default function Marketplace() {
     "speech-recognition",
     "autonomous-vehicles",
   ]
-  const realtimeDatasets = {
-    
-  }
 
   return (
     <div className="relative max-w-7xl">
@@ -44,9 +42,10 @@ export default function Marketplace() {
           <div className="mt-24">
             <p className="my-2 text-2xl font-extrabold text-gray-400">Realtime Datasets</p>
             <InfiniteMovingCards
-              items={datasets}
+              items={realtime}
               direction="right"
               speed="slow"
+              realtime={true}
             />
           </div>
           <div className="mt-24">

@@ -1,7 +1,7 @@
 export const datasets = [
   {
     operator: "RANDOM-77",
-    chain: "sonic",
+    chain: "SONIC",
     title: "Global Weather Data 2024",
     owner: "0x5EB3a34e6003f7811d17f5b3925c42cdAe0A7c8e",
     description:
@@ -12,7 +12,7 @@ export const datasets = [
   },
   {
     operator: "RANDOM-85",
-    chain: "sonic",
+    chain: "SONIC",
     title: "Global Energy Consumption Data (2024)",
     owner: "0xA1B2C3D4E5F67890ABCDEF1234567890ABCDEF12",
     description:
@@ -23,7 +23,7 @@ export const datasets = [
   },
   {
     operator: "RANDOM-66",
-    chain: "sonic",
+    chain: "SONIC",
     title: "Global Energy Consumption Data (2024)",
     owner: "0xA1B2C3D4E5F67890ABCDEF1234567890ABCDEF12",
     description:
@@ -34,7 +34,7 @@ export const datasets = [
   },
   {
     operator: "RANDOM-79",
-    chain: "sonic",
+    chain: "SONIC",
     title: "Carbon Emissions from Energy Use (2023)",
     owner: "0xE5F6A7B8C9D01234EF5678901234EF56",
     description:
@@ -45,7 +45,7 @@ export const datasets = [
   },
   {
     operator: "RANDOM-90",
-    chain: "sonic",
+    chain: "SONIC",
     title: "US Electricity Consumption by Sector (2024)",
     owner: "0xD4E5F6A7B8C90123DEF4567890123DEF45",
     description:
@@ -56,7 +56,7 @@ export const datasets = [
   },
   {
     operator: "RANDOM-85",
-    chain: "sonic",
+    chain: "SONIC",
     title: "Global Oil and Gas Reserves (2024)",
     owner: "0xC3D4E5F6A7B89012CDEF3456789012CDEF34",
     description:
@@ -67,7 +67,7 @@ export const datasets = [
   },
   {
     operator: "RANDOM-78",
-    chain: "sonic",
+    chain: "SONIC",
     title: "Renewable Energy Production - Europe (2023)",
     owner: "0xB2C3D4E5F6A78901BCDEF2345678901BCDEF23",
     description:
@@ -78,7 +78,7 @@ export const datasets = [
   },
   {
     operator: "RANDOM-63",
-    chain: "sonic",
+    chain: "SONIC",
     title: "Global Energy Consumption Data (2024)",
     owner: "0xA1B2C3D4E5F67890ABCDEF1234567890ABCDEF12",
     description:

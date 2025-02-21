@@ -16,7 +16,7 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
         {metadata?.title || "Untitled Dataset"}
       </h1>
       <div className="flex mx-auto justify-center gap-5">
-        <div className={`${pageName!=="preview"?"w-[65%]":"w-full"} flex flex-col justify-center gap-8 py-3`}>
+        <div className={`${pageName !== "preview" ? "w-[65%]" : "w-full"} flex flex-col justify-center gap-8 py-3`}>
           {/* Main Dataset Information */}
           <div className={`flex  h-full flex-col items-center justify-center border border-zinc-700 pb-8 shadow-lg backdrop-blur-sm`}>
             <div className="flex h-full w-full items-center border-b border-zinc-700">
@@ -36,19 +36,20 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
               created_at={metadata?.created_at}
               description={metadata?.description || "No description available"}
               tags={metadata?.tags || []}
+              sampleData={metadata?.sampleData}
             />
             <Dataset metadata={metadata} pageName={pageName} />
           </div>
 
           {/* Sidebar */}
         </div>
-        {pageName !== "preview" && (
+        {pageName != "preview" && (
           <div className="py-3 max-h-[80vh]" style={{}}>
             <Chatbot ipfs={metadata.IPFS} />
           </div>
         )}
       </div>
-      <RelatedDataset title={metadata.title} />
+      {pageName == "" && <RelatedDataset title={metadata.title} />}
     </section>
   )
 }

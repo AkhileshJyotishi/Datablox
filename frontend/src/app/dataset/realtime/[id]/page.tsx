@@ -1,28 +1,11 @@
 import React from "react"
 import CompleteMetaData from "@/components/dataset-page/CompleteMetaData"
 import NoDataFound from "../../[datasetId]/noDataFound"
+import realtime from "@/constants/realtime"
 
-export default async function Page({ params }: { params: { datasetId: string } }) {
-  const datasetId = params.datasetId
-
-  let metadata = null
-
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/getmetadata?metadataid=${datasetId}`)
-
-    if (!response.ok) {
-      console.error("Error fetching metadata:", response.statusText)
-      return <NoDataFound />
-    } else {
-      const data = await response.json()
-      if (!data.error) {
-        metadata = data
-      }
-    }
-  } catch (error) {
-    console.error("Error fetching metadata:", error)
-  }
-
+export default async function Page({ params }: { params: { id: string } }) {
+  const datasetId = params.id
+  let metadata = realtime[Number(datasetId)];
   return (
     <CompleteMetaData
       metadata={metadata}
