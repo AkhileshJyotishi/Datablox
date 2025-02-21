@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils"
 import React, { useEffect, useState } from "react"
 import DataPacket from "../marketplace/DataPacket"
+import { RealTimeProps } from "@/constants/realtime"
 
 export const InfiniteMovingCards = ({
   items,
@@ -10,6 +11,7 @@ export const InfiniteMovingCards = ({
   speed = "fast",
   pauseOnHover = true,
   className,
+  realtime
 }: {
   items: {
     operator: string
@@ -25,6 +27,7 @@ export const InfiniteMovingCards = ({
   speed?: "fast" | "normal" | "slow"
   pauseOnHover?: boolean
   className?: string
+  realtime?:boolean
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const scrollerRef = React.useRef<HTMLUListElement>(null)
@@ -90,7 +93,7 @@ export const InfiniteMovingCards = ({
             key={idx}
             className="relative w-[450px] max-w-full flex-shrink-0 cursor-pointer"
           >
-            <DataPacket data={item} />
+            <DataPacket data={item} realtime={realtime} />
           </li>
         ))}
       </ul>
