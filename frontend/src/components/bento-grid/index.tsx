@@ -6,12 +6,13 @@ import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 // import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 import Link from "next/link"
+import twitterImage from '@/assets/landing-page/twitter_image.jpeg'
 
 export function FeaturesSectionDemo() {
   const features = [
     {
-      title: "Track issues effectively",
-      description: "Track and manage your project issues with ease using our intuitive interface.",
+      title: "Real-Time Data Generation",
+      description: "Leverage our Twitter-integrated AI to generate datasets based on real-time user engagement with events like product launches, global crises, and elections, allowing users to subscribe for automated updates via webhooks or track specific hashtags and usernames for curated datasets.",
       skeleton: <SkeletonOne />,
       className: "col-span-1 lg:col-span-4 border-b lg:border-r dark:border-neutral-800",
     },
@@ -38,13 +39,12 @@ export function FeaturesSectionDemo() {
   return (
     <div className="relative z-20 mx-auto max-w-7xl py-10 lg:py-40">
       <div className="px-8">
-        <h4 className="mx-auto max-w-5xl text-center text-3xl font-medium tracking-tight text-black lg:text-5xl lg:leading-tight dark:text-white">
-          Packed with thousands of features
+        <h4 className="mx-auto max-w-5xl text-center text-3xl font-medium tracking-tight text-black lg:text-[45px] lg:leading-tight dark:text-white">
+          Power Your Decisions with Verified & Real-Time Data
         </h4>
 
         <p className="mx-auto my-4 max-w-2xl text-center text-sm font-normal text-neutral-500 lg:text-base dark:text-neutral-300">
-          From Image generation to video generation, Everything AI has APIs for literally everything. It can even create
-          this website copy for you.
+          Unlock AI-verified datasets and real-time Twitter insights. Whether you need reliable market data or dynamic event-driven insights, our platform ensures trust, transparency, and precision—secured on the blockchain.
         </p>
       </div>
 
@@ -56,7 +56,7 @@ export function FeaturesSectionDemo() {
               className={feature.className}
             >
               <FeatureTitle>{feature.title}</FeatureTitle>
-              <FeatureDescription>{feature.description}</FeatureDescription>
+              <div className="text-sm py-2">{feature.description}</div>
               <div className="h-full w-full">{feature.skeleton}</div>
             </FeatureCard>
           ))}
@@ -99,7 +99,7 @@ export const SkeletonOne = () => {
         <div className="flex h-full w-full flex-1 flex-col space-y-2">
           {/* TODO */}
           <Image
-            src="/linear.webp"
+            src={twitterImage}
             alt="header"
             width={800}
             height={800}

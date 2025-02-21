@@ -6,6 +6,7 @@ import { FileText, Sparkles } from "lucide-react"
 
 import { FaCopy, FaFileAlt, FaPenNib, FaColumns, FaArrowUp, FaBox, FaCompass } from "react-icons/fa"
 import { RoboAnimation } from "../robo-animation"
+import Link from "next/link"
 
 const Skeleton = () => (
   <div className="flex h-full min-h-[6rem] w-full flex-1 rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800"></div>
@@ -95,16 +96,16 @@ const page = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="flex flex-col items-center justify-center gap-2 sm:flex-row"
         >
-          <button className="flex bg-purple-600 px-8 py-2 text-white hover:bg-purple-700">
-            <FileText className="mr-2 h-5 w-5" />
-            Upload Paper
-          </button>
-          <button className="flex border-purple-500 py-2 text-white hover:bg-purple-500/20">
+          <Link href={"/realtime"} className="flex items-center justify-center bg-purple-600 px-8 py-2 text-white hover:bg-purple-700">
             <Sparkles className="mr-2 h-5 w-5" />
-            See Examples
-          </button>
+            Subscribe to Live Data
+          </Link>
+          <Link href={"/marketplace"} className="flex border-purple-500 py-2 text-white hover:text-gray-300 px-4">
+            <FileText className="mr-2 h-5 w-5" />
+            Explore Marketplace
+          </Link>
         </motion.div>
       </div>
       <div className="absolute bottom-0 right-0 h-96 w-96">
