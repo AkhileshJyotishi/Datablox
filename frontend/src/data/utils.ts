@@ -2515,7 +2515,7 @@ const data = {
       },
     ],
   },
-  "Donald Trump Public Image": {
+  3: {
     title: "Donald Trump's Public Image: Twitter Sentiment and Engagement Dataset (2025-02-20)",
     description:
       "This dataset aggregates Twitter data centered on public perception and sentiment toward Donald Trump. It includes tweets from his official account, political analysts, and everyday users commenting on his public image, policies, and controversies. Each tweet entry contains metadata (tweet ID, timestamp, text, language), user details (verification status, follower count, influencer flag), engagement metrics (retweets, likes, replies, quote counts), as well as a computed sentiment score and a topic label. This resource is intended for research on political communication and public opinion analysis.",
@@ -3667,7 +3667,7 @@ const data = {
       // ... (Rows 51 through 50 have been simulated above; total 50 tweet objects in this array)
     ],
   },
-  "ICC World Cup Fan Reviews": {
+  4: {
     title: "ICC World Cup 2023: Fan Sentiment and Engagement Dataset",
     description:
       "This dataset aggregates Twitter data focused on fan reviews and sentiment regarding the ICC World Cup from last season. It includes tweets from the official ICC account, cricket analysts, and everyday fans discussing match experiences, team performances, and overall tournament excitement. Each tweet entry includes metadata (tweet ID, timestamp, text, language), user details (username, verified status, follower count), engagement metrics (retweets, likes, replies, quote counts), a computed sentiment score, and a topic label (e.g., official_update, analyst_opinion, fan_reaction). This resource is ideal for researchers studying sports engagement, social media sentiment analysis, and fan-driven narratives in cricket.",
@@ -4819,7 +4819,7 @@ const data = {
       },
     ],
   },
-  "Coinbase Exchange Service Sentiment Analysis": {
+  5: {
     title: "Coinbase Exchange Service Sentiment Analysis: Twitter Engagement Dataset (2025-02-20)",
     description:
       "This dataset aggregates Twitter data focused on public sentiment and engagement related to Coinbase and its crypto exchange services. It includes tweets from Coinbase’s official account, crypto analysts, and everyday users sharing reviews on service quality, fee structures, platform updates, and customer support experiences. Each tweet entry includes metadata (tweet ID, timestamp, text, language), user details (verification status, follower count, influencer flag), engagement metrics (retweets, likes, replies, quote counts), as well as a computed sentiment score and a topic label. This resource is ideal for researching digital currency exchanges, social media sentiment, and consumer feedback on crypto services.",
@@ -6022,7 +6022,7 @@ const data = {
       },
     ],
   },
-  "KFC Reviews": {
+  6: {
     title: "Brand and Product Review for KFC: Twitter Analysis Dataset (2025-02-20)",
     description:
       "This dataset aggregates Twitter data focused on brand and product reviews for KFC. It includes tweets from KFC’s official account, food influencers, and regular customers discussing product taste, service, and overall experience. The data features tweet text, timestamps, engagement metrics, sentiment scores, and user metadata—making it ideal for sentiment analysis and social media brand monitoring research.",
@@ -7265,3 +7265,4 @@ const data = {
     ],
   },
 }
+export default data;
