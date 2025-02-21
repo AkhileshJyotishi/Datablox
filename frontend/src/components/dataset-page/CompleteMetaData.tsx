@@ -48,7 +48,7 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
           </div>
         )}
       </div>
-      <RelatedDataset relatedData={datasets} />
+      <RelatedDataset title={metadata.title} />
     </section>
   )
 }

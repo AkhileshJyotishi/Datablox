@@ -1,7 +1,7 @@
-"use client"
-import { cn } from "@/lib/utils"
-import { AnimatePresence, motion } from "framer-motion"
-import { useState, useEffect } from "react"
+"use client";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const CheckIcon = ({ className }: { className?: string }) => {
   return (
@@ -11,12 +11,12 @@ const CheckIcon = ({ className }: { className?: string }) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={cn("h-6 w-6", className)}
+      className={cn("w-6 h-6 ", className)}
     >
       <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
     </svg>
-  )
-}
+  );
+};
 
 const CheckFilled = ({ className }: { className?: string }) => {
   return (
@@ -24,7 +24,7 @@ const CheckFilled = ({ className }: { className?: string }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className={cn("h-6 w-6", className)}
+      className={cn("w-6 h-6 ", className)}
     >
       <path
         fillRule="evenodd"
@@ -32,35 +32,44 @@ const CheckFilled = ({ className }: { className?: string }) => {
         clipRule="evenodd"
       />
     </svg>
-  )
-}
+  );
+};
 
 type LoadingState = {
-  text: string
-}
+  text: string;
+};
 
-const LoaderCore = ({ loadingStates, value = 0 }: { loadingStates: LoadingState[]; value?: number }) => {
+const LoaderCore = ({
+  loadingStates,
+  value = 0,
+}: {
+  loadingStates: LoadingState[];
+  value?: number;
+}) => {
   return (
-    <div className="relative scale-150 mx-auto mt-40 flex max-w-xl flex-col justify-start">
+    <div className="flex relative justify-start max-w-xl mx-auto flex-col mt-40">
       {loadingStates.map((loadingState, index) => {
-        const distance = Math.abs(index - value)
-        const opacity = Math.max(1 - distance * 0.2, 0) // Minimum opacity is 0, keep it 0.2 if you're sane.
+        const distance = Math.abs(index - value);
+        const opacity = Math.max(1 - distance * 0.2, 0); // Minimum opacity is 0, keep it 0.2 if you're sane.
 
         return (
           <motion.div
             key={index}
-            className={cn("mb-4 flex gap-2 text-left")}
+            className={cn("text-left flex gap-2 mb-4")}
             initial={{ opacity: 0, y: -(value * 40) }}
             animate={{ opacity: opacity, y: -(value * 40) }}
             transition={{ duration: 0.5 }}
           >
             <div>
-              {index > value && <CheckIcon className="text-black dark:text-white" />}
+              {index > value && (
+                <CheckIcon className="text-black dark:text-white" />
+              )}
               {index <= value && (
                 <CheckFilled
                   className={cn(
                     "text-black dark:text-white",
-                    value === index && "text-black opacity-100 dark:text-lime-500"
+                    value === index &&
+                      "text-black dark:text-lime-500 opacity-100"
                   )}
                 />
               )}
@@ -68,60 +77,35 @@ const LoaderCore = ({ loadingStates, value = 0 }: { loadingStates: LoadingState[
             <span
               className={cn(
                 "text-black dark:text-white",
-                value === index && "text-black opacity-100 dark:text-lime-500"
+                value === index && "text-black dark:text-lime-500 opacity-100"
               )}
             >
               {loadingState.text}
             </span>
           </motion.div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default function MultiStepLoader({
-  loading = true,
+export const MultiStepLoader = ({
+  loadingStates,
+  loading,
   duration = 2000,
   loop = true,
 }: {
-  loading?: boolean
-  duration?: number
-  loop?: boolean
-}) {
-  const loadingStates = [
-    {
-      text: "Analyzing your query...",
-    },
-    {
-      text: "Searching relevant datasets...",
-    },
-    {
-      text: "Filtering high-quality data...",
-    },
-    {
-      text: "Verifying dataset credibility...",
-    },
-    {
-      text: "Ranking results based on AI insights...",
-    },
-    {
-      text: "Optimizing data relevance...",
-    },
-    {
-      text: "Finalizing dataset recommendations...",
-    },
-    {
-      text: "Fetching the best results for you...",
-    },
-  ];
-  
-  const [currentState, setCurrentState] = useState(0)
+  loadingStates: LoadingState[];
+  loading?: boolean;
+  duration?: number;
+  loop?: boolean;
+}) => {
+  const [currentState, setCurrentState] = useState(0);
 
   useEffect(() => {
     if (!loading) {
-      setCurrentState(0)
-      return
+      setCurrentState(0);
+      return;
     }
     const timeout = setTimeout(() => {
       setCurrentState((prevState) =>
@@ -130,11 +114,11 @@ export default function MultiStepLoader({
             ? 0
             : prevState + 1
           : Math.min(prevState + 1, loadingStates.length - 1)
-      )
-    }, duration)
+      );
+    }, duration);
 
-    return () => clearTimeout(timeout)
-  }, [loading, loop, loadingStates.length, duration])
+    return () => clearTimeout(timeout);
+  }, [currentState, loading, loop, loadingStates.length, duration]);
   return (
     <AnimatePresence mode="wait">
       {loading && (
@@ -148,16 +132,15 @@ export default function MultiStepLoader({
           exit={{
             opacity: 0,
           }}
-          className="fixed inset-0 z-[100] flex h-[96vh] w-full items-center justify-center bg-transparent backdrop-blur-md"
+          className="w-full h-full fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-2xl"
         >
-          <div className="relative h-96">
-            <LoaderCore
-              value={currentState}
-              loadingStates={loadingStates}
-            />
+          <div className="h-96  relative">
+            <LoaderCore value={currentState} loadingStates={loadingStates} />
           </div>
+
+          <div className="bg-transparent inset-x-0 z-20 bottom-0 h-full absolute" />
         </motion.div>
       )}
     </AnimatePresence>
-  )
-}
+  );
+};

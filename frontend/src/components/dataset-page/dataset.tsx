@@ -22,7 +22,7 @@ export default function Dataset({ metadata,pageName }: { metadata: any;pageName:
             Price <span className="text-md text-[#ff4092]"> {price+" Sonic"}</span>
           </div>
           <div className="text-sans text-lg font-normal">
-            Sales <span className="text-md text-[#ff4092]"> {sales}</span>
+            Sales <span className="text-md text-[#ff4092]"> {metadata.sales || 0}</span>
           </div>
         </div>
       </div>
