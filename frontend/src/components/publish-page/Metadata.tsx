@@ -76,11 +76,12 @@ export default function Metadata({
 
     if (!newErrors.title && !newErrors.description && !newErrors.author) {
       console.log("Form submitted:", formData)
+      const vall = tabNo;
       setTabNo((prev: any) => {
         return prev + 1
       })
       setIsTabCompleted((prev: any) => {
-        prev[tabNo] = true
+        prev[vall] = true
         return prev
       })
     }

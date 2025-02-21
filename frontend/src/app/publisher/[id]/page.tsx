@@ -13,11 +13,12 @@ interface Metadata {
   description?: string
 }
 
-export default async function PublisherPage() {
+export default async function PublisherPage({ params }: { params: { id: string } }) {
+  const id = params.id;
   let PublisherDataset: Metadata[] = []
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-publisher-data?publisherAddress=0xA1B2C3D4E5F67890ABCDEF1234567890ABCDEF12`
+      `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-publisher-data?publisherAddress=${id}`
     )
     PublisherDataset = response.data.metadatas
     // console.log("My data=", response.data.metadatas)
