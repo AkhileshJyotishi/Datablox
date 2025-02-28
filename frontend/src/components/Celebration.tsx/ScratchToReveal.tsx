@@ -148,7 +148,7 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
 
   return (
     <motion.div
-      className={cn("relative select-none", className)}
+      className={cn("relative select-none z-[100]", className)}
       style={{
         width,
         height,
@@ -161,7 +161,7 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
         ref={canvasRef}
         width={width}
         height={height}
-        className="absolute left-0 top-0"
+        className="absolute left-0 top-0 z-[100]"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       ></canvas>

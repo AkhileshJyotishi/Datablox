@@ -72,7 +72,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
   }, [chat, thinking])
 
   return (
-    <div className='text-gray-400 flex-grow border-zinc-700 rounded-lg border backdrop-blur-xl h-full flex flex-col w-[450px]'>
+    <div className='text-gray-400 flex-grow border-zinc-700 rounded-lg border backdrop-blur-xl h-full flex flex-col '>
       <div className='flex items-center py-4 px-5 text-white text-xl border-b rounded-lg border-zinc-700'>
         Ask Anything about Dataset
       </div>
