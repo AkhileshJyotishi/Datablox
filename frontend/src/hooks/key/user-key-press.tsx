@@ -1,5 +1,6 @@
-import { ICallback } from "@/interface/global"
 import { useCallback, useEffect } from "react"
+
+import { ICallback } from "@/interface/global"
 
 // Ref: @KeyboardEvent["key"]: https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
 const useKeyPress = (targetKey: KeyboardEvent["key"], callback: ICallback) => {

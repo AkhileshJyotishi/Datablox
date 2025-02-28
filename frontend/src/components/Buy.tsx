@@ -1,24 +1,26 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { createPortal } from "react-dom"
+import { useCallback, useEffect, useRef, useState } from "react"
+
 import confetti from "canvas-confetti"
-import { format, addDays } from "date-fns"
+import { addDays, format } from "date-fns"
+import { AnimatePresence, motion } from "framer-motion"
 import {
-  Download,
-  X,
-  Twitter,
+  Award,
   BarChart3,
   Calendar,
-  Tag,
-  Clock,
-  Award,
-  TrendingUp,
-  Database,
-  Shield,
   CheckCircle2,
+  Clock,
+  Database,
+  Download,
+  Shield,
+  Tag,
+  TrendingUp,
+  Twitter,
+  X,
 } from "lucide-react"
+import { createPortal } from "react-dom"
+
 import { ScratchToReveal } from "./Celebration.tsx/ScratchToReveal"
 
 // Define the type for our NFT data
@@ -174,7 +176,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
       return (
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center justify-center gap-2 w-full rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl"
         >
           <Download className="h-5 w-5" />
           Download Dataset
@@ -186,8 +188,9 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
       <button
         onClick={handlePurchase}
         disabled={purchaseState === "processing"}
-        className={`w-full rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl ${purchaseState === "processing" ? "opacity-70 cursor-not-allowed" : ""
-          }`}
+        className={`w-full rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl ${
+          purchaseState === "processing" ? "cursor-not-allowed opacity-70" : ""
+        }`}
       >
         {purchaseState === "processing" ? (
           <div className="flex items-center justify-center gap-2">
@@ -252,14 +255,18 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
 
                     <div className="mb-8 w-full max-w-md">
                       {steps.map((step, index) => (
-                        <div key={index} className="mb-4 flex items-center">
+                        <div
+                          key={index}
+                          className="mb-4 flex items-center"
+                        >
                           <div
-                            className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${currentStep > index
-                              ? "bg-green-500"
-                              : currentStep === index
-                                ? "bg-blue-500 animate-pulse"
-                                : "bg-slate-700"
-                              }`}
+                            className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${
+                              currentStep > index
+                                ? "bg-green-500"
+                                : currentStep === index
+                                  ? "animate-pulse bg-blue-500"
+                                  : "bg-slate-700"
+                            }`}
                           >
                             {currentStep > index ? (
                               <CheckCircle2 className="h-5 w-5 text-white" />
@@ -322,10 +329,9 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
                         <ScratchToReveal
                           width={335}
                           height={300}
-                          className="rounded-md overflow-hidden shadow-sm"
+                          className="overflow-hidden rounded-md shadow-sm"
                         >
-
-                          <div className="relative aspect-square w-full  overflow-hidden">
+                          <div className="relative aspect-square w-full overflow-hidden">
                             {/* Background pattern */}
                             {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_0,rgba(59,130,246,0)_70%)]"></div> */}
 
@@ -334,17 +340,16 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
                               initial={{ opacity: 0, scale: 0 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: 0.5, type: "spring" }}
-                              className="absolute  -translate-x-1/2 -translate-y-1/2"
+                              className="absolute -translate-x-1/2 -translate-y-1/2"
                             >
                               <img
                                 src="https://nftevening.com/wp-content/uploads/2022/04/Project-PXN-NFT-collection.png.webp"
                                 alt="Reveal"
-                                className="w-full h-full flex items-center justify-center text-lg font-semibold text-black"
+                                className="flex h-full w-full items-center justify-center text-lg font-semibold text-black"
                               />
                             </motion.div>
 
                             {/* Data visualization elements */}
-                            
 
                             {/* NFT ID and chain */}
                             <div className="absolute left-3 top-3 rounded-md bg-slate-800/80 px-2 py-1 text-xs font-medium backdrop-blur-sm">
@@ -491,7 +496,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
           </motion.div>
         )}
       </AnimatePresence>,
-      document.body,
+      document.body
     )
   }
 
@@ -499,7 +504,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
     <div className="w-full">
       <div className="mb-4">{renderActionButton()}</div>
 
-      <div className="text-xs text-center text-slate-400 max-w-md mx-auto">
+      <div className="mx-auto max-w-md text-center text-xs text-slate-400">
         {purchaseState !== "success" && (
           <p>
             {pageName === "realtime"
@@ -509,8 +514,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
         )}
       </div>
 
-      {renderModalContent()}
+      {renderModalContent() as React.ReactNode}
     </div>
   )
 }
-

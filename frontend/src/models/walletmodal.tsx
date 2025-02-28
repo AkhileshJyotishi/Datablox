@@ -1,7 +1,9 @@
 "use client"
 import React from "react"
-import { useAuth } from "../providers/auth/auth"
+
 import { WalletConnector } from "@/lib" // adjust if needed
+
+import { useAuth } from "../providers/auth/auth"
 
 const WalletOptions: React.FC = () => {
   const { walletConnectors, connectToWallet } = useAuth()

@@ -39,18 +39,16 @@ export default function PublishPage({
     owner: userData?.owner || "0x0000000000000000000000000000000000000000",
   }
 
-  
-
   return (
     <div>
       <CompleteMetaData
         metadata={data}
         pageName="preview"
       />
-      <div className="flex justify-center mb-6">
+      <div className="mb-6 flex justify-center">
         <button
-          onClick={()=>{
-            setTabNo((prev:number) => prev + 1)
+          onClick={() => {
+            setTabNo((prev: number) => prev + 1)
           }}
           className="rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-8 py-2 font-sans text-lg font-semibold text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]"
         >

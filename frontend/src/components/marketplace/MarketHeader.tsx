@@ -1,8 +1,11 @@
 "use client"
-import Link from "next/link"
 import React from "react"
-import { CiSearch } from "react-icons/ci"
+
+import Link from "next/link"
+
 import { ConnectKitButton } from "connectkit"
+import { CiSearch } from "react-icons/ci"
+
 import Chads from "../avatar"
 export default function MarketHeader() {
   return (

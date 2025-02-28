@@ -1,26 +1,35 @@
-'use client'
+"use client"
 import React from "react"
-import RelatedDataset from "./relatedDataset"
-import Metadata from "./metadata"
+
 import Image from "next/image"
-import logo from "@/assets/dataset-page/img1.svg"
+
 import clsx from "clsx"
-import Chatbot from "./Chatbot"
+
+import logo from "@/assets/dataset-page/img1.svg"
+
 import BannerImage from "../ui/banner-image"
+
+import Chatbot from "./Chatbot"
 import Dataset from "./dataset"
+import Metadata from "./metadata"
+import RelatedDataset from "./relatedDataset"
 export default function CompleteMetaData({ metadata, pageName = "" }: { metadata: any; pageName?: string }) {
-  console.log("metadata ", metadata);
+  console.log("metadata ", metadata)
   return (
-    <section className={clsx("px-12 md:px-24  mt-4", pageName == "preview" ? "" : "min-h-[calc(100vh-1000px)]")}>
-      <BannerImage bannerImage='' />
+    <section className={clsx("mt-4 px-12 md:px-24", pageName == "preview" ? "" : "min-h-[calc(100vh-1000px)]")}>
+      <BannerImage bannerImage="" />
       <div className="relative -top-10 z-50">
-        <h1 className="mb-6 max-w-5xl mx-auto text-center text-6xl font-semibold text-zinc-300">
+        <h1 className="mx-auto mb-6 max-w-5xl text-center text-6xl font-semibold text-zinc-300">
           {metadata?.title || "Untitled Dataset"}
         </h1>
-        <div className=" sm:grid sm:grid-cols-3 mx-auto justify-center gap-5 max-h-screen overflow-y-auto no-scrollbar">
-          <div className={`${pageName !== "preview" ? "w-full" : "w-full"} flex flex-col col-span-2 justify-center gap-8 py-3`}>
+        <div className="no-scrollbar mx-auto max-h-screen justify-center gap-5 overflow-y-auto sm:grid sm:grid-cols-3">
+          <div
+            className={`${pageName !== "preview" ? "w-full" : "w-full"} col-span-2 flex flex-col justify-center gap-8 py-3`}
+          >
             {/* Main Dataset Information */}
-            <div className={`flex  h-full flex-col items-center justify-center border border-zinc-700 pb-8 shadow-lg backdrop-blur-sm`}>
+            <div
+              className={`flex h-full flex-col items-center justify-center border border-zinc-700 pb-8 shadow-lg backdrop-blur-sm`}
+            >
               <div className="flex h-full w-full items-center border-b border-zinc-700">
                 <div className="border-r border-zinc-700">
                   <Image
@@ -40,21 +49,25 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
                 tags={metadata?.tags || []}
                 sampleData={metadata?.sampleData}
               />
-              <Dataset metadata={metadata} pageName={pageName} />
+              <Dataset
+                metadata={metadata}
+                pageName={pageName}
+              />
             </div>
 
             {/* Sidebar */}
           </div>
           {pageName != "preview" && (
-            <div className="py-3 max-h-[80vh] sticky top-10" style={{}}>
+            <div
+              className="sticky top-10 max-h-[80vh] py-3"
+              style={{}}
+            >
               <Chatbot ipfs={metadata.IPFS} />
             </div>
           )}
         </div>
         {pageName == "" && <RelatedDataset title={metadata.title} />}
-
       </div>
-
     </section>
   )
 }

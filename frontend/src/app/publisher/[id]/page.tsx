@@ -1,5 +1,7 @@
 import axios from "axios"
+
 import DataPacket from "@/components/marketplace/DataPacket"
+
 import { Heading } from "./HeadingComp"
 
 interface Metadata {
@@ -14,7 +16,7 @@ interface Metadata {
 }
 
 export default async function PublisherPage({ params }: { params: { id: string } }) {
-  const id = params.id;
+  const id = params.id
   let PublisherDataset: Metadata[] = []
   try {
     const response = await axios.get(
@@ -27,9 +29,9 @@ export default async function PublisherPage({ params }: { params: { id: string }
   }
 
   return (
-      <>
-    <div className="container relative z-10 mx-auto max-w-7xl px-4 py-16">
-      {PublisherDataset.length > 0 && (
+    <>
+      <div className="container relative z-10 mx-auto max-w-7xl px-4 py-16">
+        {PublisherDataset.length > 0 && (
           <Heading
             address="0xA1B2C3D4E5F67890ABCDEF1234567890ABCDEF12"
             datasetCount={PublisherDataset.length}
@@ -41,7 +43,7 @@ export default async function PublisherPage({ params }: { params: { id: string }
             dataset={PublisherDataset}
           />
         )}
-    </div>
-        </>
+      </div>
+    </>
   )
 }

@@ -1,10 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { Sidebar } from "@/ui/sidebar"
-import { Message } from "@/ui/message"
+
 import { ChatInput } from "@/ui/chat-input"
 import { DatasetRecommendations } from "@/ui/dataset-recommendations"
+import { Message } from "@/ui/message"
+import { Sidebar } from "@/ui/sidebar"
 
 const recommendations = [
   {
@@ -63,32 +64,43 @@ export default function DatasetChatPage() {
 
   const handleRecommendationSelect = (recommendation: (typeof recommendations)[0]) => {
     handleSendMessage(
-      `Generate a ${recommendation.title.toLowerCase()} with ${recommendation.rows} rows including these features: ${recommendation.features.join(", ")}`,
+      `Generate a ${recommendation.title.toLowerCase()} with ${recommendation.rows} rows including these features: ${recommendation.features.join(", ")}`
     )
   }
 
   return (
-    <div className="w-[80%] mt-4 ">
+    <div className="mt-4 w-[80%]">
       <div className="flex h-[83vh] w-[100%] bg-transparent text-white">
-        <Sidebar collapsed={sidebarCollapsed} onCollapse={() => setSidebarCollapsed(!sidebarCollapsed)} />
+        <Sidebar
+          collapsed={sidebarCollapsed}
+          onCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        />
 
         <main className="flex flex-1 flex-col overflow-hidden">
           <div className="flex-1 overflow-auto p-6">
             {messages.length === 0 ? (
-              <DatasetRecommendations recommendations={recommendations} onSelect={handleRecommendationSelect} />
+              <DatasetRecommendations
+                recommendations={recommendations}
+                onSelect={handleRecommendationSelect}
+              />
             ) : (
               <div className="space-y-6">
                 {messages.map((message, index) => (
-                  <Message key={index} {...message} />
+                  <Message
+                    key={index}
+                    {...message}
+                  />
                 ))}
               </div>
             )}
           </div>
 
-          <ChatInput onSubmit={handleSendMessage} placeholder="Describe the dataset you want to generate..." />
+          <ChatInput
+            onSubmit={handleSendMessage}
+            placeholder="Describe the dataset you want to generate..."
+          />
         </main>
       </div>
     </div>
   )
 }
-

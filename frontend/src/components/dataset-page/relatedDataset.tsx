@@ -1,7 +1,10 @@
 import React from "react"
-import RelatedDataPacket from "./relatedDatasetCard"
-import DataPacket from "../marketplace/DataPacket"
+
 import axios from "axios"
+
+import DataPacket from "../marketplace/DataPacket"
+
+import RelatedDataPacket from "./relatedDatasetCard"
 interface Metadata {
   id: number
   operator: string
@@ -12,7 +15,7 @@ interface Metadata {
   address?: string
   description?: string
 }
-export default async function RelatedDataset({title}:{title:string}) {
+export default async function RelatedDataset({ title }: { title: string }) {
   const query = `Find datasets related to "${title}". Prioritize relevance based on similar topics, keywords, and usage. Ensure the datasets align with the context of "${title}" and are useful for users looking for related data.`
 
   let relatedData: Metadata[] = [] // ✅ Explicit type added

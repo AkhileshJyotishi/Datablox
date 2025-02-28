@@ -1,13 +1,15 @@
 "use client"
-import React from 'react'
+import React from "react"
+
+import Link from "next/link"
+
 import { motion } from "framer-motion"
-import Link from 'next/link'
-import { FileText, Sparkles } from 'lucide-react'
+import { FileText, Sparkles } from "lucide-react"
 
 const index = () => {
   return (
     <>
-     <div className="mx-auto max-w-4xl text-center">
+      <div className="mx-auto max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,17 +39,22 @@ const index = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex flex-col items-center justify-center gap-2 sm:flex-row"
         >
-          <Link href={"/realtime"} className="flex items-center justify-center bg-purple-600 px-8 py-3 text-white hover:bg-purple-700 rounded-md">
+          <Link
+            href={"/realtime"}
+            className="flex items-center justify-center rounded-md bg-purple-600 px-8 py-3 text-white hover:bg-purple-700"
+          >
             <Sparkles className="mr-2 h-5 w-5" />
             Subscribe to Live Data
           </Link>
-          <Link href={"/marketplace"} className="flex border-purple-500 px-8 py-3 text-black rounded-md  bg-white ">
+          <Link
+            href={"/marketplace"}
+            className="flex rounded-md border-purple-500 bg-white px-8 py-3 text-black"
+          >
             <FileText className="mr-2 h-5 w-5" />
             Explore Marketplace
           </Link>
         </motion.div>
       </div>
-      
     </>
   )
 }

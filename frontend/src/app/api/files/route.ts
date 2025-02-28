@@ -1,5 +1,6 @@
 // app/api/key/route.ts
 import { NextResponse } from "next/server"
+
 import { pinata } from "@/utils/config"
 
 export const dynamic = "force-dynamic"

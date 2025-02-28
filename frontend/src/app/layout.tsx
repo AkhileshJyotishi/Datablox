@@ -2,13 +2,15 @@ import React from "react"
 
 import { Toaster } from "sonner"
 
-import "@/styles/globals.css"
-import { Provider } from "@/providers"
-import MarketHeader from "@/components/marketplace/MarketHeader"
-import { FloatingNav } from "@/components/floating-navbar"
 import { navItems } from "@/data"
-import { SparklesCore } from "@/components/sparkles"
+
+import { FloatingNav } from "@/components/floating-navbar"
 import { FloatingPaper } from "@/components/floating-paper"
+import MarketHeader from "@/components/marketplace/MarketHeader"
+import { SparklesCore } from "@/components/sparkles"
+import { Provider } from "@/providers"
+
+import "@/styles/globals.css"
 
 const RootLayout = ({
   children,
@@ -17,7 +19,7 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className="min-h-screen  bg-black font-satoshi">
+      <body className="min-h-screen bg-black font-satoshi">
         <Provider>
           <Toaster
             position="top-center"

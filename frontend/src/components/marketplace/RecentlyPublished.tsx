@@ -1,8 +1,11 @@
 import React from "react"
+
+import dynamic from "next/dynamic"
+
+import DataPacketSkeleton from "@/app/search/skeleton"
+
 // import DataPacket from "./DataPacket"
 import { datasets } from "@/constants/dataset"
-import dynamic from "next/dynamic"
-import DataPacketSkeleton from "@/app/search/skeleton"
 const DataPacket = dynamic(() => import("./DataPacket"), {
   ssr: false,
   loading: () => <DataPacketSkeleton />,

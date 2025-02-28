@@ -1,7 +1,8 @@
 "use client"
 
-import { SendHorizontal } from "lucide-react"
 import React, { useEffect, useRef } from "react"
+
+import { SendHorizontal } from "lucide-react"
 
 interface ChatInputProps {
   onSubmit: (message: string) => void
@@ -19,8 +20,7 @@ export function ChatInput({ onSubmit, placeholder = "Type a message...", disable
       setInput("")
     }
   }
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -45,7 +45,7 @@ export function ChatInput({ onSubmit, placeholder = "Type a message...", disable
           className="w-full resize-none overflow-y-auto rounded-lg border border-[#303030] bg-transparent px-4 py-3 text-white placeholder-zinc-400 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-[#9e2750]"
           style={{ minHeight: "60px", maxHeight: "180px" }}
           onInput={() => {
-            if((!textareaRef) || (!textareaRef.current)) return;
+            if (!textareaRef || !textareaRef.current) return
             textareaRef.current.style.height = "50px" // Reset to prevent unnecessary growth
             textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 180)}px` // Adjust height dynamically
           }}

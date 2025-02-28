@@ -1,7 +1,10 @@
-import { HiDownload } from "react-icons/hi"
 import React from "react"
-import { Grid } from "../nft-card-grid"
+
 import Link from "next/link"
+
+import { HiDownload } from "react-icons/hi"
+
+import { Grid } from "../nft-card-grid"
 
 interface DataPacketProps {
   data: {
@@ -31,10 +34,10 @@ interface DataPacketProps {
 }
 
 const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false, realtime }) => {
-  console.log("data ", data);
+  console.log("data ", data)
   let redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data?.id}`
   if (realtime) {
-    redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/realtime/${data?.id}`;
+    redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/realtime/${data?.id}`
   }
   return (
     <Link href={redirectLink}>
@@ -50,17 +53,15 @@ const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false, rea
                         {data.operator}
                     </span> */}
           <span className="px-3 text-xs uppercase">{data.chain || "Sonic"}</span>
-          {
-            realtime &&
-            <div className=" flex flex-row gap-2 items-center ml-auto">
-          <span className="relative flex size-4">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#d93678] opacity-75"></span>
-            <span className="relative inline-flex size-4 rounded-full bg-[#d93678]" />
-          </span>
-          <span className="text-sm font-bold uppercase text-white ">LIVE</span>  
-
+          {realtime && (
+            <div className="ml-auto flex flex-row items-center gap-2">
+              <span className="relative flex size-4">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#d93678] opacity-75"></span>
+                <span className="relative inline-flex size-4 rounded-full bg-[#d93678]" />
+              </span>
+              <span className="text-sm font-bold uppercase text-white">LIVE</span>
             </div>
-          }
+          )}
         </div>
         <div
           className="mt-3 px-2 text-xl font-extrabold text-white"

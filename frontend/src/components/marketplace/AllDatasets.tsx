@@ -1,4 +1,5 @@
 import React from "react"
+
 import { FaLongArrowAltRight } from "react-icons/fa"
 
 export default function AllData() {

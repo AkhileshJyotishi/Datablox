@@ -4,10 +4,9 @@ import { Metadata, NextPage } from "next"
 
 import limg from "@/assets/home/left.png"
 import rimg from "@/assets/home/right.png"
-import Hero from "@/components/landing"
 import FeatureSection from "@/components/feature-section/feature-section"
+import Hero from "@/components/landing"
 import TeamSection from "@/components/team-section"
-
 
 // interface HomePageProps {}
 
@@ -27,16 +26,15 @@ const HomePage: NextPage = () => {
         className="absolute -left-1/2 -top-28 h-auto w-[1600px] md:left-[62%]"
         src={rimg.src}
       />
-        <Hero />
+      <Hero />
 
-        <div className="relative z-[50] mt-10 text-white">
-          {/* <FeaturesSectionDemo /> */}
-          {/* <FeatureSection/> */}
-          <FeatureSection/>
-        </div>
+      <div className="relative z-[50] mt-10 text-white">
+        {/* <FeaturesSectionDemo /> */}
+        {/* <FeatureSection/> */}
+        <FeatureSection />
+      </div>
 
-        <TeamSection/>
-
+      <TeamSection />
     </>
   )
 }

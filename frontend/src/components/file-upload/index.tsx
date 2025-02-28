@@ -1,8 +1,10 @@
-import { cn } from "@/lib/utils"
 import React, { useRef, useState } from "react"
+
 import { motion } from "framer-motion"
 import { useDropzone } from "react-dropzone"
 import { FiUpload } from "react-icons/fi"
+
+import { cn } from "@/lib/utils"
 
 const mainVariant = {
   initial: {

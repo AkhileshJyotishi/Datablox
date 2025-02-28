@@ -1,15 +1,18 @@
 "use client"
 
 import React, { useState } from "react"
+
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
+
 import { ConnectKitButton } from "connectkit"
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion"
-
-import { cn } from "@/lib/utils"
-import Chads from "../avatar"
 import { CiSearch } from "react-icons/ci"
+
 import FullDataBlox from "@/assets/logo/datablox_fulllogo"
+import { cn } from "@/lib/utils"
+
+import Chads from "../avatar"
 
 export const FloatingNav = ({
   navItems,
@@ -147,4 +150,3 @@ export const FloatingNav = ({
     </AnimatePresence>
   )
 }
-

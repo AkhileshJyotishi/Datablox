@@ -1,10 +1,12 @@
-'use client'
-import React, { useState, useRef, useEffect } from 'react'
-import { SearchBox } from './searchBox'
-import Avatar from '@/assets/avatar/floating-robot.png'
-import axios from 'axios'
-import ReactMarkdown from "react-markdown";
+"use client"
+import React, { useEffect, useRef, useState } from "react"
 
+import axios from "axios"
+import ReactMarkdown from "react-markdown"
+
+import Avatar from "@/assets/avatar/floating-robot.png"
+
+import { SearchBox } from "./searchBox"
 
 const placeholders = [
   "Find AI training datasets for image recognition",
@@ -14,13 +16,11 @@ const placeholders = [
 ]
 
 // Dummy avatar for the bot
-const botAvatarUrl = Avatar.src;
+const botAvatarUrl = Avatar.src
 
 export default function Chatbot({ ipfs }: { ipfs: string }) {
   const [query, setQuery] = useState("")
-  const [chat, setChat] = useState<[string, string][]>([
-    ["bot", "What do you want to know about this dataset?"],
-  ])
+  const [chat, setChat] = useState<[string, string][]>([["bot", "What do you want to know about this dataset?"]])
   const [thinking, setThinking] = useState(false)
 
   const chatContainerRef = useRef<HTMLDivElement>(null)
@@ -37,13 +37,13 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
 
     // Immediately show the user's message
     const userMessage: [string, string] = ["user", query]
-    setChat(prevChat => [...prevChat, userMessage])
+    setChat((prevChat) => [...prevChat, userMessage])
     const currentQuery = query
     setQuery("")
 
     try {
       setThinking(true)
-      console.log("this is the data ", currentQuery, ipfs);
+      console.log("this is the data ", currentQuery, ipfs)
       const response = await axios.post(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-chat-result`, {
         userResponse: currentQuery,
         ipfsUrl: ipfs,
@@ -51,7 +51,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
 
       const aiResponse = response.data.aiResponse
       const botResponse: [string, string] = ["bot", aiResponse]
-      setChat(prevChat => [...prevChat, botResponse])
+      setChat((prevChat) => [...prevChat, botResponse])
     } catch (error: any) {
       console.error("Error fetching AI response:", error)
       let errorMessage = "Something went wrong. Please try again later."
@@ -59,7 +59,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
         errorMessage = error.response?.data?.error || error.message
       }
       const botErrorResponse: [string, string] = ["bot", `Error: ${errorMessage}`]
-      setChat(prevChat => [...prevChat, botErrorResponse])
+      setChat((prevChat) => [...prevChat, botErrorResponse])
     } finally {
       setThinking(false)
     }
@@ -72,30 +72,39 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
   }, [chat, thinking])
 
   return (
-    <div className='text-gray-400 flex-grow border-zinc-700 rounded-lg border backdrop-blur-xl h-full flex flex-col '>
-      <div className='flex items-center py-4 px-5 text-white text-xl border-b rounded-lg border-zinc-700'>
+    <div className="flex h-full flex-grow flex-col rounded-lg border border-zinc-700 text-gray-400 backdrop-blur-xl">
+      <div className="flex items-center rounded-lg border-b border-zinc-700 px-5 py-4 text-xl text-white">
         Ask Anything about Dataset
       </div>
 
-      <div ref={chatContainerRef} className='flex-grow overflow-y-auto p-4 space-y-3'>
+      <div
+        ref={chatContainerRef}
+        className="flex-grow space-y-3 overflow-y-auto p-4"
+      >
         {chat.map(([sender, message], index) => {
           if (sender === "bot") {
             return (
-              <div key={index} className="flex items-start space-x-2">
+              <div
+                key={index}
+                className="flex items-start space-x-2"
+              >
                 <img
                   src={botAvatarUrl}
                   alt="Bot Avatar"
-                  className="w-10 h-10 rounded-full"
+                  className="h-10 w-10 rounded-full"
                 />
-                <div className="backdrop-blur-2xl bg-gray-900 text-gray-300 p-2 rounded-lg max-w-[60%]">
+                <div className="max-w-[60%] rounded-lg bg-gray-900 p-2 text-gray-300 backdrop-blur-2xl">
                   <ReactMarkdown>{message}</ReactMarkdown>
                 </div>
               </div>
             )
           } else {
             return (
-              <div key={index} className="flex justify-end">
-                <div className="bg-blue-500 text-white p-2 rounded-lg max-w-[60%]">
+              <div
+                key={index}
+                className="flex justify-end"
+              >
+                <div className="max-w-[60%] rounded-lg bg-blue-500 p-2 text-white">
                   <ReactMarkdown>{message}</ReactMarkdown>
                 </div>
               </div>
@@ -108,9 +117,9 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
             <img
               src={botAvatarUrl}
               alt="Bot Avatar"
-              className="w-10 h-10 rounded-full"
+              className="h-10 w-10 rounded-full"
             />
-            <div className="backdrop-blur-2xl bg-gray-900 text-gray-300 p-2 rounded-lg max-w-[60%]">
+            <div className="max-w-[60%] rounded-lg bg-gray-900 p-2 text-gray-300 backdrop-blur-2xl">
               <em>Bot is thinking...</em>
             </div>
           </div>

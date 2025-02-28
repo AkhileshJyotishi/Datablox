@@ -1,25 +1,13 @@
 "use client"
-import MetadataSkeleton from "@/components/publish-page/meta-skeleton"
+import React, { useMemo, useState } from "react"
+
 import dynamic from "next/dynamic"
-import React, { useState, useMemo } from "react"
+
 import { MdCheck } from "react-icons/md"
 
-export const SkeletonLoader = () => {
-  return (
-    <section className="relative mb-10 mt-12 animate-pulse px-12">
-      <h1 className="mb-2 mt-14 flex items-center text-center text-6xl font-bold text-zinc-700">
-        <span className="h-10 w-48 rounded-md bg-gray-700 pb-2"></span>
-        <span className="ml-2 h-10 w-12 scale-90 rounded-md bg-gray-700 px-2"></span>
-      </h1>
-      <h1 className="mb-6 mt-5 h-6 w-4/5 rounded-md bg-gray-700 text-xl text-zinc-600"></h1>
-      <div className="mt-16 flex min-h-10 flex-col gap-4">
-        <div className="h-24 w-full rounded-md bg-gray-700"></div>
-        <div className="h-24 w-full rounded-md bg-gray-700"></div>
-        <div className="h-24 w-full rounded-md bg-gray-700"></div>
-      </div>
-    </section>
-  )
-}
+import { SkeletonLoader } from "@/data"
+
+import MetadataSkeleton from "@/components/publish-page/meta-skeleton"
 
 //   export default SkeletonLoader;
 
@@ -90,7 +78,7 @@ export default function Page() {
       },
       {
         tabNo: 4,
-        element: <Preview {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }}  />,
+        element: <Preview {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
         name: "Preview",
       },
       {

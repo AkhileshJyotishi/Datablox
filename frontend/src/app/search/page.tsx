@@ -1,8 +1,11 @@
-import DataPacket from "@/components/marketplace/DataPacket"
-import axios from "axios"
 import React from "react"
-import NotFoundPage from "./NotFoundPage"
+
+import axios from "axios"
+
+import DataPacket from "@/components/marketplace/DataPacket"
+
 import DataPacketGrid from "./GridComponent"
+import NotFoundPage from "./NotFoundPage"
 
 interface Metadata {
   id: number

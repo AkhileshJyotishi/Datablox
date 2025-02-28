@@ -1,7 +1,9 @@
 "use client"
-import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react"
+
 import { AnimatePresence, motion } from "framer-motion"
-import { useState, useEffect } from "react"
+
+import { cn } from "@/lib/utils"
 
 const CheckIcon = ({ className }: { className?: string }) => {
   return (
@@ -41,7 +43,7 @@ type LoadingState = {
 
 const LoaderCore = ({ loadingStates, value = 0 }: { loadingStates: LoadingState[]; value?: number }) => {
   return (
-    <div className="relative scale-150 mx-auto mt-40 flex max-w-xl flex-col justify-start">
+    <div className="relative mx-auto mt-40 flex max-w-xl scale-150 flex-col justify-start">
       {loadingStates.map((loadingState, index) => {
         const distance = Math.abs(index - value)
         const opacity = Math.max(1 - distance * 0.2, 0) // Minimum opacity is 0, keep it 0.2 if you're sane.
@@ -114,14 +116,14 @@ export default function MultiStepLoader({
     {
       text: "Fetching the best results for you...",
     },
-  ];
+  ]
 
   const [currentState, setCurrentState] = useState(0)
 
   useEffect(() => {
     if (!loading) {
-      setCurrentState(0);
-      return;
+      setCurrentState(0)
+      return
     }
 
     const timeout = setTimeout(() => {
@@ -131,11 +133,11 @@ export default function MultiStepLoader({
             ? 0
             : prevState + 1
           : Math.min(prevState + 1, loadingStates.length - 1)
-      );
-    }, duration);
+      )
+    }, duration)
 
-    return () => clearTimeout(timeout);
-  }, [loading, loop, duration, currentState, loadingStates.length]);
+    return () => clearTimeout(timeout)
+  }, [loading, loop, duration, currentState, loadingStates.length])
 
   return (
     <AnimatePresence mode="wait">

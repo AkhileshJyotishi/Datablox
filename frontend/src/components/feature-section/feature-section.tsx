@@ -2,11 +2,11 @@ import Features from "./features"
 
 const FeatureSection = () => {
   return (
-    <div className="relative bg-black min-h-[100vh] w-[100vw] text-white z-[1000] shadow-[0_-80px_140px_rgba(0,0,0,1)] mx-auto">
+    <div className="relative z-[1000] mx-auto min-h-[100vh] w-[100vw] bg-black text-white shadow-[0_-80px_140px_rgba(0,0,0,1)]">
       {/* Dark Gradient Overlay */}
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black to-transparent z-10"></div>
+      <div className="absolute left-0 top-0 z-10 h-40 w-full bg-gradient-to-b from-black to-transparent"></div>
 
-      <div className="px-8  pt-10 relative z-20">
+      <div className="relative z-20 px-8 pt-10">
         <h4 className="mx-auto max-w-5xl text-center text-3xl font-medium tracking-tight text-black lg:text-[45px] lg:leading-tight dark:text-white">
           Power Your Decisions with Verified & Real-Time Data
         </h4>
@@ -17,7 +17,7 @@ const FeatureSection = () => {
         </p>
       </div>
 
-      <div className="relative mt-10 z-20 max-w-[85vw] mx-auto">
+      <div className="relative z-20 mx-auto mt-10 max-w-[85vw]">
         <Features />
       </div>
     </div>
@@ -25,4 +25,3 @@ const FeatureSection = () => {
 }
 
 export default FeatureSection
-

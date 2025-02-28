@@ -1,7 +1,10 @@
 import React from "react"
-import { DaoSection } from "./JoiningPage"
-import LandingImage from "@/assets/landing-page/landingimage.png"
+
 import { StaticImageData } from "next/image"
+
+import LandingImage from "@/assets/landing-page/landingimage.png"
+
+import { DaoSection } from "./JoiningPage"
 export default function HeroSection() {
   return (
     <div>
