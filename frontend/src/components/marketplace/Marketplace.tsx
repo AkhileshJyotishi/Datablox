@@ -12,7 +12,7 @@ import DataPacketSkeleton from '@/app/search/skeleton'
 
 
 
-const InfiniteMovingCards = dynamic(() => import("../infinite-cards"), {
+const   InfiniteMovingCards = dynamic(() => import("../infinite-cards"), {
   ssr: false,
   loading: () => <DataPacketSkeleton />,
 })

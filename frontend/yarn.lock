@@ -7636,6 +7636,11 @@ leac@^0.6.0:
   resolved "https://registry.yarnpkg.com/leac/-/leac-0.6.0.tgz#dcf136e382e666bd2475f44a1096061b70dc0912"
   integrity sha512-y+SqErxb8h7nE/fiEX07jsbuhrpO9lL8eca7/Y1nuWV2moNlXhyd59iDGcRf6moVyDMbmTNzL40SUyrFU/yDpg==
 
+lenis@^1.1.21:
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/lenis/-/lenis-1.1.21.tgz#a0eed02a47b97e1fa0ce0e3a5a9ca31c4456944b"
+  integrity sha512-t3QIs6NsBiZr9HPFRndT0hKGq6uII3XpZrbJHhxnG5X0ep7t8+PXpQO7fFhEYh2zN0oc23VsvjN6a8Jq1geF4g==
+
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.4.1.tgz#ae4562c007473b932a6200d403268dd2fffc6ade"

@@ -9,7 +9,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { cn } from "@/lib/utils"
 import Chads from "../avatar"
 import { CiSearch } from "react-icons/ci"
-import SonicLogo from "@/assets/publish-page/sonicLogo.svg"
+import FullDataBlox from "@/assets/logo/datablox_fulllogo"
 
 export const FloatingNav = ({
   navItems,
@@ -81,7 +81,7 @@ export const FloatingNav = ({
             className="relative flex items-center space-x-1 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300"
           >
             <div className="scale-75">
-              <SonicLogo />
+              <FullDataBlox />
             </div>
           </Link>
           {navItems.map((navItem, idx) => (
@@ -147,3 +147,4 @@ export const FloatingNav = ({
     </AnimatePresence>
   )
 }
+
