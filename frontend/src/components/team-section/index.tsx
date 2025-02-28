@@ -4,10 +4,10 @@ import { IoMdContact } from "react-icons/io";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 const teamMembers = [
-  {
-    name: "Alex Morgan",
-    role: "CEO",
-    bio: "Visionary leader with 10+ years experience in tech innovation and business strategy",
+    {
+    name: "Umesh Singh Verma",
+    role: "AI Engineer",
+    bio: "Designed and integrated AI agents to automate data structuring and insights.",
     image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
     social: {
       twitter: "#",
@@ -16,9 +16,9 @@ const teamMembers = [
     },
   },
   {
-    name: "Jamie Chen",
-    role: "CTO",
-    bio: "Full-stack developer passionate about creating elegant solutions to complex problems",
+    name: "Akhilesh Jyotishi",
+    role: "Full Stack Developer",
+    bio: "Developed key frontend components and built the backend to power the platform.",
     image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
     social: {
       twitter: "#",
@@ -27,9 +27,9 @@ const teamMembers = [
     },
   },
   {
-    name: "Sam Rivera",
-    role: "Lead Designer",
-    bio: "Creative mind with an eye for detail and a passion for user-centered design",
+    name: "Disha Dwivedi",
+    role: "Blockchain Developer",
+    bio: "Developed and deployed secure smart contracts for NFT-based data transactions.",
     image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
     social: {
       twitter: "#",
@@ -38,9 +38,9 @@ const teamMembers = [
     },
   },
   {
-    name: "Taylor Kim",
-    role: "Marketing Director",
-    bio: "Strategic thinker with expertise in digital marketing and brand development",
+    name: "Ankit Yadav",
+    role: "Frontend Developer",
+    bio: "Built the core UI and seamlessly integrated backend APIs for a smooth user experience.",
     image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
     social: {
       twitter: "#",
@@ -49,9 +49,9 @@ const teamMembers = [
     },
   },
   {
-    name: "Jordan Patel",
-    role: "Product Manager",
-    bio: "Detail-oriented problem solver focused on delivering exceptional user experiences",
+    name: "Shubham Roy",
+    role: "Manager",
+    bio: "Supervised development, Bug reporting and crafted detailed project documentation.",
     image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
     social: {
       twitter: "#",
@@ -90,8 +90,8 @@ export default function TeamSection() {
                 <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-white">{member.name}</h3>
-              <p className="text-purple-500 text-base font-semibold mb-2">{member.role}</p>
-              <p className="text-gray-400 text-sm text-center mb-4">{member.bio}</p>
+              <p className="text-purple-500 text-base font-semibold mt-2 mb-2">{member.role}</p>
+              <p className="text-gray-300 text-sm text-center mb-4">{member.bio}</p>
               <div className="flex space-x-3 mt-auto pt-2">
                 <Link href={member.social.twitter} className="text-gray-400 hover:text-purple-700 transition-colors">
                   <BsTwitterX size={20} />
