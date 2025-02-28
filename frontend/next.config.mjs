@@ -21,6 +21,9 @@ const nextConfig = {
       {
         hostname: "images.unsplash.com",
       },
+      {
+        hostname:"static-00.iconduck.com"
+      }
     ],
   },
   compiler: {

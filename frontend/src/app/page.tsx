@@ -5,8 +5,9 @@ import { Metadata, NextPage } from "next"
 import limg from "@/assets/home/left.png"
 import rimg from "@/assets/home/right.png"
 import Hero from "@/components/landing"
+import FeatureSection from "@/components/feature-section/feature-section"
+import TeamSection from "@/components/team-section"
 
-import { FeaturesSectionDemo } from "@/components/bento-grid"
 
 // interface HomePageProps {}
 
@@ -32,9 +33,13 @@ const HomePage: NextPage = () => {
       />
         <Hero />
 
-        <div className="relative z-[50] text-white">
-          <FeaturesSectionDemo />
+        <div className="relative z-[50] mt-10 text-white">
+          {/* <FeaturesSectionDemo /> */}
+          {/* <FeatureSection/> */}
+          <FeatureSection/>
         </div>
+
+        <TeamSection/>
 
     </>
   )

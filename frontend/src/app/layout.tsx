@@ -17,7 +17,7 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-black font-satoshi">
+      <body className="min-h-screen  bg-black font-satoshi">
         <Provider>
           <Toaster
             position="top-center"
