@@ -3,8 +3,9 @@ import React, { useState } from "react"
 
 import Cookies from "js-cookie"
 
-import { constructWalletConnector, EIP6963Provider, WalletConnector } from "@/lib"
 import { IError } from "@/interface/global"
+
+import { constructWalletConnector, EIP6963Provider, WalletConnector } from "@/lib"
 
 interface IAuthContext {
   walletConnectors: WalletConnector[]

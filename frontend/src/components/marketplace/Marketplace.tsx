@@ -1,19 +1,20 @@
-import React from 'react'
-import RecentlyPublished from './RecentlyPublished'
-import TopPublishers from './TopPublishers'
-import Search from './search-bar'
+import React from "react"
+
 // import { InfiniteMovingCards } from '../infinite-cards'
 import dynamic from "next/dynamic"
+import Link from "next/link"
 
-import { datasets } from '@/constants/dataset'
-import realtime from '@/constants/realtime'
-import Link from 'next/link'
-import DataPacketSkeleton from '@/app/search/skeleton'
+import DataPacketSkeleton from "@/app/search/skeleton"
+
+import { datasets } from "@/constants/dataset"
+import realtime from "@/constants/realtime"
+
+import RecentlyPublished from "./RecentlyPublished"
+import Search from "./search-bar"
+import TopPublishers from "./TopPublishers"
 // import BannerImage from '../ui/banner-image'
 
-
-
-const   InfiniteMovingCards = dynamic(() => import("../infinite-cards"), {
+const InfiniteMovingCards = dynamic(() => import("../infinite-cards"), {
   ssr: false,
   loading: () => <DataPacketSkeleton />,
 })
@@ -41,7 +42,6 @@ export default function Marketplace() {
           <div className="mt-8 flex flex-col items-center justify-center gap-3 py-10 text-gray-200">
             <div className="text-6xl font-bold">AI Data Market</div>
             <div className="text-2xl">
-
               A next-gen marketplace to discover, publish, and trade AI-verified datasets securely on the Sonic Network.
             </div>
           </div>
@@ -86,7 +86,6 @@ export function TagComp({ tags }: { tags: string[] }) {
         return (
           <Link
             href={`/search?query=${encodeURIComponent(tag)}`}
-
             className="cursor-pointer items-center justify-center border border-[#303030] px-3 text-gray-400 hover:text-[#ff4092]"
             key={index}
           >

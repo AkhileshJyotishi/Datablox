@@ -1,8 +1,10 @@
-'use client'
+"use client"
 import React from "react"
+
 import { FaFilePdf } from "react-icons/fa"
-import BuyData from "../Buy"
 import { useAccount } from "wagmi"
+
+import BuyData from "../Buy"
 import Subscribe from "../Subscribe"
 
 const nftData = {
@@ -56,12 +58,12 @@ const nftData = {
   },
 }
 export default function Dataset({ metadata, pageName }: { metadata: any; pageName: any }) {
-  const { address } = useAccount();
+  const { address } = useAccount()
   const datasetSize = "1.2 MB"
-  const price = metadata.price;
-  const sales = metadata.sales || 0;
+  const price = metadata.price
+  const sales = metadata.sales || 0
   return (
-    <div className="mt-8 px-4 justify-between flex w-full">
+    <div className="mt-8 flex w-full justify-between px-4">
       <div className="flex">
         <div className="">
           <FaFilePdf className="text-[83px] text-[#8b98a9]" />
@@ -78,31 +80,34 @@ export default function Dataset({ metadata, pageName }: { metadata: any; pageNam
           </div>
         </div>
       </div>
-      {pageName == "" && address != metadata.owner && <div className="flex flex-col items-center justify-center px-6">
-        <BuyData
-          nftData={nftData}
-          ipfs="http://localhost:3000/api/get-realtime-data?id=0"
-          title={nftData.title}
-          price={5}
-          tokenId={0}
-          duration={30}
-          pageName="realtime"
-        />
-        {/* <BuyData ipfs={metadata.IPFS} title={metadata.title} price={metadata.price} tokenId={metadata.tokenId} duration={metadata.timeout} /> */}
-      </div>}
-      {pageName == "realtime" && address && address != metadata.owner && <div className="flex flex-col items-center justify-center px-6">
-
-        <BuyData
-          nftData={nftData}
-          ipfs="http://localhost:3000/api/get-realtime-data?id=0"
-          title={nftData.title}
-          price={5}
-          tokenId={0}
-          duration={30}
-          pageName="realtime"
-        />
-        {/* <Subscribe ipfs={metadata.IPFS} title={metadata.title} price={metadata.price} tokenId={metadata.tokenId} duration={metadata.timeout}/> */}
-      </div>}
+      {pageName == "" && address != metadata.owner && (
+        <div className="flex flex-col items-center justify-center px-6">
+          <BuyData
+            nftData={nftData}
+            ipfs="http://localhost:3000/api/get-realtime-data?id=0"
+            title={nftData.title}
+            price={5}
+            tokenId={0}
+            duration={30}
+            pageName="realtime"
+          />
+          {/* <BuyData ipfs={metadata.IPFS} title={metadata.title} price={metadata.price} tokenId={metadata.tokenId} duration={metadata.timeout} /> */}
+        </div>
+      )}
+      {pageName == "realtime" && address && address != metadata.owner && (
+        <div className="flex flex-col items-center justify-center px-6">
+          <BuyData
+            nftData={nftData}
+            ipfs="http://localhost:3000/api/get-realtime-data?id=0"
+            title={nftData.title}
+            price={5}
+            tokenId={0}
+            duration={30}
+            pageName="realtime"
+          />
+          {/* <Subscribe ipfs={metadata.IPFS} title={metadata.title} price={metadata.price} tokenId={metadata.tokenId} duration={metadata.timeout}/> */}
+        </div>
+      )}
     </div>
   )
 }

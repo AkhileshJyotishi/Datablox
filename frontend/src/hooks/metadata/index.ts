@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react"
+
 import { MetadataErrors, MetadataState } from "@/interface/global"
-import { useState, useEffect } from "react"
 
 export const useMetadata = (userData: any, setUserData: any) => {
   const [formData, setFormData] = useState<MetadataState>({

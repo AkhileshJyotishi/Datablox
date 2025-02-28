@@ -1,6 +1,8 @@
-import { createClient } from "@supabase/supabase-js"
-import axios from "axios"
 import { NextResponse } from "next/server"
+
+import axios from "axios"
+
+import { createClient } from "@supabase/supabase-js"
 
 const supabaseURL = process.env.SUPABASE_URL
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY

@@ -1,7 +1,9 @@
 import React, { useState } from "react"
-import Header from "@/components/landing-page/Header"
+
 import { LiaEthereum } from "react-icons/lia"
+
 import SonicLogo from "@/assets/publish-page/sonicLogo.svg"
+import Header from "@/components/landing-page/Header"
 import MarketHeader from "@/components/marketplace/MarketHeader"
 // ${selected ? "bg-blue-500 text-white" : "bg-gray-700 text-gray-300"}
 //  ${isCompleted ? "border-2 border-green-400" : ""}`

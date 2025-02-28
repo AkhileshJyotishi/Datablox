@@ -1,7 +1,9 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import React, { useEffect, useState } from "react"
+
+import { cn } from "@/lib/utils"
+
 import DataPacket from "../marketplace/DataPacket"
 
 export const MarqueePublisher = ({
@@ -11,7 +13,7 @@ export const MarqueePublisher = ({
   pauseOnHover = true,
   className,
 }: {
-  children:React.ReactNode,
+  children: React.ReactNode
   direction?: "left" | "right"
   speed?: "fast" | "normal" | "slow"
   pauseOnHover?: boolean

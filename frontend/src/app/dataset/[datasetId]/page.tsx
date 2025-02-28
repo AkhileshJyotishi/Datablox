@@ -1,6 +1,8 @@
 import React from "react"
-import NoDataFound from "./noDataFound"
+
 import CompleteMetaData from "@/components/dataset-page/CompleteMetaData"
+
+import NoDataFound from "./noDataFound"
 
 export default async function Page({ params }: { params: { datasetId: string } }) {
   const datasetId = params.datasetId
@@ -23,9 +25,5 @@ export default async function Page({ params }: { params: { datasetId: string } }
     console.error("Error fetching metadata:", error)
   }
 
-  return (
-    <CompleteMetaData
-      metadata={metadata}
-    />
-  )
+  return <CompleteMetaData metadata={metadata} />
 }

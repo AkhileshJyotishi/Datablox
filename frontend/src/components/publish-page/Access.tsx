@@ -1,14 +1,18 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
+
 import { TbReload } from "react-icons/tb"
-import { FileUpload } from "../ui/file-upload"
-import { pinata } from "@/utils/config"
 import { toast } from "sonner"
-import { useWriteContract, useWaitForTransactionReceipt } from "wagmi"
-import { wagmiContractConfigOwner } from "@/services/contract"
+import { useWaitForTransactionReceipt, useWriteContract } from "wagmi"
+
 import { getTransactionReceipt } from "@wagmi/core"
+
+import { wagmiContractConfigOwner } from "@/services/contract"
+import { pinata } from "@/utils/config"
+
 import { config } from "../../config/index"
+import { FileUpload } from "../ui/file-upload"
 
 interface AccessProps {
   userData: any
@@ -106,7 +110,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
   const [tokenVal, setTokenVal] = useState("")
 
   const createContract = async (uri: string, tokenName: string, tokenSymbol: string, price: number) => {
-    console.log("data ",uri,tokenName,tokenSymbol,price);
+    console.log("data ", uri, tokenName, tokenSymbol, price)
     try {
       const val = await writeContractAsync({
         ...wagmiContractConfigOwner,
@@ -135,7 +139,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
       const decimalNumber = parseInt(rec.logs[1].data, 18)
       console.log(decimalNumber)
       const ans = parseInt(rec.logs[1].data.slice(2, 66), 16)
-      const tokenId = ans;
+      const tokenId = ans
       if (tokenId) {
         userData.tokenId = tokenId
         console.log("Form submitted:", userData.access, tokenId)

@@ -1,8 +1,9 @@
 import React from "react"
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
+
 import DataPacket from "@/components/marketplace/DataPacket"
-import Search from "@/components/marketplace/search-bar"
 import { TagComp } from "@/components/marketplace/Marketplace"
+import Search from "@/components/marketplace/search-bar"
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
 import { SparklesPreview } from "@/components/ui/SparkleCore"
 
 interface DataPacketGridProps {

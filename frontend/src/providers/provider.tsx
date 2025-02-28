@@ -6,7 +6,6 @@ import { WagmiProvider } from "@/lib"
 
 import { AuthProvider } from "./auth"
 import { ModalProvider } from "./modal"
-import { UserProvider } from "./user"
 
 interface ProvidersProps {
   children: React.ReactNode
@@ -26,11 +25,9 @@ const Providers: React.FC<ProvidersProps> = ({ children }) => {
   return (
     <WagmiProvider>
       <ModalProvider>
-        <UserProvider>
-          <AuthProvider>
-            <>{children}</>
-          </AuthProvider>
-        </UserProvider>
+        <AuthProvider>
+          <>{children}</>
+        </AuthProvider>
       </ModalProvider>
     </WagmiProvider>
   )

@@ -1,7 +1,9 @@
 "use client"
 import React, { useState } from "react"
-import { PlaceholdersAndVanishInput } from "../placeholder-search"
+
 import { useRouter } from "next/navigation"
+
+import { PlaceholdersAndVanishInput } from "../placeholder-search"
 
 const Search = () => {
   const router = useRouter()

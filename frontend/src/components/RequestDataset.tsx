@@ -1,9 +1,13 @@
-"use client";
+"use client"
 
-import type React from "react";
-import { useState } from "react";
-import { toast } from "sonner";
-import { X, Plus, Hash, FileText, Send, Database } from "lucide-react";
+import { useState } from "react"
+
+import { Database, FileText, Hash, Plus, Send, X } from "lucide-react"
+import type React from "react"
+import { toast } from "sonner"
+
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Sheet,
   SheetClose,
@@ -13,56 +17,54 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+} from "@/components/ui/sheet"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/ui/button"
 
 export function RequestDataset() {
-  const [keywords, setKeywords] = useState<string[]>([]);
-  const [hashtags, setHashtags] = useState<string[]>([]);
-  const [description, setDescription] = useState("");
-  const [keywordInput, setKeywordInput] = useState("");
-  const [hashtagInput, setHashtagInput] = useState("");
+  const [keywords, setKeywords] = useState<string[]>([])
+  const [hashtags, setHashtags] = useState<string[]>([])
+  const [description, setDescription] = useState("")
+  const [keywordInput, setKeywordInput] = useState("")
+  const [hashtagInput, setHashtagInput] = useState("")
 
   const addKeyword = () => {
     if (keywordInput.trim() !== "" && !keywords.includes(keywordInput.trim())) {
-      setKeywords([...keywords, keywordInput.trim()]);
-      setKeywordInput("");
+      setKeywords([...keywords, keywordInput.trim()])
+      setKeywordInput("")
     }
-  };
+  }
 
   const removeKeyword = (keyword: string) => {
-    setKeywords(keywords.filter((k) => k !== keyword));
-  };
+    setKeywords(keywords.filter((k) => k !== keyword))
+  }
 
   const addHashtag = () => {
-    const formatted = hashtagInput.trim().startsWith("#") ? hashtagInput.trim() : `#${hashtagInput.trim()}`;
+    const formatted = hashtagInput.trim().startsWith("#") ? hashtagInput.trim() : `#${hashtagInput.trim()}`
 
     if (hashtagInput.trim() !== "" && !hashtags.includes(formatted)) {
-      setHashtags([...hashtags, formatted]);
-      setHashtagInput("");
+      setHashtags([...hashtags, formatted])
+      setHashtagInput("")
     }
-  };
+  }
 
   const removeHashtag = (hashtag: string) => {
-    setHashtags(hashtags.filter((h) => h !== hashtag));
-  };
+    setHashtags(hashtags.filter((h) => h !== hashtag))
+  }
 
   const handleSubmit = () => {
     // Validate form
     if (keywords.length === 0) {
-      toast.error("Please add at least one keyword");
-      return;
+      toast.error("Please add at least one keyword")
+      return
     }
     if (hashtags.length === 0) {
-      toast.error("Please add at least one hashtag");
-      return;
+      toast.error("Please add at least one hashtag")
+      return
     }
     if (description.trim().length < 10) {
-      toast.error("Please provide a more detailed description (at least 10 characters)");
-      return;
+      toast.error("Please provide a more detailed description (at least 10 characters)")
+      return
     }
 
     // Process the data
@@ -70,42 +72,42 @@ export function RequestDataset() {
       keywords,
       hashtags,
       description,
-    };
+    }
 
-    console.log("Request data:", requestData);
+    console.log("Request data:", requestData)
 
     // Show success message
-    toast.success("We have received your request. Your dataset will be ready within 4-5 days");
+    toast.success("We have received your request. Your dataset will be ready within 4-5 days")
 
     // Reset form
-    setKeywords([]);
-    setHashtags([]);
-    setDescription("");
-  };
+    setKeywords([])
+    setHashtags([])
+    setDescription("")
+  }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, type: "keyword" | "hashtag") => {
     if (e.key === "Enter") {
-      e.preventDefault();
+      e.preventDefault()
       if (type === "keyword") {
-        addKeyword();
+        addKeyword()
       } else {
-        addHashtag();
+        addHashtag()
       }
     }
-  };
+  }
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant={"default"} className="bg-purple-600 hover:bg-purple-500 text-white">
-          <Database className="h-4 w-4 " />
+        <Button className="bg-purple-600 text-white hover:bg-purple-500">
+          <Database className="h-4 w-4" />
           Request Dataset
         </Button>
       </SheetTrigger>
       <div className="">
         <SheetContent
           side="bottom"
-          className="max-w-7xl   mx-auto rounded-t-xl bg-black text-white border-t border-l border-r  border-gray-500 "
+          className="mx-auto max-w-7xl rounded-t-xl border-l border-r border-t border-gray-500 bg-black text-white"
         >
           <SheetHeader className="mb-6">
             <SheetTitle className="text-lg font-bold">Request Custom Dataset</SheetTitle>
@@ -117,18 +119,25 @@ export function RequestDataset() {
           <div className="space-y-6">
             {/* Keywords */}
             <div className="space-y-2">
-              <Label htmlFor="keywords" className="flex items-center gap-2 text-white">
+              <Label
+                htmlFor="keywords"
+                className="flex items-center gap-2 text-white"
+              >
                 <FileText className="h-4 w-4" />
                 Keywords
               </Label>
-              <div className="flex flex-wrap gap-2 mb-2">
+              <div className="mb-2 flex flex-wrap gap-2">
                 {keywords.map((keyword) => (
                   <div
                     key={keyword}
-                    className="flex items-center gap-1 bg-zinc-950 text-white px-2 py-1 rounded-md border border-zinc-700"
+                    className="flex items-center gap-1 rounded-md border border-zinc-700 bg-zinc-950 px-2 py-1 text-white"
                   >
                     <span>{keyword}</span>
-                    <button type="button" onClick={() => removeKeyword(keyword)} className="text-zinc-400 hover:text-red-400">
+                    <button
+                      type="button"
+                      onClick={() => removeKeyword(keyword)}
+                      className="text-zinc-400 hover:text-red-400"
+                    >
                       <X className="h-3 w-3" />
                     </button>
                   </div>
@@ -141,9 +150,14 @@ export function RequestDataset() {
                   onChange={(e) => setKeywordInput(e.target.value)}
                   onKeyDown={(e) => handleKeyDown(e, "keyword")}
                   placeholder="Add keywords (press Enter)"
-                  className="flex-1 bg-zinc-950 text-white  placeholder-zinc-500  "
+                  className="flex-1 bg-zinc-950 text-white placeholder-zinc-500"
                 />
-                <Button type="button" size="icon" onClick={addKeyword} disabled={keywordInput.trim() === ""} className="bg-zinc-700 text-white hover:bg-zinc-600">
+                <Button
+                  type="button"
+                  onClick={addKeyword}
+                  disabled={keywordInput.trim() === ""}
+                  className="bg-zinc-700 text-white hover:bg-zinc-600"
+                >
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
@@ -151,15 +165,25 @@ export function RequestDataset() {
 
             {/* Hashtags */}
             <div className="space-y-2">
-              <Label htmlFor="hashtags" className="flex items-center gap-2 text-white">
+              <Label
+                htmlFor="hashtags"
+                className="flex items-center gap-2 text-white"
+              >
                 <Hash className="h-4 w-4" />
                 Twitter Hashtags
               </Label>
-              <div className="flex flex-wrap gap-2 mb-2">
+              <div className="mb-2 flex flex-wrap gap-2">
                 {hashtags.map((hashtag) => (
-                  <div key={hashtag} className="flex items-center gap-1 bg-zinc-950 text-white px-2 py-1 rounded-md border border-zinc-700">
+                  <div
+                    key={hashtag}
+                    className="flex items-center gap-1 rounded-md border border-zinc-700 bg-zinc-950 px-2 py-1 text-white"
+                  >
                     <span>{hashtag}</span>
-                    <button type="button" onClick={() => removeHashtag(hashtag)} className="text-zinc-400 hover:text-red-400">
+                    <button
+                      type="button"
+                      onClick={() => removeHashtag(hashtag)}
+                      className="text-zinc-400 hover:text-red-400"
+                    >
                       <X className="h-3 w-3" />
                     </button>
                   </div>
@@ -172,9 +196,14 @@ export function RequestDataset() {
                   onChange={(e) => setHashtagInput(e.target.value)}
                   onKeyDown={(e) => handleKeyDown(e, "hashtag")}
                   placeholder="Add hashtags (press Enter)"
-                  className="flex-1 bg-zinc-950 text-white border border-zinc-700 placeholder-zinc-500"
+                  className="flex-1 border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-500"
                 />
-                <Button type="button" size="icon" onClick={addHashtag} disabled={hashtagInput.trim() === ""} className="bg-zinc-700 text-white hover:bg-zinc-600">
+                <Button
+                  type="button"
+                  onClick={addHashtag}
+                  disabled={hashtagInput.trim() === ""}
+                  className="bg-zinc-700 text-white hover:bg-zinc-600"
+                >
                   <Plus className="h-4 w-4" />
                 </Button>
               </div>
@@ -182,7 +211,10 @@ export function RequestDataset() {
 
             {/* Description */}
             <div className="space-y-2">
-              <Label htmlFor="description" className="flex items-center gap-2 text-white">
+              <Label
+                htmlFor="description"
+                className="flex items-center gap-2 text-white"
+              >
                 <FileText className="h-4 w-4" />
                 Description
               </Label>
@@ -191,23 +223,30 @@ export function RequestDataset() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe your dataset request..."
-                className="min-h-[100px] bg-zinc-950 text-white border border-zinc-700 placeholder-zinc-500"
+                className="min-h-[100px] border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-500"
               />
             </div>
           </div>
 
           <SheetFooter className="mt-6 flex gap-2 sm:justify-end">
             <SheetClose asChild>
-              <Button variant="outline" className="border-zinc-600 text-white hover:bg-zinc-950">Cancel</Button>
+              <Button
+                variant="outline"
+                className="border-zinc-600 text-white hover:bg-zinc-950"
+              >
+                Cancel
+              </Button>
             </SheetClose>
-            <Button onClick={handleSubmit} className="bg-purple-600 hover:bg-purple-500 text-white">
-              <Send className="h-4 w-4 " />
+            <Button
+              onClick={handleSubmit}
+              className="bg-purple-600 text-white hover:bg-purple-500"
+            >
+              <Send className="h-4 w-4" />
               Request Dataset
             </Button>
           </SheetFooter>
         </SheetContent>
-
       </div>
     </Sheet>
-  );
+  )
 }

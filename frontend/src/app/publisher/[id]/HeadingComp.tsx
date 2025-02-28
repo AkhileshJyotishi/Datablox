@@ -1,8 +1,9 @@
 "use client"
-import DataPacket from "@/components/marketplace/DataPacket"
 import { motion } from "framer-motion"
 import { Download } from "lucide-react"
 import { FaRegFileAlt } from "react-icons/fa"
+
+import DataPacket from "@/components/marketplace/DataPacket"
 export function Heading({
   address,
   datasetCount,
@@ -37,7 +38,7 @@ export function Heading({
       </div>
       <div className="mx-auto mb-7 mt-7 grid grid-cols-3 gap-4">
         {dataset.map((data: any, index: number) => {
-          if(data.length==0) return <></>;
+          if (data.length == 0) return <></>
           return (
             <DataPacket
               key={index}

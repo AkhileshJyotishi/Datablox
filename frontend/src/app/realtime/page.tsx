@@ -1,7 +1,9 @@
 import axios from "axios"
+
 import DataPacket from "@/components/marketplace/DataPacket"
-import { Heading } from "./HeadingComp"
 import realtime, { RealTimeProps } from "@/constants/realtime"
+
+import { Heading } from "./HeadingComp"
 
 interface Metadata {
   id: number
@@ -15,11 +17,11 @@ interface Metadata {
 }
 
 export default async function page() {
-  let PublisherDataset: RealTimeProps[] = realtime;
+  const PublisherDataset: RealTimeProps[] = realtime
   return (
-      <>
-    <div className="container relative z-10 mx-auto max-w-7xl px-4 py-16">
-      {PublisherDataset.length > 0 && (
+    <>
+      <div className="container relative z-10 mx-auto max-w-7xl px-4 py-16">
+        {PublisherDataset.length > 0 && (
           <Heading
             address="0xA1B2C3D4E5F67890ABCDEF1234567890ABCDEF12"
             datasetCount={PublisherDataset.length}
@@ -31,7 +33,7 @@ export default async function page() {
             dataset={PublisherDataset}
           />
         )}
-    </div>
-        </>
+      </div>
+    </>
   )
 }

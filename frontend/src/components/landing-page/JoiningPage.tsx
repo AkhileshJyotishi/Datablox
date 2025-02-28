@@ -1,10 +1,13 @@
 import React from "react"
-import StakingImage from "@/assets/landing-page/staking.png"
+
+import { StaticImageData } from "next/image"
+
 import Dao from "@/assets/landing-page/dao.png"
 import LaunchPad from "@/assets/landing-page/launchpad.png"
 import LearnToEarn from "@/assets/landing-page/learntoearn.png"
 import SeedFunding from "@/assets/landing-page/seedfunding.png"
-import { StaticImageData } from "next/image"
+import StakingImage from "@/assets/landing-page/staking.png"
+
 import CryptoList from "./CryptoList"
 interface DaoSectionProps {
   title: string

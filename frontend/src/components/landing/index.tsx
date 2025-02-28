@@ -1,10 +1,11 @@
 import React from "react"
 
-
-import { FaCopy, FaFileAlt, FaPenNib, FaColumns, FaArrowUp, FaBox, FaCompass } from "react-icons/fa"
 import dynamic from "next/dynamic"
-import { SkeletonLoader } from "@/app/publish/page"
-import  LandingText  from "@/components/landing-text"
+
+import { FaArrowUp, FaBox, FaColumns, FaCompass, FaCopy, FaFileAlt, FaPenNib } from "react-icons/fa"
+
+import LandingText from "@/components/landing-text"
+import { SkeletonLoader } from "@/data"
 
 const Skeleton = () => (
   <div className="flex h-full min-h-[6rem] w-full flex-1 rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800"></div>
@@ -61,10 +62,9 @@ export const items = [
 ]
 
 const page = () => {
-
   return (
-    <section className="container relative z-10 mx-auto pb-14 flex min-h-[calc(100vh-100px)] items-center justify-center px-6">
-      <LandingText/>
+    <section className="container relative z-10 mx-auto flex min-h-[calc(100vh-100px)] items-center justify-center px-6 pb-14">
+      <LandingText />
       <div className="absolute bottom-0 right-0 h-96 w-96">
         <RoboAnimation />
       </div>

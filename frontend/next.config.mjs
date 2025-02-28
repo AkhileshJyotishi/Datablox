@@ -22,8 +22,8 @@ const nextConfig = {
         hostname: "images.unsplash.com",
       },
       {
-        hostname:"static-00.iconduck.com"
-      }
+        hostname: "static-00.iconduck.com",
+      },
     ],
   },
   compiler: {
@@ -38,10 +38,10 @@ const nextConfig = {
     scrollRestoration: false,
   },
   webpack: (config) => {
-    config.resolve.fallback = { fs: false, net: false, tls: false };
-    config.externals.push("pino-pretty", "encoding");
-    return config;
+    config.resolve.fallback = { fs: false, net: false, tls: false }
+    config.externals.push("pino-pretty", "encoding")
+    return config
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

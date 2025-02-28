@@ -23,12 +23,12 @@ function FullDataBlox() {
       <path
         d="M237 37L288.5 87.5L339 138H237V37Z"
         fill="white"
-        fill-opacity="0.4"
+        fillOpacity="0.4"
       />
       <path
         d="M237 343L288.5 292.5L339 242H237V343Z"
         fill="white"
-        fill-opacity="0.4"
+        fillOpacity="0.4"
       />
       <rect
         x="237"

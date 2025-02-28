@@ -1,10 +1,10 @@
 import Errors from "@/errors"
+import { IError } from "@/interface/global"
 
 import EIP6963Web3Provider from "./EIP6963"
 import WalletConnector from "./interface"
 import type { WalletMetadata, WalletUIProperties } from "./metadata"
 import { SonicChainMetadata } from "./metadata"
-import { IError } from "@/interface/global"
 
 declare global {
   interface WindowEventMap {

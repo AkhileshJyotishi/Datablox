@@ -1,5 +1,6 @@
-import { HiDownload } from "react-icons/hi"
 import React from "react"
+
+import { HiDownload } from "react-icons/hi"
 
 interface DataPacketProps {
   data: {

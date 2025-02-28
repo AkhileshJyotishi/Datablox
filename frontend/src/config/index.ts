@@ -1,6 +1,6 @@
-import { createConfig,http } from '@wagmi/core'
+import { createConfig, http } from "@wagmi/core"
 
-import { sonicChain } from '../sonic'
+import { sonicChain } from "../sonic"
 
 export const config = createConfig({
   chains: [sonicChain],

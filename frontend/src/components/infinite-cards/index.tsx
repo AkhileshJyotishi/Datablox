@@ -1,17 +1,19 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import React, { useEffect, useState } from "react"
-import DataPacket from "../marketplace/DataPacket"
-import { RealTimeProps } from "@/constants/realtime"
 
- const InfiniteMovingCards = ({
+import { RealTimeProps } from "@/constants/realtime"
+import { cn } from "@/lib/utils"
+
+import DataPacket from "../marketplace/DataPacket"
+
+const InfiniteMovingCards = ({
   items,
   direction = "left",
   speed = "fast",
   pauseOnHover = true,
   className,
-  realtime
+  realtime,
 }: {
   items: {
     operator: string
@@ -27,7 +29,7 @@ import { RealTimeProps } from "@/constants/realtime"
   speed?: "fast" | "normal" | "slow"
   pauseOnHover?: boolean
   className?: string
-  realtime?:boolean
+  realtime?: boolean
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const scrollerRef = React.useRef<HTMLUListElement>(null)
@@ -93,7 +95,10 @@ import { RealTimeProps } from "@/constants/realtime"
             key={idx}
             className="relative w-[450px] max-w-full flex-shrink-0 cursor-pointer"
           >
-            <DataPacket data={item} realtime={realtime} />
+            <DataPacket
+              data={item}
+              realtime={realtime}
+            />
           </li>
         ))}
       </ul>
