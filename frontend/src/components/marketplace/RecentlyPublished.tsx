@@ -1,6 +1,13 @@
 import React from "react"
-import DataPacket from "./DataPacket"
+// import DataPacket from "./DataPacket"
 import { datasets } from "@/constants/dataset"
+import dynamic from "next/dynamic"
+import DataPacketSkeleton from "@/app/search/skeleton"
+const DataPacket = dynamic(() => import("./DataPacket"), {
+  ssr: false,
+  loading: () => <DataPacketSkeleton />,
+})
+
 export default function RecentlyPublished() {
   return (
     <div className="mx-auto w-full">

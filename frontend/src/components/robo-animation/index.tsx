@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Bot } from "lucide-react"
 
-export function RoboAnimation() {
+export default function RoboAnimation() {
   return (
     <div className="relative h-full w-full">
       <motion.div

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic"
 import React, { useState, useMemo } from "react"
 import { MdCheck } from "react-icons/md"
 
-const SkeletonLoader = () => {
+export const SkeletonLoader = () => {
   return (
     <section className="relative mb-10 mt-12 animate-pulse px-12">
       <h1 className="mb-2 mt-14 flex items-center text-center text-6xl font-bold text-zinc-700">
