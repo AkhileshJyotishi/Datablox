@@ -47,7 +47,7 @@ export default function PublishPage({
         metadata={data}
         pageName="preview"
       />
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-6">
         <button
           onClick={()=>{
             setTabNo((prev:number) => prev + 1)
