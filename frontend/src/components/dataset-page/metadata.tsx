@@ -2,6 +2,8 @@ import React from 'react';
 import { FaArrowDown } from "react-icons/fa6";
 import { PiLineVerticalLight } from "react-icons/pi";
 import Table from './table';
+import { TagComp } from '../marketplace/Marketplace';
+import { CodeBlock } from '../ui/code-block';
 interface MetadataProps {
   // owner: string;
   description: string;
@@ -72,12 +74,12 @@ export default function Metadata({ created_at, description, tags,sampleData }: M
       <div className='px-4'>
         <h3 className="text-2xl font-semibold mt-2 text-zinc-300">Tags</h3>
         <div className="flex flex-wrap gap-2 mt-3">
-          <Tags tags={tags} />
+          <TagComp tags={tags} />
         </div>
       </div>
       <div className='px-4 mt-6'>
         <h3 className="text-2xl font-semibold text-zinc-300 mb-2">Sample Data</h3>
-        <Table SampleData={sampleData} />
+        <CodeBlock filename='sample.json' language='json'  code={JSON.stringify(sampleData,null,2)}  />
       </div>
     </div>
   );
@@ -85,31 +87,3 @@ export default function Metadata({ created_at, description, tags,sampleData }: M
 
 
 
-function Tags({ tags }: { tags: any }) {
-  // const tags = [
-  //     "defi",
-  //     "orderbook",
-  //     "desights",
-  //     "gitcoin-grant-protocol",
-
-  // ];
-  console.log(tags);
-  if (typeof tags === "string") {
-    tags = JSON.parse(tags);
-  }
-  console.log(tags);
-
-  return (
-    <div className='flex gap-2 flex-wrap'>
-      {
-        tags.map((tag: any, index: number) => {
-          return (
-            <div className='border border-[#303030] text-gray-400 items-center justify-center px-3 cursor-pointer hover:text-[#ff4092]' key={index}>
-              {tag}
-            </div>
-          )
-        })
-      }
-    </div>
-  )
-}

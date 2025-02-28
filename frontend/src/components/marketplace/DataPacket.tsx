@@ -15,7 +15,7 @@ interface DataPacketProps {
     description?: string
   }
   isSearchPage?: boolean
-  realtime?:boolean
+  realtime?: boolean
 }
 // chain:string;
 // operator: string;
@@ -31,9 +31,9 @@ interface DataPacketProps {
 }
 
 const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false, realtime }) => {
-  console.log("data ",data);
+  console.log("data ", data);
   let redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/dataset/${data?.id}`
-  if(realtime){
+  if (realtime) {
     redirectLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/realtime/${data?.id}`;
   }
   return (
@@ -50,6 +50,17 @@ const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false, rea
                         {data.operator}
                     </span> */}
           <span className="px-3 text-xs uppercase">{data.chain || "Sonic"}</span>
+          {
+            realtime &&
+            <div className=" flex flex-row gap-2 items-center ml-auto">
+          <span className="relative flex size-4">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#d93678] opacity-75"></span>
+            <span className="relative inline-flex size-4 rounded-full bg-[#d93678]" />
+          </span>
+          <span className="text-sm font-bold uppercase text-white ">LIVE</span>  
+
+            </div>
+          }
         </div>
         <div
           className="mt-3 px-2 text-xl font-extrabold text-white"
@@ -79,7 +90,7 @@ const DataPacket: React.FC<DataPacketProps> = ({ data, isSearchPage = false, rea
           {data.price != "Free" && <span className="mx-2 text-sm">mSonic</span>}
         </div>
         <div className="my-2 mt-auto flex gap-1 px-2 text-lg text-gray-400">
-          <span className="font-bold">{data.sales||0}</span>
+          <span className="font-bold">{data.sales || 0}</span>
           <span>sales</span>
         </div>
 
