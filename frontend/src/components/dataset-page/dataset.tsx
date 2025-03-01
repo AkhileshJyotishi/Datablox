@@ -82,7 +82,7 @@ export default function Dataset({ metadata, pageName }: { metadata: any; pageNam
       </div>
       {pageName == "" && address != metadata.owner && (
         <div className="flex flex-col items-center justify-center px-6">
-          <BuyData
+          {/* <BuyData
             nftData={nftData}
             ipfs="http://localhost:3000/api/get-realtime-data?id=0"
             title={nftData.title}
@@ -90,8 +90,15 @@ export default function Dataset({ metadata, pageName }: { metadata: any; pageNam
             tokenId={0}
             duration={30}
             pageName="realtime"
+          /> */}
+          <BuyData
+            nftData={nftData}
+            ipfs={metadata.IPFS}
+            title={metadata.title}
+            price={metadata.price}
+            tokenId={metadata.tokenId}
+            duration={metadata.timeout}
           />
-          {/* <BuyData ipfs={metadata.IPFS} title={metadata.title} price={metadata.price} tokenId={metadata.tokenId} duration={metadata.timeout} /> */}
         </div>
       )}
       {pageName == "realtime" && address && address != metadata.owner && (
