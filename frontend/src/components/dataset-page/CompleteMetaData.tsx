@@ -19,7 +19,7 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
     <section className={clsx("mt-4 px-12 md:px-24", pageName == "preview" ? "" : "min-h-[calc(100vh-1000px)]")}>
       <BannerImage bannerImage="" />
       <div className="relative -top-10 z-50">
-        <h1 className="mx-auto mb-6 max-w-5xl text-center text-6xl font-semibold text-zinc-300">
+        <h1 className="mx-auto mb-6 max-w-5xl text-center text-5xl font-semibold text-zinc-300">
           {metadata?.title || "Untitled Dataset"}
         </h1>
         <div className="no-scrollbar mx-auto max-h-screen justify-center gap-5 overflow-y-auto sm:grid sm:grid-cols-3">
@@ -59,7 +59,7 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
           </div>
           {pageName != "preview" && (
             <div
-              className="sticky top-10 max-h-[80vh] py-3"
+              className="sticky top-2 h-[82vh] py-3"
               style={{}}
             >
               <Chatbot ipfs={metadata.IPFS} />

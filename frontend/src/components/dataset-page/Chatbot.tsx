@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown"
 import Avatar from "@/assets/avatar/floating-robot.png"
 
 import { SearchBox } from "./searchBox"
+import WelcomeSection from "./WelcomeSection"
 
 const placeholders = [
   "Find AI training datasets for image recognition",
@@ -20,7 +21,8 @@ const botAvatarUrl = Avatar.src
 
 export default function Chatbot({ ipfs }: { ipfs: string }) {
   const [query, setQuery] = useState("")
-  const [chat, setChat] = useState<[string, string][]>([["bot", "What do you want to know about this dataset?"]])
+  // const [chat, setChat] = useState<[string, string][]>([["bot", "What do you want to know about this dataset?"]])
+  const [chat, setChat] = useState<[string, string][]>([])
   const [thinking, setThinking] = useState(false)
 
   const chatContainerRef = useRef<HTMLDivElement>(null)
@@ -79,22 +81,22 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
 
       <div
         ref={chatContainerRef}
-        className="flex-grow space-y-3 overflow-y-auto p-4"
+        className="flex-grow space-y-3 overflow-y-auto p-2"
       >
-        {chat.map(([sender, message], index) => {
+        {chat.length>0 && chat.map(([sender, message], index) => {
           if (sender === "bot") {
             return (
               <div
                 key={index}
-                className="flex items-start space-x-2"
+                className="flex items-start space-x-1"
               >
                 <img
                   src={botAvatarUrl}
                   alt="Bot Avatar"
-                  className="h-10 w-10 rounded-full"
+                  className="h-8 w-8 mt-1 rounded-full"
                 />
-                <div className="max-w-[60%] rounded-lg bg-gray-900 p-2 text-gray-300 backdrop-blur-2xl">
-                  <ReactMarkdown>{message}</ReactMarkdown>
+                <div className="max-w-[68%] rounded-lg bg-white/5 border border-[#303030] p-2 text-gray-300 backdrop-blur-2xl">
+                  <ReactMarkdown className={""}>{message}</ReactMarkdown>
                 </div>
               </div>
             )
@@ -104,13 +106,20 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
                 key={index}
                 className="flex justify-end"
               >
-                <div className="max-w-[60%] rounded-lg bg-blue-500 p-2 text-white">
+                <div className="max-w-[63%] rounded-lg bg-white/10 border border-[#303030] p-2 text-white">
                   <ReactMarkdown>{message}</ReactMarkdown>
                 </div>
               </div>
             )
           }
         })}
+        {
+          chat.length==0 && (!thinking) && 
+          <>
+            {/* Display here initially */}
+            <WelcomeSection/>
+          </>
+        }
         {/* Display a thinking indicator if the bot is processing */}
         {thinking && (
           <div className="flex items-start space-x-2">
@@ -119,11 +128,12 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
               alt="Bot Avatar"
               className="h-10 w-10 rounded-full"
             />
-            <div className="max-w-[60%] rounded-lg bg-gray-900 p-2 text-gray-300 backdrop-blur-2xl">
+            <div className="max-w-[60%] rounded-lg bg-white/5 p-2 border border-[#303030] text-gray-300 backdrop-blur-2xl">
               <em>Bot is thinking...</em>
             </div>
           </div>
         )}
+        
       </div>
 
       <div>
