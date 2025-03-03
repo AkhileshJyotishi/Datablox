@@ -57,6 +57,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-chat-result`, {
         userResponse: currentQuery,
         ipfsUrl: ipfs,
+        
       })
 
       const aiResponse = response.data.aiResponse
