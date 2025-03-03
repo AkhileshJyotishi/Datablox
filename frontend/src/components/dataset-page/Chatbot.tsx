@@ -31,17 +31,24 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
     setQuery(e.target.value)
   }
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>, directQuery="") => {
     e.preventDefault()
     // Prevent new submissions while waiting for a response
+    console.log("here submitjkfsdjl")
     if (thinking) return
-    if (!query.trim()) return
+    if (directQuery=="" && !query.trim()) return
 
     // Immediately show the user's message
-    const userMessage: [string, string] = ["user", query]
-    setChat((prevChat) => [...prevChat, userMessage])
-    const currentQuery = query
-    setQuery("")
+    let currentQuery;
+    if(directQuery!=""){
+      currentQuery=directQuery;
+      const userMessage: [string, string] = ["user", directQuery]
+      setChat((prevChat) => [...prevChat, userMessage])
+    }
+    else{
+       currentQuery = query
+      setQuery("")
+    }
 
     try {
       setThinking(true)
@@ -75,8 +82,8 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
 
   return (
     <div className="flex h-full flex-grow flex-col rounded-lg border border-zinc-700 text-gray-400 backdrop-blur-xl">
-      <div className="flex items-center rounded-lg border-b border-zinc-700 px-5 py-4 text-xl text-white">
-        Ask Anything about Dataset
+      <div className="flex items-center rounded-lg border-b text-center justify-center font-bold border-zinc-700 py-4 text-xl text-white">
+        Verify Your Dataset First
       </div>
 
       <div
@@ -117,7 +124,7 @@ export default function Chatbot({ ipfs }: { ipfs: string }) {
           chat.length==0 && (!thinking) && 
           <>
             {/* Display here initially */}
-            <WelcomeSection/>
+            <WelcomeSection  onSubmit={onSubmit}/>
           </>
         }
         {/* Display a thinking indicator if the bot is processing */}

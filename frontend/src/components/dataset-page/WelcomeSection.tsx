@@ -6,18 +6,19 @@ type HelpCardProps = {
   title: string
   description: string
   buttonText: string
+  onSubmit:(e: React.FormEvent<HTMLFormElement>, directQuery?: string) => void
 }
 
-const HelpCard = ({ icon, color, title, description, buttonText }: HelpCardProps) => (
+const HelpCard = ({ icon, color, title, description, buttonText, onSubmit }: HelpCardProps) => (
   <div className="w-3/4 flex-shrink-0 rounded-lg border border-[#303030] backdrop-blur-sm px-4 py-3">
     <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-full ${color}`}>{icon}</div>
     <h3 className="mb-2 text-sm font-medium text-white">{title}</h3>
     <p className="mb-4 text-xs text-gray-400">{description}</p>
-    <button className="rounded bg-blue-600 px-3 py-1 text-xs text-white hover:bg-blue-700">{buttonText}</button>
+    <button className="rounded bg-blue-600 px-3 py-1 text-xs text-white hover:bg-blue-700" onClick={()=>onSubmit({ preventDefault: () => {} } as React.FormEvent<HTMLFormElement>, `${title} : ${description}`)}>{buttonText}</button>
   </div>
 )
 
-export default function WelcomeSection() {
+export default function WelcomeSection({onSubmit}:{onSubmit:(e: React.FormEvent<HTMLFormElement>, directQuery?: string) => void}) {
   const helpCards = [
     {
       icon: "🔍",
@@ -65,7 +66,7 @@ export default function WelcomeSection() {
       <div className="no-scrollbar w-full overflow-x-auto pb-4">
         <div className="flex space-x-4 px-2">
           {helpCards.map((card, index) => (
-            <HelpCard key={index} {...card} />
+            <HelpCard key={index} {...card} onSubmit={onSubmit}/>
           ))}
         </div>
       </div>
