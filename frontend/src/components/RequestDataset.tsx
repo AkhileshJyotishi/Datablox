@@ -99,8 +99,8 @@ export function RequestDataset() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="bg-purple-600 text-white hover:bg-purple-500">
-          <Database className="h-4 w-4" />
+        <Button className="bg-purple-600 flex items-center justify-around py-2 px-3 rounded-md text-white hover:bg-purple-500">
+          <Database className="h-4 w-4 mr-1" />
           Request Dataset
         </Button>
       </SheetTrigger>
@@ -239,9 +239,9 @@ export function RequestDataset() {
             </SheetClose>
             <Button
               onClick={handleSubmit}
-              className="bg-purple-600 text-white hover:bg-purple-500"
+              className="bg-purple-600 text-white flex items-center justify-around py-2 px-3 rounded-md hover:bg-purple-500"
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-4 w-4 mr-1" />
               Request Dataset
             </Button>
           </SheetFooter>
