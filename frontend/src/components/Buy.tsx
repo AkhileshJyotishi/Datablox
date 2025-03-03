@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { useWriteContract, useWaitForTransactionReceipt, useAccount, useReadContract, useClient, useSendTransaction  } from "wagmi"
 import confetti from "canvas-confetti"
 import { addDays, format } from "date-fns"
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion"
 import { wagmiContractConfigOwner } from "@/services/contract"
 import { readContracts, sendTransaction } from '@wagmi/core'
 import { config } from "@/config";
@@ -103,7 +103,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
 
   const getDatasetUri = async () => {
     if (address) {
-      console.log("I came here");
+      console.log("I came here")
       const val = await readContracts(config, {
         contracts: [{
           ...wagmiContractConfigOwner,
@@ -124,9 +124,9 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
       args: [BigInt(tokenId), BigInt(duration)],
       value: parseEther(price.toString()),
     })
-    console.log(val);
+    console.log(val)
   }
-  const { isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
+  const { isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash })
 
   useEffect(() => {
     console.log("isConfirmed", isConfirmed);
@@ -139,7 +139,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
           setPurchaseState('failure');
       }
     }
-  }, [isConfirmed,address])
+  }, [isConfirmed, address])
 
 
   // Animate through the steps
@@ -256,8 +256,9 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
       <button
         onClick={pageName === "realtime" ? sendOwner :   buyData}
         disabled={purchaseState === "processing"}
-        className={`w-full rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl ${purchaseState === "processing" ? "cursor-not-allowed opacity-70" : ""
-          }`}
+        className={`w-full rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl ${
+          purchaseState === "processing" ? "cursor-not-allowed opacity-70" : ""
+        }`}
       >
         {purchaseState !== "failure" ? (
           <div className="flex items-center justify-center gap-2">
@@ -327,12 +328,13 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
                           className="mb-4 flex items-center"
                         >
                           <div
-                            className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${currentStep > index
-                              ? "bg-green-500"
-                              : currentStep === index
-                                ? "animate-pulse bg-blue-500"
-                                : "bg-slate-700"
-                              }`}
+                            className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${
+                              currentStep > index
+                                ? "bg-green-500"
+                                : currentStep === index
+                                  ? "animate-pulse bg-blue-500"
+                                  : "bg-slate-700"
+                            }`}
                           >
                             {currentStep > index ? (
                               <CheckCircle2 className="h-5 w-5 text-white" />
