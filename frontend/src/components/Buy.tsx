@@ -1,12 +1,12 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
-import { useWriteContract, useWaitForTransactionReceipt, useAccount, useReadContract, useClient } from "wagmi"
+import { useWriteContract, useWaitForTransactionReceipt, useAccount, useReadContract, useClient, useSendTransaction  } from "wagmi"
 import confetti from "canvas-confetti"
 import { addDays, format } from "date-fns"
 import { AnimatePresence, motion } from "framer-motion";
 import { wagmiContractConfigOwner } from "@/services/contract"
-import { readContracts } from '@wagmi/core'
+import { readContracts, sendTransaction } from '@wagmi/core'
 import { config } from "@/config";
 import { parseEther } from "viem";
 
@@ -68,6 +68,8 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
   // Calculate subscription end date (duration in days)
   const subscriptionEndDate = addDays(new Date(), duration)
 
+  const { data: hash1, sendTransaction } = useSendTransaction()
+
   // Format the subscription end date
   const formattedEndDate = format(subscriptionEndDate, "MMMM dd, yyyy")
 
@@ -80,8 +82,8 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
   ]
 
   const { data: hash, writeContract } = useWriteContract()
+  // const { data: hash1, readContract } = useReadContract()
   const { address } = useAccount();
-  const [own, setOwn] = useState("");
   const downloadFile = async (ipfsUrl:string,title:string) => {
     try {
       const response = await fetch(ipfsUrl)
@@ -98,6 +100,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
       console.error("Error downloading the file:", error)
     }
   }
+
   const getDatasetUri = async () => {
     if (address) {
       console.log("I came here");
@@ -109,7 +112,8 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
         }]
       },)
       console.log("finding val ", val);
-      setOwn(val[0].status);
+      setPurchaseState(val[0].status);
+      console.log("Done")
     }
   }
   const buyData = async () => {
@@ -127,27 +131,16 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
   useEffect(() => {
     console.log("isConfirmed", isConfirmed);
     if(address){
+    
+      getDatasetUri();
       if (isConfirmed) {
-        handlePurchase();
-        setOwn("success");
+        getDatasetUri();
       } else {
-        setOwn('failure');
+          setPurchaseState('failure');
       }
     }
   }, [isConfirmed,address])
 
-  // Handle purchase button click
-  const handlePurchase = () => {
-    setPurchaseState("processing")
-
-    // Simulate contract interaction
-    setTimeout(() => {
-      setPurchaseState("success")
-      setShowModal(true)
-      animateSteps()
-      launchConfetti()
-    }, 2000)
-  }
 
   // Animate through the steps
   const animateSteps = () => {
@@ -233,28 +226,40 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
     }
   }, [])
 
+  const sendOwner = () => {
+
+
+    sendTransaction({ to : "0x98EeA2353B0ce72444ba5A45956fE636D083cc22", value: parseEther(price.toString()) });
+    setPurchaseState("success");
+  };
+  const copyurlnow = (ipfs: string ) => {
+    console.log(ipfs);
+
+  }
+ 
   // Render the purchase button or download button based on state
   const renderActionButton = () => {
     if (purchaseState === "success") {
       return (
         <button
-          onClick={() => downloadFile(ipfs,title)}
+          onClick={pageName === "realtime"? () => copyurlnow(ipfs) : () => downloadFile(ipfs,title)}
           className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl"
         >
           <Download className="h-5 w-5" />
-          Download Dataset
+          {pageName === "realtime"? "Copy URL" : "Download Dataset"}
+          
         </button>
       )
     }
-
+    console.log(purchaseState," check3")
     return (
       <button
-        onClick={buyData}
+        onClick={pageName === "realtime" ? sendOwner :   buyData}
         disabled={purchaseState === "processing"}
         className={`w-full rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl ${purchaseState === "processing" ? "cursor-not-allowed opacity-70" : ""
           }`}
       >
-        {purchaseState === "processing" ? (
+        {purchaseState !== "failure" ? (
           <div className="flex items-center justify-center gap-2">
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
             <span>{pageName === "realtime" ? "Subscribing..." : "Purchasing..."}</span>
@@ -561,9 +566,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
     )
   }
 
-  if (own == "") {
-    return <></>
-  }
+
 
   return (
     <div className="w-full">
