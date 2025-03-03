@@ -83,6 +83,7 @@ export function TagComp({ tags }: { tags: string[] }) {
   if (typeof tags === "string") {
     tags = JSON.parse(tags);
   }
+  console.log(tags);
   return (
     <>
       {tags.map((tag: any, index: number) => {
