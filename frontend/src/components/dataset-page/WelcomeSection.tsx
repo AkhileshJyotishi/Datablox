@@ -6,19 +6,30 @@ type HelpCardProps = {
   title: string
   description: string
   buttonText: string
-  onSubmit:(e: React.FormEvent<HTMLFormElement>, directQuery?: string) => void
+  onSubmit: (e: React.FormEvent<HTMLFormElement>, directQuery?: string) => void
 }
 
 const HelpCard = ({ icon, color, title, description, buttonText, onSubmit }: HelpCardProps) => (
-  <div className="w-3/4 flex-shrink-0 rounded-lg border border-[#303030] backdrop-blur-sm px-4 py-3">
+  <div className="w-3/4 flex-shrink-0 rounded-lg border border-[#303030] px-4 py-3 backdrop-blur-sm">
     <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-full ${color}`}>{icon}</div>
     <h3 className="mb-2 text-sm font-medium text-white">{title}</h3>
     <p className="mb-4 text-xs text-gray-400">{description}</p>
-    <button className="rounded bg-blue-600 px-3 py-1 text-xs text-white hover:bg-blue-700" onClick={()=>onSubmit({ preventDefault: () => {} } as React.FormEvent<HTMLFormElement>, `${title} : ${description}`)}>{buttonText}</button>
+    <button
+      className="rounded bg-blue-600 px-3 py-1 text-xs text-white hover:bg-blue-700"
+      onClick={() =>
+        onSubmit({ preventDefault: () => {} } as React.FormEvent<HTMLFormElement>, `${title} : ${description}`)
+      }
+    >
+      {buttonText}
+    </button>
   </div>
 )
 
-export default function WelcomeSection({onSubmit}:{onSubmit:(e: React.FormEvent<HTMLFormElement>, directQuery?: string) => void}) {
+export default function WelcomeSection({
+  onSubmit,
+}: {
+  onSubmit: (e: React.FormEvent<HTMLFormElement>, directQuery?: string) => void
+}) {
   const helpCards = [
     {
       icon: "🔍",
@@ -51,22 +62,24 @@ export default function WelcomeSection({onSubmit}:{onSubmit:(e: React.FormEvent<
   ]
 
   return (
-    <div className="flex flex-col justify-center h-full items-center space-y-6 px-4">
+    <div className="flex h-full flex-col items-center justify-center space-y-6 px-4">
       {/* Avatar and Welcome Message */}
       <div className="flex flex-col items-center text-center">
         <ChatBotWelcomeSection />
         <h2 className="mb-1 text-2xl font-bold text-indigo-100">Hello👋</h2>
         <h3 className="mb-4 text-xl text-indigo-200">I Am Ready To Help You</h3>
-        <p className="max-w-md text-sm text-gray-400">
-          Ask me anything about this dataset. I'm here to assist you!
-        </p>
+        <p className="max-w-md text-sm text-gray-400">Ask me anything about this dataset. I'm here to assist you!</p>
       </div>
 
       {/* Scrollable Cards */}
       <div className="no-scrollbar w-full overflow-x-auto pb-4">
         <div className="flex space-x-4 px-2">
           {helpCards.map((card, index) => (
-            <HelpCard key={index} {...card} onSubmit={onSubmit}/>
+            <HelpCard
+              key={index}
+              {...card}
+              onSubmit={onSubmit}
+            />
           ))}
         </div>
       </div>
