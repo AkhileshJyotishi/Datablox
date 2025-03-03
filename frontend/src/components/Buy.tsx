@@ -1,10 +1,16 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
-
+import { useWriteContract, useWaitForTransactionReceipt, useAccount, useReadContract, useClient } from "wagmi"
 import confetti from "canvas-confetti"
 import { addDays, format } from "date-fns"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion";
+import { wagmiContractConfigOwner } from "@/services/contract"
+import { readContracts } from '@wagmi/core'
+import { config } from "@/config";
+import { parseEther } from "viem";
+
+
 import {
   Award,
   BarChart3,
@@ -72,6 +78,63 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
     { name: "Preparing Dataset", delay: 1500 },
     { name: "Finalizing Access", delay: 1000 },
   ]
+
+  const { data: hash, writeContract } = useWriteContract()
+  const { address } = useAccount();
+  const [own, setOwn] = useState("");
+  const downloadFile = async (ipfsUrl:string,title:string) => {
+    try {
+      const response = await fetch(ipfsUrl)
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = `${title}.csv`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error("Error downloading the file:", error)
+    }
+  }
+  const getDatasetUri = async () => {
+    if (address) {
+      console.log("I came here");
+      const val = await readContracts(config, {
+        contracts: [{
+          ...wagmiContractConfigOwner,
+          functionName: "getDatasetUri",
+          args: [BigInt(tokenId), address],
+        }]
+      },)
+      console.log("finding val ", val);
+      setOwn(val[0].status);
+    }
+  }
+  const buyData = async () => {
+    console.log("hello")
+    const val = await writeContract({
+      ...wagmiContractConfigOwner,
+      functionName: "buyPartialOwnership",
+      args: [BigInt(tokenId), BigInt(duration)],
+      value: parseEther(price.toString()),
+    })
+    console.log(val);
+  }
+  const { isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
+
+  useEffect(() => {
+    console.log("isConfirmed", isConfirmed);
+    if(address){
+      if (isConfirmed) {
+        handlePurchase();
+        setOwn("success");
+      } else {
+        setOwn('failure');
+      }
+    }
+  }, [isConfirmed,address])
 
   // Handle purchase button click
   const handlePurchase = () => {
@@ -175,7 +238,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
     if (purchaseState === "success") {
       return (
         <button
-          onClick={() => setShowModal(true)}
+          onClick={() => downloadFile(ipfs,title)}
           className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl"
         >
           <Download className="h-5 w-5" />
@@ -186,11 +249,10 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
 
     return (
       <button
-        onClick={handlePurchase}
+        onClick={buyData}
         disabled={purchaseState === "processing"}
-        className={`w-full rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl ${
-          purchaseState === "processing" ? "cursor-not-allowed opacity-70" : ""
-        }`}
+        className={`w-full rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl ${purchaseState === "processing" ? "cursor-not-allowed opacity-70" : ""
+          }`}
       >
         {purchaseState === "processing" ? (
           <div className="flex items-center justify-center gap-2">
@@ -260,13 +322,12 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
                           className="mb-4 flex items-center"
                         >
                           <div
-                            className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${
-                              currentStep > index
-                                ? "bg-green-500"
-                                : currentStep === index
-                                  ? "animate-pulse bg-blue-500"
-                                  : "bg-slate-700"
-                            }`}
+                            className={`mr-3 flex h-8 w-8 items-center justify-center rounded-full ${currentStep > index
+                              ? "bg-green-500"
+                              : currentStep === index
+                                ? "animate-pulse bg-blue-500"
+                                : "bg-slate-700"
+                              }`}
                           >
                             {currentStep > index ? (
                               <CheckCircle2 className="h-5 w-5 text-white" />
@@ -498,6 +559,10 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
       </AnimatePresence>,
       document.body
     )
+  }
+
+  if (own == "") {
+    return <></>
   }
 
   return (

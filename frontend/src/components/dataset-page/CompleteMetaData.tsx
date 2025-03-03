@@ -66,7 +66,7 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
             </div>
           )}
         </div>
-        {pageName == "" && <RelatedDataset title={metadata.title} />}
+        {/* {pageName == "" && <RelatedDataset title={metadata.title} />} */}
       </div>
     </section>
   )
