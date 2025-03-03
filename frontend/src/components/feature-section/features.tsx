@@ -4,7 +4,7 @@ import { BarChart, FileText, Sparkles, Zap } from "lucide-react"
 
 const features = [
   {
-    title: "AI-Verified Datasets",
+    title: "Ask, Verify, and Buy with Confidence",
     description:
       "Access comprehensive datasets verified by advanced AI algorithms, ensuring accuracy and reliability for your decision-making process.",
     icon: FileText,
