@@ -1,7 +1,6 @@
 import Image from "next/image"
 
 import { BarChart, FileText, Sparkles, Zap } from "lucide-react"
-
 const features = [
   {
     title: "Ask, Verify, and Buy with Confidence",
@@ -20,17 +19,17 @@ const features = [
     color: "from-purple-500 to-pink-500",
   },
   {
-    title: "Blockchain Security",
+    title: "Data Tokenization",
     description:
-      "Every piece of data is secured and verified on the blockchain, providing an immutable record of authenticity and transparency.",
+      "Convert datasets into unique digital assets using data NFTs (ERC1155 tokens) and datatokens (ERC20 tokens). This process enables data providers to monetize their data while maintaining control over its distribution.",
     icon: Sparkles,
     image: "/placeholder.svg?height=400&width=500",
     color: "from-emerald-500 to-green-500",
   },
   {
-    title: "Market Intelligence",
+    title: "Advanced Search Capabilities",
     description:
-      "Combine verified datasets with real-time insights to make informed decisions backed by comprehensive market intelligence.",
+      "Enable users to perform refined searches using various filters such as keywords, data categories, data quality metrics, and more. This allows for precise data discovery tailored to specific needs.",
     icon: Zap,
     image: "/placeholder.svg?height=400&width=500",
     color: "from-amber-500 to-orange-500",
