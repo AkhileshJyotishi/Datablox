@@ -11,18 +11,18 @@ import MetadataSkeleton from "@/components/publish-page/meta-skeleton"
 
 //   export default SkeletonLoader;
 
-const PublishPage = dynamic(() => import("@/components/publish-page/PublishPage"), {
-  ssr: false,
-  loading: () => <SkeletonLoader />,
-})
+// const PublishPage = dynamic(() => import("@/components/publish-page/PublishPage"), {
+//   ssr: false,
+//   loading: () => <SkeletonLoader />,
+// })
 const Pricing = dynamic(() => import("@/components/publish-page/Pricing"), {
   ssr: false,
   loading: () => <SkeletonLoader />,
 })
-const Preview = dynamic(() => import("@/components/publish-page/Preview"), {
-  ssr: false,
-  loading: () => <SkeletonLoader />,
-})
+// const Preview = dynamic(() => import("@/components/publish-page/Preview"), {
+//   ssr: false,
+//   loading: () => <SkeletonLoader />,
+// })
 const Metadata = dynamic(() => import("@/components/publish-page/Metadata"), {
   ssr: false,
   loading: () => <MetadataSkeleton />,
@@ -74,18 +74,18 @@ export default function Page() {
       {
         tabNo: 3,
         element: <Access {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
-        name: "Access",
-      },
-      {
-        tabNo: 4,
-        element: <Preview {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
-        name: "Preview",
-      },
-      {
-        tabNo: 5,
-        element: <PublishPage {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
         name: "Submit",
       },
+      // {
+      //   tabNo: 4,
+      //   element: <Preview {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
+      //   name: "Preview",
+      // },
+      // {
+      //   tabNo: 5,
+      //   element: <PublishPage {...{ userData, setUserData, tabNo, setTabNo, setIsTabCompleted }} />,
+      //   name: "Submit",
+      // },
     ],
     [userData, tabNo, setUserData, setTabNo, setIsTabCompleted]
   )
