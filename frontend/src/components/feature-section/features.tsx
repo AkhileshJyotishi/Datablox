@@ -1,4 +1,8 @@
 import Image from "next/image"
+import video_1 from "@/assets/videos/video_1.gif";
+import video_2 from "@/assets/videos/video_2.gif";
+import video_3 from "@/assets/videos/video_3.gif";
+import video_4 from "@/assets/videos/video_4.gif";
 
 import { BarChart, FileText, Sparkles, Zap } from "lucide-react"
 const features = [
@@ -7,7 +11,7 @@ const features = [
     description:
       "Access comprehensive datasets verified by advanced AI algorithms, ensuring accuracy and reliability for your decision-making process.",
     icon: FileText,
-    image: "/placeholder.svg?height=400&width=500",
+    image: video_1.src,
     color: "from-blue-500 to-cyan-500",
   },
   {
@@ -15,7 +19,7 @@ const features = [
     description:
       "Harness the power of live Twitter data with real-time analysis and trending insights to stay ahead of market movements.",
     icon: BarChart,
-    image: "/placeholder.svg?height=400&width=500",
+    image: video_2.src,
     color: "from-purple-500 to-pink-500",
   },
   {
@@ -23,7 +27,7 @@ const features = [
     description:
       "Convert datasets into unique digital assets using data NFTs (ERC1155 tokens) and datatokens (ERC20 tokens). This process enables data providers to monetize their data while maintaining control over its distribution.",
     icon: Sparkles,
-    image: "/placeholder.svg?height=400&width=500",
+    image: video_3.src,
     color: "from-emerald-500 to-green-500",
   },
   {
@@ -31,7 +35,7 @@ const features = [
     description:
       "Enable users to perform refined searches using various filters such as keywords, data categories, data quality metrics, and more. This allows for precise data discovery tailored to specific needs.",
     icon: Zap,
-    image: "/placeholder.svg?height=400&width=500",
+    image: video_4.src,
     color: "from-amber-500 to-orange-500",
   },
 ]
@@ -125,15 +129,17 @@ function FeatureContent({
 
 function FeatureImage({ image }: { image: string }) {
   return (
-    <div className="relative h-[450px] w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl">
-      <div className="absolute inset-0 z-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm" />
+    <div className="relative  w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl">
+      <div className="absolute inset-0 z-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20" />
       <Image
         src={image || "/placeholder.svg"}
         alt="Feature illustration"
-        fill
-        className="object-cover"
+        // fill
+        height={1000}
+        width={1000}
+        className="object-contain h-[360px]"
       />
-      <div className="absolute inset-0 z-0 bg-black/40" />
+      {/* <div className="absolute inset-0 z-0 bg-black/40" /> */}
     </div>
   )
 }
