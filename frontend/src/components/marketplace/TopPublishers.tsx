@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+import React, { useEffect, useState } from "react"
 
 import Link from "next/link"
 
@@ -7,23 +8,29 @@ import axios from "axios"
 import avatar from "@/assets/avatar/avatar1.png"
 
 import { MarqueePublisher } from "./MarquePublisher"
-export default async function TopPublishers() {
-  let formattedData = []
-  try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-publisher`);
-    console.log("response ",response);
-    const fetchedData = (response?.data.publisherData || []).slice(0, 10)
-    formattedData = fetchedData
-      .map((publisher: any) => ({
-        id2: publisher.id,
-        id: `${publisher.id.slice(0, 4)}...${publisher.id.slice(-4)}`, // ✅ Shortened ID format
-        metaDataId: publisher.metaDataId,
-      }))
-      .sort((a: any, b: any) => b.metaDataId.length - a.metaDataId.length)
-    console.log(fetchedData);
-  } catch (error) {
-    console.log("Error while fetching all the publisher")
+export default function TopPublishers() {
+  const [formattedData,setformattedData]=useState<any>();
+  const load=async ()=>{
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-publisher`);
+      console.log("response ",response);
+      const fetchedData = (response?.data.publisherData || []).slice(0, 10)
+      const x = fetchedData
+        .map((publisher: any) => ({
+          id2: publisher.id,
+          id: `${publisher.id.slice(0, 4)}...${publisher.id.slice(-4)}`, // ✅ Shortened ID format
+          metaDataId: publisher.metaDataId,
+        }))
+        .sort((a: any, b: any) => b.metaDataId.length - a.metaDataId.length)
+      console.log(fetchedData);
+      setformattedData(x);
+    } catch (error) {
+      console.log("Error while fetching all the publisher")
+    }
   }
+ useEffect(()=>{
+  load();
+ },[])
   // const publishers = [
   //   { avatar: "Avatar", owner: "0xbEFb…e219", sales: 275 },
   //   { avatar: "Avatar", owner: "0xd70B…90D8", sales: 264 },
