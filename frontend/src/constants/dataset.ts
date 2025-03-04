@@ -31,28 +31,6 @@ export const datasets = [
     id: 36,
   },
   {
-    operator: "RANDOM-70",
-    chain: "SONIC",
-    title: "Fake Retail Sales Dataset",
-    owner: "0x2FdDbAc7115Eb2b9c264Cd837a11735C1d0bb727",
-    description:
-      "A synthetic dataset containing 10,000 rows of retail sales data, useful for testing data analysis methods.",
-    price: "4",
-    sales: "0",
-    id: 37,
-  },
-  {
-    operator: "RANDOM-98",
-    chain: "SONIC",
-    title: "Sample CSV Files for Testing",
-    owner: "0x2FdDbAc7115Eb2b9c264Cd837a11735C1d0bb727",
-    description:
-      "A collection of sample CSV files with varying sizes, ranging from 100 to 2 million records, for testing purposes.",
-    price: "5",
-    sales: "0",
-    id: 38,
-  },
-  {
     operator: "RANDOM-64",
     chain: "SONIC",
     title: "Top 10,000 U.S. Surnames (2000 Census)",
@@ -62,16 +40,6 @@ export const datasets = [
     price: "8",
     sales: "0",
     id: 39,
-  },
-  {
-    operator: "RANDOM-77",
-    chain: "SONIC",
-    title: "fake data",
-    owner: "0x02B68760540400a3C215c430ED369659812580eb",
-    description: "fake desc",
-    price: "1",
-    sales: "0",
-    id: 40,
   },
   {
     operator: "RANDOM-77",
