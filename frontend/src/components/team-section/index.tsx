@@ -4,12 +4,17 @@ import Link from "next/link"
 import { BsTwitterX } from "react-icons/bs"
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { IoMdContact } from "react-icons/io"
+import Ankit from "@/assets/team/ankit.jpg"
+import Shubham from "@/assets/team/shubham.jpg"
+import Umesh from "@/assets/team/umesh.jpeg"
+import Disha from "@/assets/team/disha.jpg"
+import Akhilesh from "@/assets/team/akhilesh.jpg"
 const teamMembers = [
   {
     name: "Umesh Singh Verma",
     role: "AI Engineer",
     bio: "Designed and integrated AI agents to automate data structuring and insights.",
-    image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
+    image: Umesh.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -20,7 +25,7 @@ const teamMembers = [
     name: "Akhilesh Jyotishi",
     role: "Full Stack Developer",
     bio: "Developed key frontend components and built the backend to power the platform.",
-    image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
+    image: Akhilesh.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -31,7 +36,7 @@ const teamMembers = [
     name: "Disha Dwivedi",
     role: "Blockchain Developer",
     bio: "Developed and deployed secure smart contracts for NFT-based data transactions.",
-    image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
+    image: Disha.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -42,7 +47,7 @@ const teamMembers = [
     name: "Ankit Yadav",
     role: "Frontend Developer",
     bio: "Built the core UI and seamlessly integrated backend APIs for a smooth user experience.",
-    image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
+    image: Ankit.src,
     social: {
       twitter: "#",
       linkedin: "#",
@@ -53,7 +58,7 @@ const teamMembers = [
     name: "Shubham Roy",
     role: "Manager",
     bio: "Supervised development, Bug reporting and crafted detailed project documentation.",
-    image: "https://static-00.iconduck.com/assets.00/avatar-default-icon-988x1024-zsfboql5.png",
+    image: Shubham.src,
     social: {
       twitter: "#",
       linkedin: "#",

@@ -96,7 +96,7 @@ export default function Page() {
         {TabForm.map((elem, ind) => (
           <div
             key={ind}
-            className={`flex items-center justify-start ${elem.tabNo !== 5 && "w-full"}`}
+            className={`flex items-center justify-start ${elem.tabNo !== 3 && "w-full"}`}
           >
             <TabButton
               buttonName={elem.name}
@@ -105,7 +105,7 @@ export default function Page() {
               tab={elem.tabNo}
               setTabNo={setTabNo}
             />
-            {elem.tabNo !== 5 && <div className="mx-3 h-0 w-full border border-t border-zinc-700"></div>}
+            {elem.tabNo !== 3 && <div className="mx-3 h-0 w-full border border-t border-zinc-700"></div>}
           </div>
         ))}
       </div>

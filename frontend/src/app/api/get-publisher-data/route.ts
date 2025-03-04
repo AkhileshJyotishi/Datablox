@@ -52,7 +52,7 @@ export async function GET(request: Request) {
 
     // Filter out any null values in case some metadata fetches failed
     const metadatas = metadatasResult.filter((metadata) => metadata !== null)
-
+    console.log("publisher dataaa", metadatas)
     return NextResponse.json({ metadatas: metadatas || [] }, { status: 200 })
   } catch (error) {
     return NextResponse.json({ error: (error as Error).message }, { status: 500 })
