@@ -92,7 +92,7 @@ export default function Dataset({ metadata, pageName }: { metadata: any; pageNam
             pageName="realtime"
           /> */}
           <BuyData
-            nftData={nftData}
+            nftData={metadata}
             ipfs={metadata.IPFS}
             title={metadata.title}
             price={metadata.price}
@@ -105,7 +105,7 @@ export default function Dataset({ metadata, pageName }: { metadata: any; pageNam
         <div className="flex flex-col items-center justify-center px-6">
           <BuyData
             nftData={nftData}
-            ipfs={`${process.env.NEXT_FONTEND_URL}/api/get-realtime-data?id=0`}
+            ipfs={metadata.IPFS}
             title={nftData.title}
             price={5}
             tokenId={0}
