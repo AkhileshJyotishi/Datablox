@@ -15,6 +15,7 @@
     "plugins": [
       {
         "name": "next"
+        
       }
     ],
     "paths": {
