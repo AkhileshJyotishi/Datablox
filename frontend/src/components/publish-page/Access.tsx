@@ -238,7 +238,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
 
   return (
     <div className="mx-auto w-full px-32 py-6 text-white">
-      <div className="mx-auto w-full px-32 py-6 text-white">
+      <div className="mx-auto w-full px-24   py-6 text-white">
         {/* Data Token Header */}
         <div className="text-md font-bold">
           Data Token<span className="text-base text-zinc-400">*</span>
@@ -269,7 +269,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
 
         <div className="space-y-10">
           {/* Provider URL Field */}
-          <div>
+          <div className="hidden">
             <label className="text-md font-bold">
               Provider URL
               <span className="text-base text-zinc-400">*</span>
@@ -278,9 +278,9 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
               <input
                 type="text"
                 name="providerUrl"
-                value={userData?.access?.providerUrl || ""}
+                value={"provider url"}
                 onChange={handleInputChange}
-                className="w-full rounded-md border border-gray-600 bg-transparent px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+                className="w-full  rounded-md border border-gray-600 bg-transparent px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
               />
               <button className="ml-2 rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-4 py-2 text-sm font-bold uppercase text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]">
                 Validate
@@ -337,20 +337,24 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
           {/* Sample File Field */}
           <div>
             <label className="text-md font-bold">
-              Sample File<span className="text-base text-zinc-400">*</span>
+              Sample Data<span className="text-base text-zinc-400">*</span>
             </label>
             <div className="mt-2 flex gap-2">
-              <input
-                type="text"
+              <textarea
                 name="samplefile"
-                placeholder="https://file.com/file.json"
+                placeholder={JSON.stringify([
+                  {
+                    "srNo": "1",
+                    "feature1": "asfa",
+                    "feature2": "dfkdfalj",
+                    "feature3": "askdasj"
+                  }
+                ])}
                 value={userData?.access?.samplefile || ""}
                 onChange={handleInputChange}
-                className="w-full rounded-md border border-gray-600 bg-transparent px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+                
+                className="w-full rounded-md border border-gray-600 bg-transparent min-h-28 px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
               />
-              <button className="ml-2 rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-4 py-2 text-sm font-bold uppercase text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]">
-                Validate
-              </button>
             </div>
             {errors.samplefile && <p className="mt-1 text-sm text-red-600">{errors.samplefile}</p>}
           </div>
