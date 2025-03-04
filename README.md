@@ -51,6 +51,7 @@ Built on the **Sonic blockchain** 🏗️, powered by **AI-driven analytics** �
 
 ## 🔄 How It Works
 
+
 ### 📊 **Process Flow Diagram** (To Be Added)
 
 ![Flow Diagram Placeholder]
