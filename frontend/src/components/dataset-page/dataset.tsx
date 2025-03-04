@@ -32,7 +32,7 @@ const nftData = {
   ],
   author: "Sonic-realtime-service",
   created_at: "2025-02-28T20:23:51.576Z",
-  sampleData: {
+  samplefile: {
     id: "2900012345678901234",
     edit_history_tweet_ids: ["2900012345678901234"],
     created_at: "2025-02-20T18:45:00.000Z",
