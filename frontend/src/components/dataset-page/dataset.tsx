@@ -17,7 +17,7 @@ const nftData = {
   price: "5",
   sales: "94",
   id: 0,
-  IPFS: "http://localhost:3000/api/get-realtime-data?id=0",
+  IPFS: `${process.env.NEXT_FONTEND_URL}/api/get-realtime-data?id=0`,
   tags: [
     "Football",
     "Real Madrid",
@@ -105,7 +105,7 @@ export default function Dataset({ metadata, pageName }: { metadata: any; pageNam
         <div className="flex flex-col items-center justify-center px-6">
           <BuyData
             nftData={nftData}
-            ipfs="http://localhost:3000/api/get-realtime-data?id=0"
+            ipfs={`${process.env.NEXT_FONTEND_URL}/api/get-realtime-data?id=0`}
             title={nftData.title}
             price={5}
             tokenId={0}
