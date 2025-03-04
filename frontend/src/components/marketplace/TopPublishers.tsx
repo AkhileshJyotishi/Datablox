@@ -10,7 +10,8 @@ import { MarqueePublisher } from "./MarquePublisher"
 export default async function TopPublishers() {
   let formattedData = []
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-publisher`)
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/get-publisher`);
+    console.log("response ",response);
     const fetchedData = (response?.data.publisherData || []).slice(0, 10)
     formattedData = fetchedData
       .map((publisher: any) => ({
@@ -19,7 +20,7 @@ export default async function TopPublishers() {
         metaDataId: publisher.metaDataId,
       }))
       .sort((a: any, b: any) => b.metaDataId.length - a.metaDataId.length)
-    // console.log(fetchedData);
+    console.log(fetchedData);
   } catch (error) {
     console.log("Error while fetching all the publisher")
   }
