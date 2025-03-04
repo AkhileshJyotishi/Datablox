@@ -44,8 +44,8 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
   const [files, setFiles] = useState<File[]>([])
   const { data: hash, writeContractAsync } = useWriteContract()
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
-  const [loading,setLoading] = useState(false);
-  const {address} = useAccount();
+  const [loading, setLoading] = useState(false);
+  const { address } = useAccount();
   const router = useRouter();
 
   const changeParam = [
@@ -142,7 +142,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
   async function getTokenData(val: any) {
     try {
       const rec = await getTransactionReceipt(config, { hash: val });
-      console.log(rec,"rec");
+      console.log(rec, "rec");
       const decimalNumber = parseInt(rec.logs[1].data, 18)
       console.log(decimalNumber)
       const ans = parseInt(rec.logs[1].data.slice(2, 66), 16);
@@ -231,7 +231,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
       } catch (error) {
         console.error("Error submitting form:", error)
         toast("Error submitting form")
-      }finally{
+      } finally {
         setLoading(false);
       }
     }
@@ -298,7 +298,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
             <div className="mx-auto min-h-96 w-full max-w-4xl rounded-lg border border-dashed border-gray-400 bg-white dark:border-gray-400 dark:bg-black">
               <FileUpload onChange={handleFileUpload} />
             </div>
-            {files.length > 0  && (
+            {files.length > 0 && (
               <div className="mt-4 flex justify-center">
                 <button
                   onClick={uploadFileToIPFS}
@@ -338,20 +338,24 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
           {/* Sample File Field */}
           <div>
             <label className="text-md font-bold">
-              Sample File<span className="text-base text-zinc-400">*</span>
+              Sample Data<span className="text-base text-zinc-400">*</span>
             </label>
             <div className="mt-2 flex gap-2">
-              <input
-                type="text"
+              <textarea
                 name="samplefile"
-                placeholder="https://file.com/file.json"
+                placeholder={JSON.stringify([
+                  {
+                    "srNo": "1",
+                    "feature1": "asfa",
+                    "feature2": "dfkdfalj",
+                    "feature3": "askdasj"
+                  }
+                ])}
                 value={userData?.access?.samplefile || ""}
                 onChange={handleInputChange}
-                className="w-full rounded-md border border-gray-600 bg-transparent px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
+
+                className="w-full rounded-md border border-gray-600 bg-transparent min-h-28 px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-red-800"
               />
-              <button className="ml-2 rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-4 py-2 text-sm font-bold uppercase text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]">
-                Validate
-              </button>
             </div>
             {errors.samplefile && <p className="mt-1 text-sm text-red-600">{errors.samplefile}</p>}
           </div>
@@ -381,7 +385,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
               disabled={loading}
               className="rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-8 py-2 font-sans text-lg font-semibold text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]"
             >
-              {loading?<AiOutlineLoading3Quarters className="animate-spin font-bold"/>:"Submit"}
+              {loading ? <AiOutlineLoading3Quarters className="animate-spin font-bold" /> : "Submit"}
             </button>
           </div>
         </div>
