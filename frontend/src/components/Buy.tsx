@@ -115,6 +115,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
   }
   const { isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash })
 
+  
   useEffect(() => {
     console.log("isConfirmed", isConfirmed);
     if(address){

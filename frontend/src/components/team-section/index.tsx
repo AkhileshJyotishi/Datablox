@@ -4,11 +4,11 @@ import Link from "next/link"
 import { BsTwitterX } from "react-icons/bs"
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { IoMdContact } from "react-icons/io"
-import Ankit from "@/assets/team/ankit.jpg"
+import Ankit from "@/assets/team/ankit.jpeg"
 import Shubham from "@/assets/team/shubham.jpg"
 import Umesh from "@/assets/team/umesh.jpeg"
 import Disha from "@/assets/team/disha.jpg"
-import Akhilesh from "@/assets/team/akhilesh.jpg"
+import Akhilesh from "@/assets/team/akhilesh.jpeg"
 const teamMembers = [
   {
     name: "Umesh Singh Verma",
