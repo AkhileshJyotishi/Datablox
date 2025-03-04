@@ -15,6 +15,7 @@ export interface RealTimeProps {
   created_at: string
 }
 
+
 const realtime: RealTimeProps[] = []
 data.map((obj, key) => {
   const newObj = {
