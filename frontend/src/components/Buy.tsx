@@ -28,6 +28,7 @@ import {
 import { createPortal } from "react-dom"
 
 import { ScratchToReveal } from "./Celebration.tsx/ScratchToReveal"
+import { toast } from "sonner"
 
 // Define the type for our NFT data
 type DataNFT = {
@@ -226,15 +227,16 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
     }
   }, [])
 
-  const sendOwner = () => {
+  const sendOwner = async () => {
 
 
-    sendTransaction({ to : "0x98EeA2353B0ce72444ba5A45956fE636D083cc22", value: parseEther(price.toString()) });
+    await sendTransaction({ to : "0x98EeA2353B0ce72444ba5A45956fE636D083cc22", value: parseEther(price.toString()) });
     setPurchaseState("success");
   };
   const copyurlnow = (ipfs: string ) => {
     console.log(ipfs);
-
+    navigator.clipboard.writeText(ipfs);
+    toast("Webhook Url is copied successfully");
   }
  
   // Render the purchase button or download button based on state

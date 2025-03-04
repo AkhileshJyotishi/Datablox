@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 
 import { TbReload } from "react-icons/tb"
 import { toast } from "sonner"
-import { useWaitForTransactionReceipt, useWriteContract } from "wagmi"
+import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi"
 
 import { getTransactionReceipt } from "@wagmi/core"
 
@@ -13,6 +13,9 @@ import { pinata } from "@/utils/config"
 
 import { config } from "../../config/index"
 import { FileUpload } from "../ui/file-upload"
+import axios from "axios"
+import { useRouter } from "next/navigation"
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
 
 interface AccessProps {
   userData: any
@@ -40,7 +43,10 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
   const [isUploading, setIsUploading] = useState(false)
   const [files, setFiles] = useState<File[]>([])
   const { data: hash, writeContractAsync } = useWriteContract()
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash })
+  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
+  const [loading,setLoading] = useState(false);
+  const {address} = useAccount();
+  const router = useRouter();
 
   const changeParam = [
     "Contumacious Herring Token — CONHER-70",
@@ -163,6 +169,36 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
     }
   }, [isConfirmed])
 
+
+
+
+  const handleFinalSubmit = async () => {
+    if (!address) {
+      toast("No Wallet Address fount", {
+        description: "Kindly connect wallet first to publish the data",
+      })
+      return
+    }
+    try {
+      //
+      setLoading(true)
+      const response = await axios.post("/api/postmetadata", {
+        ...userData,
+        owner: address,
+        // tokenId:
+      })
+      if (response.status == 200) {
+        setLoading(false)
+        const metaDataId = response.data.metadataId
+        router.push(`/dataset/${metaDataId}`)
+      }
+      console.log(response)
+    } catch (error) {
+      toast("Error in publishing dataset")
+    } finally {
+      setLoading(false)
+    }
+  }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -173,8 +209,8 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
       timeout: "",
     }
 
-    if (!userData?.access?.providerUrl.trim()) newErrors.providerUrl = "Provider URL is required."
-    if (!userData?.access?.IPFS.trim()) newErrors.IPFS = "IPFS is required."
+    if (!userData?.access?.providerUrl?.trim()) newErrors.providerUrl = "Provider URL is required."
+    if (!userData?.access?.IPFS?.trim()) newErrors.IPFS = "IPFS is required."
     if (!userData?.access?.samplefile?.trim()) newErrors.samplefile = "Sample file is required."
     if (!userData?.access?.timeout || userData?.access?.timeout <= 0)
       newErrors.timeout = "Timeout must be greater than 0."
@@ -183,15 +219,19 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
 
     if (!newErrors.providerUrl && !newErrors.IPFS && !newErrors.samplefile && !newErrors.timeout) {
       try {
+        setLoading(true);
         await createContract(
           userData.access.IPFS,
           userData.metadata.title,
           userData.metadata.title.slice(0, 3).toUpperCase(),
           userData.price
         )
+        handleFinalSubmit();
       } catch (error) {
         console.error("Error submitting form:", error)
         toast("Error submitting form")
+      }finally{
+        setLoading(false);
       }
     }
   }
@@ -337,9 +377,10 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
           <div className="flex justify-center">
             <button
               onClick={handleSubmit}
+              disabled={loading}
               className="rounded-md bg-gradient-to-r from-[#9e2750] to-[#b02d5b] px-8 py-2 font-sans text-lg font-semibold text-white transition-all duration-300 hover:from-[#8b2347] hover:to-[#9b284f] active:from-[#7d1f41] active:to-[#8f2449]"
             >
-              Submit
+              {loading?<AiOutlineLoading3Quarters className="animate-spin font-bold"/>:"Submit"}
             </button>
           </div>
         </div>
