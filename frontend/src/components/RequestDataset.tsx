@@ -156,7 +156,7 @@ export function RequestDataset() {
                   type="button"
                   onClick={addKeyword}
                   disabled={keywordInput.trim() === ""}
-                  className="bg-zinc-700 text-white hover:bg-zinc-600"
+                  className="bg-zinc-700 text-white hover:bg-zinc-600 px-3 rounded-md"
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
@@ -202,7 +202,7 @@ export function RequestDataset() {
                   type="button"
                   onClick={addHashtag}
                   disabled={hashtagInput.trim() === ""}
-                  className="bg-zinc-700 text-white hover:bg-zinc-600"
+                  className="bg-zinc-700 text-white hover:bg-zinc-600 px-3 rounded-md"
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
