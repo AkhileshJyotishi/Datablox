@@ -141,10 +141,11 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
 
   async function getTokenData(val: any) {
     try {
-      const rec = await getTransactionReceipt(config, { hash: val })
+      const rec = await getTransactionReceipt(config, { hash: val });
+      console.log(rec,"rec");
       const decimalNumber = parseInt(rec.logs[1].data, 18)
       console.log(decimalNumber)
-      const ans = parseInt(rec.logs[1].data.slice(2, 66), 16)
+      const ans = parseInt(rec.logs[1].data.slice(2, 66), 16);
       const tokenId = ans
       if (tokenId) {
         userData.tokenId = tokenId
@@ -155,6 +156,7 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
           updated[tabNo] = true
           return updated
         })
+        handleFinalSubmit();
       }
     } catch (error) {
       console.error("Error fetching token data:", error)
@@ -226,7 +228,6 @@ export default function Access({ userData, setUserData, tabNo, setTabNo, setIsTa
           userData.metadata.title.slice(0, 3).toUpperCase(),
           userData.price
         )
-        handleFinalSubmit();
       } catch (error) {
         console.error("Error submitting form:", error)
         toast("Error submitting form")

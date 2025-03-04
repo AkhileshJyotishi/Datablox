@@ -89,7 +89,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
 
   const getDatasetUri = async () => {
     if (address) {
-      console.log("I came here")
+      console.log("I came here",tokenId);
       const val = await readContracts(config, {
         contracts: [{
           ...wagmiContractConfigOwner,
@@ -103,7 +103,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
     }
   }
   const buyData = async () => {
-    console.log("hello")
+    console.log("hello",price, tokenId,duration);
     const val = await writeContract({
       ...wagmiContractConfigOwner,
       functionName: "buyPartialOwnership",
