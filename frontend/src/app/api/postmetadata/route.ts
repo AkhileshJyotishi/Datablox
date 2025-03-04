@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       tags: JSON.stringify(body.metadata.tags),
       providerUrl: body.access.providerUrl,
       IPFS: body.access.IPFS,
-      samplefile: JSON.stringify(body.access.samplefile),
+      samplefile: body.access.samplefile,
       timeout: body.access.timeout,
       price: body.price,
       owner: body.owner, // wallet address

@@ -47,7 +47,7 @@ export default function CompleteMetaData({ metadata, pageName = "" }: { metadata
                 created_at={metadata?.created_at}
                 description={metadata?.description || "No description available"}
                 tags={metadata?.tags || []}
-                sampleData={JSON.stringify(metadata?.samplefile)}
+                sampleData={metadata?.samplefile}
               />
               <Dataset
                 metadata={metadata}
