@@ -23,6 +23,7 @@ const nextConfig = {
       },
       {
         hostname: "static-00.iconduck.com",
+        
       },
     ],
   },
