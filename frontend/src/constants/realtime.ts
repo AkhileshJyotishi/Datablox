@@ -31,7 +31,7 @@ data.map((obj, key) => {
     tags: obj.tags,
     author: "Sonic-realtime-service",
     created_at: new Date().toISOString(),
-    sampleData: obj.data[0],
+    samplefile: JSON.stringify(obj.data[0]),
   }
   realtime.push(newObj)
 })
