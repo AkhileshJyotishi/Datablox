@@ -11,7 +11,7 @@ import TeamSection from "@/components/team-section"
 // interface HomePageProps {}
 
 export const metadata: Metadata = {
-  title: "Home page",
+  title: "DataBlox",
   description: "Home page",
 }
 
