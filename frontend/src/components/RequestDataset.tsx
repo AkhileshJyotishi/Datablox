@@ -77,7 +77,7 @@ export function RequestDataset() {
     console.log("Request data:", requestData)
 
     // Show success message
-    toast.success("We have received your request. Your dataset will be ready within 4-5 days")
+    toast.success("We have received your request. Your dataset will be ready within 2-3 days")
 
     // Reset form
     setKeywords([])
