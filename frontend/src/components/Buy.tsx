@@ -30,25 +30,10 @@ import { createPortal } from "react-dom"
 import { ScratchToReveal } from "./Celebration.tsx/ScratchToReveal"
 import { toast } from "sonner"
 
-// Define the type for our NFT data
-type DataNFT = {
-  operator: string
-  owner: string
-  chain: string
-  title: string
-  description: string
-  price: string
-  sales: string
-  id: number
-  IPFS: string
-  tags: string[]
-  author: string
-  created_at: string
-  sampleData: any
-}
+
 
 type BuyDataProps = {
-  nftData: DataNFT
+  nftData: any
   ipfs: string
   title: string
   price: number
@@ -126,6 +111,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
       value: parseEther(price.toString()),
     })
     console.log(val)
+    
   }
   const { isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash })
 
@@ -134,7 +120,11 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
     if(address){
     
       getDatasetUri();
+      
       if (isConfirmed) {
+        setShowModal(true)
+    animateSteps()
+    launchConfetti()
         getDatasetUri();
       } else {
           setPurchaseState('failure');
@@ -230,7 +220,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
   const sendOwner = async () => {
 
 
-    await sendTransaction({ to : "0x98EeA2353B0ce72444ba5A45956fE636D083cc22", value: parseEther(price.toString()) });
+    sendTransaction({ to : "0x98EeA2353B0ce72444ba5A45956fE636D083cc22", value: parseEther(price.toString()) });
     setPurchaseState("success");
   };
   const copyurlnow = (ipfs: string ) => {
@@ -248,7 +238,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
           className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl"
         >
           <Download className="h-5 w-5" />
-          {pageName === "realtime"? "Copy URL" : "Download Dataset"}
+          {pageName === "realtime"? hash1 ? "Copy URL" : "Processing Transaction..." : "Download Dataset"}
           
         </button>
       )
@@ -523,7 +513,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
                             Tags
                           </h3>
                           <div className="flex flex-wrap gap-2">
-                            {nftData.tags.slice(0, 6).map((tag, index) => (
+                            {JSON.parse(nftData.tags).slice(0, 6).map((tag:string, index:number) => (
                               <span
                                 key={index}
                                 className="rounded-full bg-slate-800 px-2.5 py-1 text-xs font-medium text-slate-300"
@@ -542,7 +532,7 @@ export default function BuyData({ nftData, ipfs, title, price, tokenId, duration
                         {/* Action buttons */}
                         <div className="mt-auto grid gap-3">
                           <button
-                            onClick={closeModal}
+                            onClick={()=>downloadFile(ipfs,title)}
                             className="w-full rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl"
                           >
                             <div className="flex items-center justify-center gap-2">
