@@ -77,7 +77,7 @@ export default function Metadata({ created_at, description, tags, sampleData }: 
         <CodeBlock
           filename="sample.json"
           language="json"
-          code={JSON.stringify(sampleData, null, 2)}
+          code={sampleData}
         />
       </div>
     </div>
