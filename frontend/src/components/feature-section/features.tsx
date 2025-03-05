@@ -130,14 +130,14 @@ function FeatureContent({
 function FeatureImage({ image }: { image: string }) {
   return (
     <div className="relative  w-full overflow-hidden rounded-2xl border border-white/10 shadow-xl">
-      <div className="absolute inset-0 z-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20" />
+      {/* <div className="absolute inset-0 z-10 bg-gradient-to-br from-purple-500/20 to-pink-500/20" /> */}
       <Image
         src={image || "/placeholder.svg"}
         alt="Feature illustration"
         // fill
         height={1000}
         width={1000}
-        className="object-contain h-[360px]"
+        className="object-contain h-[360px] bo"
       />
       {/* <div className="absolute inset-0 z-0 bg-black/40" /> */}
     </div>
