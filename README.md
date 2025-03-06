@@ -4,6 +4,7 @@
 
 📊 Data is power. But **real-time data?** That’s game-changing. 🚀
 
+
 Imagine a world where **real-time, AI-driven insights** empower instant reactions to emerging trends, sentiment shifts, and critical market movements. That’s what **DataBlox** is all about—revolutionizing how you access and utilize data with a **blockchain-native** intelligence hub. 🔗
 
 Built on the **Sonic blockchain** 🏗️, powered by **AI-driven analytics** 🤖, and designed for those who need **real-time, actionable insights**—DataBlox ensures that businesses, investors, and researchers never miss a crucial data point.
