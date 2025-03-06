@@ -10,9 +10,8 @@ Built on the **Sonic blockchain** 🏗️, powered by **AI-driven analytics** �
 
 ## 🚀 What It Does
 
+
 ### 🔥 **Real-Time Data - The Game Changer**
-
-
 
 - 🔄 Access **continuously updated datasets** on trending topics, market movements, and social media activity.
 - 📡 Subscribe to a dataset and receive a **webhook URL** that delivers **live JSON-formatted data**.
