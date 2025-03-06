@@ -1,103 +1,104 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
-import { createClient } from "@supabase/supabase-js"
-
-const supabaseURL = process.env.SUPABASE_URL
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY
-const backendURL = process.env.BACKEND_URL
+const supabaseURL = process.env.SUPABASE_URL;
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+const backendURL = process.env.BACKEND_URL;
 
 if (!supabaseURL || !supabaseAnonKey) {
-  throw new Error("Supabase credentials are not set.")
+  throw new Error("Supabase credentials are not set.");
 }
 
 if (!backendURL) {
-  throw new Error("Backend URL is not set.")
+  throw new Error("Backend URL is not set.");
 }
 
-const supabase = createClient(supabaseURL, supabaseAnonKey)
+const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 interface Tag {
-  id: string
+  id: string;
 }
 
 interface RequestBody {
-  searchQuery: string
+  searchQuery: string;
 }
 
 export async function POST(request: Request): Promise<Response> {
   try {
-    const body: RequestBody = await request.json()
-    const { searchQuery } = body
-
+    // Parse the request body and extract searchQuery
+    const { searchQuery }: RequestBody = await request.json();
     if (!searchQuery) {
-      return NextResponse.json({ error: "Missing searchQuery." }, { status: 400 })
+      return NextResponse.json({ error: "Missing searchQuery." }, { status: 400 });
     }
 
-    const { data: tagsData, error: tagsError } = await supabase.from("tags").select("id")
-
+    // Retrieve all tag IDs from the database.
+    const { data: tagsData, error: tagsError } = await supabase.from("tags").select("id");
     if (tagsError) {
-      console.error("Supabase query error:", tagsError)
-      return NextResponse.json({ error: tagsError.message }, { status: 500 })
+      console.error("Supabase query error:", tagsError);
+      return NextResponse.json({ error: tagsError.message }, { status: 500 });
     }
-
     if (!tagsData) {
-      return NextResponse.json({ error: "No data returned." }, { status: 500 })
+      return NextResponse.json({ error: "No data returned from tags table." }, { status: 500 });
     }
+    const tagIds: string[] = tagsData.map((tag: Tag) => tag.id);
 
-    const tagIds: string[] = tagsData.map((tag: Tag) => tag.id)
-
-    let relevantTags: string[] = []
+    // Call the agent to determine relevant tags based on the search query.
+    let relevantTags: string[] = [];
     try {
-      relevantTags = await mappingSearchAgent({ searchQuery, tagIds })
+      relevantTags = await mappingSearchAgent({ searchQuery, tagIds });
     } catch (agentError: any) {
-      console.error("Error in mappingSearchAgent:", agentError)
-      return NextResponse.json({ error: "Failed to retrieve tags." }, { status: 500 })
+      console.error("Error in mappingSearchAgent:", agentError);
+      return NextResponse.json({ error: "Failed to retrieve tags." }, { status: 500 });
     }
 
-    if (!relevantTags || relevantTags.length === 0) {
-      return NextResponse.json({ relevantTags: [], metadatas: [] }, { status: 200 })
+    // If no relevant tags are found, return early.
+    if (!relevantTags.length) {
+      return NextResponse.json({ relevantTags, metadatas: [] }, { status: 200 });
     }
 
-    const metadataIds: string[] = []
-
+    // Retrieve metadata IDs for each relevant tag.
     const metadataPromises = relevantTags.map(async (tag) => {
       const { data: tagMetadata, error: tagMetadataError } = await supabase
         .from("tags")
         .select("metadataid")
-        .eq("id", tag)
+        .eq("id", tag);
 
       if (tagMetadataError) {
-        console.error(`Error fetching metadata for tag ${tag}:`, tagMetadataError)
-        return []
+        console.error(`Error fetching metadata for tag ${tag}:`, tagMetadataError);
+        return [];
       }
-      return tagMetadata ? tagMetadata.flatMap((tm) => tm.metadataid) : []
-    })
+      return tagMetadata ? tagMetadata.map((tm) => tm.metadataid).filter(Boolean) : [];
+    });
+    const resolvedMetadataIds = await Promise.all(metadataPromises);
+    const metadataIds = Array.from(new Set(resolvedMetadataIds.flat()));
 
-    const resolvedMetadataIds = await Promise.all(metadataPromises)
-    metadataIds.push(...resolvedMetadataIds.flat())
-
-    const uniqueMetadataIds = Array.from(new Set(metadataIds))
-
-    if (uniqueMetadataIds.length === 0) {
-      return NextResponse.json({ relevantTags, metadatas: [] }, { status: 200 })
+    if (!metadataIds.length) {
+      return NextResponse.json({ relevantTags, metadatas: [] }, { status: 200 });
     }
 
-    const metadataFetchPromises = uniqueMetadataIds.map(async (metadataId) => {
-      const { data: metadata, error: metadataError } = await supabase.from("metadata").select("*").eq("id", metadataId)
-
+    // Fetch metadata details for each unique metadataId.
+    const metadataFetchPromises = metadataIds.map(async (metadataId) => {
+      const { data: metadata, error: metadataError } = await supabase
+        .from("metadata")
+        .select("*")
+        .eq("id", metadataId);
       if (metadataError) {
-        console.error(`Error fetching metadata with ID ${metadataId}:`, metadataError)
-        return null
+        console.error(`Error fetching metadata with ID ${metadataId}:`, metadataError);
+        return null;
       }
-      return metadata ? metadata[0] : null
-    })
+      return metadata && metadata.length > 0 ? metadata[0] : null;
+    });
+    const fetchedMetadatas = (await Promise.all(metadataFetchPromises)).filter(Boolean);
 
-    const metadatas = (await Promise.all(metadataFetchPromises)).filter(Boolean)
+    // Filter out duplicate metadata objects by their unique 'id'
+    const uniqueMetadatas = Array.from(
+      new Map(fetchedMetadatas.map((m: any) => [m.id, m])).values()
+    );
 
-    return NextResponse.json({ relevantTags, metadatas }, { status: 200 })
+    return NextResponse.json({ relevantTags, metadatas: uniqueMetadatas }, { status: 200 });
   } catch (err: any) {
-    console.error("Error processing request:", err)
-    return NextResponse.json({ error: err.message }, { status: 500 })
+    console.error("Error processing request:", err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
 
@@ -105,76 +106,45 @@ async function mappingSearchAgent({
   searchQuery,
   tagIds,
 }: {
-  searchQuery: string
-  tagIds: string[]
+  searchQuery: string;
+  tagIds: string[];
 }): Promise<string[]> {
   try {
-    const systemPrompt = `
-    You are an AI search assistant for an AI Data Marketplace. You are provided with a list of tags from our database and a user query. The query can be any question or request—your sole responsibility is to extract and return only the tags that are relevant to the user's intent from the provided list, even if the query is ambiguous or indirect.
-    
-    ### **Strict Response Format Rules**:
-    1. **Output must be a plain JSON array** with no additional formatting, explanation, or text.
-    2. **Do NOT include markdown formatting**, such as \`\`\`json, \`\`\`, or newlines.
-    3. **Do NOT include any extra characters** like \\n, descriptions, or commentary—only the JSON array itself.
-    4. **If no relevant tags are found, return an empty array**: [].
-    
-    ---
-    
-    ### **Processing Guidelines**:
-    - Analyze the provided list of tags.
-    - Match the user query with relevant tags, considering synonyms and contextual relationships.
-    - If a direct match is unavailable, return closely related tags instead.
-    - Always return results in descending order of relevance.
-    
-    ---
-    
-    ### **Examples**:
-    #### Example 1:
-    Available Tags: ["weather", "finance", "health", "sports", "technology"]  
-    User Query: "I need datasets on economic trends and market analysis."  
-    Expected Output: ["finance", "technology"]  
-    
-    #### Example 2:
-    Available Tags: ["weather", "finance", "health", "sports", "technology", "image_recognition", "natural_language_processing"]  
-    User Query: "I want to analyze sentiment of sports articles."  
-    Expected Output: ["sports", "natural_language_processing"]  
-    
-    #### Example 3:
-    Available Tags: ["weather", "finance", "health", "sports", "technology"]  
-    User Query: "Information on the impact of climate change on global agriculture."  
-    Expected Output: ["weather"]  
-    
-    #### Example 4:
-    Available Tags: ["weather", "finance", "health", "sports", "technology", "agriculture", "climate", "humidity"]  
-    User Query: "Find some dataset which can help in agriculture."  
-    Expected Output: ["agriculture", "climate", "humidity"]  
-    
-    ---
-    
-    ### **Final Reminder**:
-    **Your response must strictly be a JSON array and nothing else.**  
-    Incorrect Output:  
-    \`\`\`json  
-    ["Climate", "humidity", "weather"]  
-    \`\`\`  
-    Correct Output:  
-    ["Climate", "humidity", "weather"]  
-    `
+    // Improved system prompt with clear examples to reduce error margin.
+    const systemPrompt =
+      "You are an AI search assistant for an AI Data Marketplace. " +
+      "You are provided with a list of available tags and a user search query. " +
+      "Your job is to return only the tags that are relevant to the user's intent in a plain JSON array format. " +
+      "Do not include any extra formatting, commentary, or explanation. If no relevant tags are found, return an empty JSON array [].\n\n" +
+      "Example 1:\n" +
+      'Input: searchQuery="I need datasets on economic trends and market analysis.", Available Tags: ["weather", "finance", "health", "sports", "technology"]\n' +
+      'Expected Output: ["finance", "technology"]\n\n' +
+      "Example 2:\n" +
+      'Input: searchQuery="I want to analyze sentiment of sports articles.", Available Tags: ["weather", "finance", "health", "sports", "technology", "image_recognition", "natural_language_processing"]\n' +
+      'Expected Output: ["sports", "natural_language_processing"]\n\n' +
+      "Example 3:\n" +
+      'Input: searchQuery="Information on the impact of climate change on global agriculture.", Available Tags: ["weather", "finance", "health", "sports", "technology"]\n' +
+      'Expected Output: ["weather"]\n\n' +
+      "Example 4:\n" +
+      'Input: searchQuery="Find some dataset which can help in agriculture.", Available Tags: ["weather", "finance", "health", "sports", "technology", "agriculture", "climate", "humidity"]\n' +
+      'Expected Output: ["agriculture", "climate", "humidity"]\n\n' +
+      "Your response must be exactly a JSON array, for example: [\"tag1\", \"tag2\"].";
 
-    // Load the agent first
+    // Load the agent.
     const loadResponse = await fetch(`${backendURL}/agents/example/load`, {
       method: "POST",
-    })
-
+    });
     if (!loadResponse.ok) {
-      throw new Error(`Failed to load agent. Status: ${loadResponse.status} - ${await loadResponse.text()}`)
+      throw new Error(
+        `Failed to load agent. Status: ${loadResponse.status} - ${await loadResponse.text()}`
+      );
     }
-    console.log("Agent 'example' loaded successfully!")
+    console.log("Agent 'example' loaded successfully!");
 
-    // Corrected the typo: use "searchQuery" (not "seachQuery")
-    const userPrompt = `searchQuery=${searchQuery};tags=${JSON.stringify(tagIds)}`
+    // Construct the user prompt with the search query and available tags.
+    const userPrompt = `searchQuery=${searchQuery}; tags=${JSON.stringify(tagIds)}`;
 
-    // Send the action request to the agent
+    // Send the action request to the agent.
     const actionResponse = await fetch(`${backendURL}/agent/action`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -183,34 +153,31 @@ async function mappingSearchAgent({
         action: "generate-text",
         params: [userPrompt, systemPrompt, JSON.stringify([])],
       }),
-    })
-
+    });
     if (!actionResponse.ok) {
-      const errorText = await actionResponse.text()
-      throw new Error(`Agent action failed with status ${actionResponse.status}: ${errorText}`)
+      const errorText = await actionResponse.text();
+      throw new Error(`Agent action failed with status ${actionResponse.status}: ${errorText}`);
     }
 
-    const responseData = await actionResponse.json()
+    const responseData = await actionResponse.json();
     if (!responseData.result) {
-      throw new Error("No result returned from agent action.")
+      throw new Error("No result returned from agent action.");
     }
 
-    // Parse and validate the result
-    let parsedResult: any
+    // Parse and validate the result ensuring it's a valid JSON array.
+    let parsedResult: any;
     try {
-      parsedResult = JSON.parse(responseData.result)
+      parsedResult = JSON.parse(responseData.result);
     } catch (parseError) {
-      console.error("Error parsing agent response:", parseError)
-      throw new Error("Failed to parse agent response.")
+      console.error("Error parsing agent response:", parseError);
+      throw new Error("Failed to parse agent response.");
     }
-
     if (!Array.isArray(parsedResult)) {
-      throw new Error("Agent response is not an array.")
+      throw new Error("Agent response is not an array.");
     }
-
-    return parsedResult
+    return parsedResult;
   } catch (error: any) {
-    console.error("Error in mappingSearchAgent:", error)
-    throw error // Propagate the error to be handled in the calling function
+    console.error("Error in mappingSearchAgent:", error);
+    throw error;
   }
 }
