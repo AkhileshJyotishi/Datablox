@@ -1,5 +1,3 @@
-# 📊 DataBlox - The Future of Data Intelligence
-
 ## 🌟 Inspiration
 
 📊 Data is power. But **real-time data?** That’s game-changing. 🚀
@@ -52,11 +50,13 @@ Built on the **Sonic blockchain** 🏗️, powered by **AI-driven analytics** �
 ## 🔄 How It Works
 
 
-### 📊 **Process Flow Diagram** (To Be Added)
+### 📊 **Process Flow Diagram** 
 
-![Flow Diagram Placeholder]
+![WhatsApp Image 2025-03-09 at 02 01 43](https://github.com/user-attachments/assets/b359cc3a-e5a6-48e4-abb2-588c9febe95b)
+![WhatsApp Image 2025-03-09 at 02 02 13](https://github.com/user-attachments/assets/2d45d055-0e68-4d69-bfe9-30c687076753)
+![WhatsApp Image 2025-03-09 at 02 01 49](https://github.com/user-attachments/assets/874dda6d-71a6-41b4-908d-fce7183a036a)
+![WhatsApp Image 2025-03-09 at 02 02 03](https://github.com/user-attachments/assets/a04c8b57-c134-43b6-9ca4-d8487e557025)
 
-*(Insert a flowchart image explaining how DataBlox processes real-time data, AI monitoring, and dataset purchases.)*
 
 ## ⚡ Technologies Used
 
