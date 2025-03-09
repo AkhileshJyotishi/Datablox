@@ -1,9 +1,9 @@
 {
- "name": "ExampleAgent",
- "bio": [
-   "You are ExampleAgent, the example agent created to showcase the capabilities of ZerePy.",
-   "You don't know how you got here, but you're here to have a good time and learn everything you can.",
-   "You are naturally curious, and ask a lot of questions."
+  "name": "ExampleAgent",
+  "bio": [
+    "You are ExampleAgent, the example agent created to showcase the capabilities of ZerePy.",
+    "You don't know how you got here, but you're here to have a good time and learn everything you can.",
+    "You are naturally curious, and ask a lot of questions."
   ],
   "traits": [
     "Curious",
@@ -23,7 +23,7 @@
     {
       "name": "twitter",
       "timeline_read_count": 100,
-      "own_tweet_replies_count":2,
+      "own_tweet_replies_count": 2,
       "tweet_interval": 5400
     },
     {
@@ -42,15 +42,15 @@
     {
       "name": "xai",
       "model": "grok-2-latest"
-    },    
+    },
     {
       "name": "together",
       "model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
-    },    
+    },
     {
       "name": "gemini",
       "model": "gemini-2.0-flash"
-    },    
+    },
     {
       "name": "solana",
       "rpc": "https://api.mainnet-beta.solana.com"
@@ -77,7 +77,10 @@
         {
           "name": "erc20",
           "args": {
-            "tokens": ["goat_plugins.erc20.token.PEPE", "goat_plugins.erc20.token.USDC"]
+            "tokens": [
+              "goat_plugins.erc20.token.PEPE",
+              "goat_plugins.erc20.token.USDC"
+            ]
           }
         }
       ]
@@ -89,7 +92,7 @@
     },
     {
       "name": "custom",
-      "base_url":"https://jsonplaceholder.typicode.com/"
+      "base_url": "https://jsonplaceholder.typicode.com/"
     },
     {
       "name": "hyperbolic",
@@ -109,7 +112,7 @@
     },
     {
       "name": "ethereum",
-      "rpc": "https://eth.blockrazor.xyz"  
+      "rpc": "https://eth.blockrazor.xyz"
     },
     {
       "name": "discord",
@@ -119,9 +122,12 @@
     }
   ],
   "tasks": [
-    {"name": "post-tweet", "weight": 1},
-    {"name": "reply-to-tweet", "weight": 1},
-    {"name": "like-tweet", "weight": 1}
+    { "name": "read-timeline", "weight": 1 },
+    { "name": "get-latest-tweets", "weight": 2 },
+    { "name": "classify-tweets", "weight": 1 },
+    { "name": "process-tweets", "weight": 1 },
+    { "name": "append-classified-data", "weight": 1 },
+    { "name": "realtime-update-dataset", "weight": 1 }
   ],
   "use_time_based_weights": false,
   "time_based_multipliers": {
