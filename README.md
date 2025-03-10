@@ -109,14 +109,35 @@ Every new data point flows into your system without manual intervention, keeping
 Experience the revolution in data access and intelligence. Whether you're a **business optimizing campaigns, a researcher mining insights, or a developer powering next-gen applications, DataBlox empowers you with verified, real-time data.**
 
 ### Website: [DataBloX](#)
+# Contributors[](#contributors)
 
-## ✨ Contributors
+The following individuals have contributed to this project:
 
-- **Umesh Singh Verma**
-- **Ankit Yadav**
-- **Akhilesh Jyotishi**
-- **Shubham Roy**
-- **Disha Dwivedi**
+### 1. [Umesh Singh Verma](https://github.com/umeshSinghVerma)
+
+- **Role:** AI Engineer
+- **Responsibilities:** Designed and integrated AI agents to automate data structuring and insights.
+
+### 2. [Akhilesh Jyotishi](https://github.com/AkhileshJyotishi)
+
+- **Role:** Full Stack Developer
+- **Responsibilities:** Developed key frontend components and built the backend to power the platform.
+
+### 3. [Disha Dwivedi](https://github.com/Dis1309)
+
+- **Role:** Blockchain Developer
+- **Responsibilities:** Developed and deployed secure smart contracts for NFT-based data transactions.
+
+### 4. [Ankit Yadav](https://github.com/ANKITy102)
+
+- **Role:** Frontend Developer
+- **Responsibilities:** Built the core UI and seamlessly integrated backend APIs for a smooth user experience.
+
+### 5. [Shubham Roy](https://github.com/sr2005roy)
+
+- **Role:** Frontend Developer
+- **Responsibilities:** Designed website , fixed bugs , resolved deployment .
+
 
 ---
 
