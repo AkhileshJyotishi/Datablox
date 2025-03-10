@@ -22,6 +22,8 @@
 - [🔗 Join the Future of Data Intelligence](#-join-the-future-of-data-intelligence)
 - [👥 Contributors](#contributors)
 
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 ## 🌟 Inspiration
 
 🚀 Imagine you’re a marketer for Nike, launching a new sneaker. The campaign is live, but without real-time Twitter data, you’re flying blind — unable to see 👥 which age groups are most excited, 🌍 which regions are driving demand, or 📈 when an influencer’s tweet causes a viral spike. If negative feedback starts trending on Twitter, ⚠️ you might react too late to prevent a PR crisis. And all the while, 💸 ad budgets could be wasted targeting the wrong audiences. In a fast-paced market, every second counts — and without live Twitter insights, you risk falling behind. ⏱️🔥
