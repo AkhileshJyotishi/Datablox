@@ -7,6 +7,21 @@
   <p><strong>Watch our video</strong></p>
 </div>
 
+## 📚 Table of Contents
+
+- [🌟 Inspiration](#-inspiration)
+- [🚀 What It Does](#-what-it-does)
+- [🔥 How DataBlox Delivers Real-Time Data](#-how-datablox-delivers-real-time-data)
+- [🛒 AI Powered Data Marketplace](#-ai-powered-data-marketplace)
+  - [👤 Buyer](#-buyer)
+  - [🏷️ Seller](#-seller)
+  - [🔁Complete Workflow: How Everything Connects](#complete-workflow-how-everything-connects)
+- [⚡ Technologies Used](#-technologies-used)
+- [🏆 Why DataBlox?](#-why-datablox)
+- [🔮 Future Enhancements](#-future-enhancements)
+- [🔗 Join the Future of Data Intelligence](#-join-the-future-of-data-intelligence)
+- [👥 Contributors](#contributors)
+
 ## 🌟 Inspiration
 
 🚀 Imagine you’re a marketer for Nike, launching a new sneaker. The campaign is live, but without real-time Twitter data, you’re flying blind — unable to see 👥 which age groups are most excited, 🌍 which regions are driving demand, or 📈 when an influencer’s tweet causes a viral spike. If negative feedback starts trending on Twitter, ⚠️ you might react too late to prevent a PR crisis. And all the while, 💸 ad budgets could be wasted targeting the wrong audiences. In a fast-paced market, every second counts — and without live Twitter insights, you risk falling behind. ⏱️🔥
