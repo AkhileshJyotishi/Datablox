@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=VOivd0GWZMs">
-    <img src="https://raw.githubusercontent.com/AkhileshJyotishi/Datablox/refs/heads/main/frontend/assets/datablox.vercel.app_.png?token=GHSAT0AAAAAACWB5MRM356JMNLPF3LDLJVQZ6O5QTA" alt="Watch the video">
+    <img src="https://raw.githubusercontent.com/AkhileshJyotishi/Datablox/refs/heads/main/frontend/assets/datablox.vercel.app_.png" alt="Watch the video">
   </a>
   <p><strong>Watch our video</strong></p>
 </div>
