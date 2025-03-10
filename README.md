@@ -41,7 +41,7 @@ Imagine you need to track live conversations, sentiment shifts, or viral trends 
 
 Every new data point flows into your system without manual intervention, keeping your insights always current. 🚀
 <div align="center">
-  <img src="frontend/src/assets/videos/video_5.gif" alt="Seller Image 5" width="90%">
+  <img src="https://raw.githubusercontent.com/AkhileshJyotishi/Datablox/abb6c55812f6135771ea5857599ad6a359b30216/frontend/assets/realtimegif%20(1).gif" alt="" width="">
 </div>
 
 ## 🛒 AI Powered Data Marketplace
@@ -58,8 +58,7 @@ Every new data point flows into your system without manual intervention, keeping
   When ready, purchase datasets as **burnable NFTs** on the **Sonic blockchain**. This ensures secure, time-limited access, with every transaction immutably recorded—guaranteeing transparency, ownership, and seamless integration into your workflow. 🚀
 
 <div align="center">
-  <img src="frontend/src/assets/videos/video_1.gif" alt="Seller Image 1" width="45%">
-  <img src="frontend/src/assets/flow-chart/part2.jpeg" alt="Seller Image 2" width="45%">
+  <img src="https://raw.githubusercontent.com/AkhileshJyotishi/Datablox/e4ac21b77a5feede8ceb12470ca5213a33bac9e5/frontend/assets/publishervideo%20(5).gif" alt="">
 </div>
 
 ### 🏷️ Seller
