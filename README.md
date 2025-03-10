@@ -1,4 +1,4 @@
-# 📊 DataBlox - The Blockchain-Native Data Intelligence Hub
+# DataBlox - The Blockchain-Native Data Intelligence Hub
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=VOivd0GWZMs">
