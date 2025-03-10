@@ -81,11 +81,6 @@ Every new data point flows into your system without manual intervention, keeping
 <div align="center">
   <img src="frontend/src/assets/flow-chart/full.jpeg" alt="Full_flowchart" width="90%">
 </div>
-<div align="center">
-  <img src="frontend/src/assets/flow-chart/part1.jpeg" alt="Flowchart1" width="30%">
-  <img src="frontend/src/assets/flow-chart/part2.jpeg" alt="Flowchart2" width="30%">
-  <img src="frontend/src/assets/flow-chart/part3.jpeg" alt="Flowchart3" width="30%">
-</div>
 
 ## ⚡ Technologies Used
 
