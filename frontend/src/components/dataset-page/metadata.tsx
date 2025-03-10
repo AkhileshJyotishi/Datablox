@@ -52,6 +52,7 @@ export default function Metadata({ created_at, description, tags, sampleData }: 
 
     return `${years} years ago`
   }
+  console.log("this is the sample data ",sampleData);
 
   return (
     <div className="w-full">
