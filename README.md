@@ -1,98 +1,128 @@
+# 📊 DataBlox - The Blockchain-Native Data Intelligence Hub
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=VOivd0GWZMs">
+    <img src="https://img.youtube.com/vi/VOivd0GWZMs/0.jpg" alt="Watch the video">
+  </a>
+  <p><strong>Watch our video</strong></p>
+</div>
+
 ## 🌟 Inspiration
 
-📊 Data is power. But **real-time data?** That’s game-changing. 🚀
+🚀 Imagine you’re a marketer for Nike, launching a new sneaker. The campaign is live, but without real-time Twitter data, you’re flying blind — unable to see 👥 which age groups are most excited, 🌍 which regions are driving demand, or 📈 when an influencer’s tweet causes a viral spike. If negative feedback starts trending on Twitter, ⚠️ you might react too late to prevent a PR crisis. And all the while, 💸 ad budgets could be wasted targeting the wrong audiences. In a fast-paced market, every second counts — and without live Twitter insights, you risk falling behind. ⏱️🔥
 
+Or imagine a researcher buying a dataset to train their ML model, only to face setbacks — 🔍 no way to verify quality before buying, 📉 missing key features, 🛠️ messy structures, and ⏳ hours wasted fixing or abandoning bad data. In a fast-paced world, these delays cost more than just time. 🚀
 
-Imagine a world where **real-time, AI-driven insights** empower instant reactions to emerging trends, sentiment shifts, and critical market movements. That’s what **DataBlox** is all about—revolutionizing how you access and utilize data with a **blockchain-native** intelligence hub. 🔗
-
-Built on the **Sonic blockchain** 🏗️, powered by **AI-driven analytics** 🤖, and designed for those who need **real-time, actionable insights**—DataBlox ensures that businesses, investors, and researchers never miss a crucial data point.
+This is where **DataBlox** changes the game. We’ve built a solution that ensures real-time accuracy and trust in data acquisition. No more outdated insights. No more blind purchases. Just the data you need—when you need it. 🚀
 
 ## 🚀 What It Does
 
+**DataBlox** is a **decentralized, AI-powered data marketplace** that combines two key functions:
+- **Realtime Datasets**
+- **AI Powered Data Marketplace**
 
-### 🔥 **Real-Time Data - The Game Changer**
+## 🔥 How DataBlox Delivers Real-Time Data
 
-- 🔄 Access **continuously updated datasets** on trending topics, market movements, and social media activity.
-- 📡 Subscribe to a dataset and receive a **webhook URL** that delivers **live JSON-formatted data**.
-- 🎯 Request **custom datasets** with specific hashtags, Twitter handles, or data sources, powered by AI-driven monitoring.
-- 📊 Get **processed insights** using **Groq and Gemini AI**, transforming raw data into structured intelligence.
-- 🔍 Stay updated with **Zerepy AI**, which continuously loops through requested datasets and appends fresh data in real time.
+Imagine you need to track live conversations, sentiment shifts, or viral trends as they happen. With **DataBlox**, you can request, access, and continuously receive real-time datasets — fully structured and ready to use.
 
-### 🛒 **AI-Powered Data Marketplace**
+### Here’s how it works:
 
-- ✅ **Trust & Transparency**: No more wasted purchases—chat with an **AI chatbot** to verify dataset quality before buying.
-- 🔍 **Smart Search**: Use keywords, tags, or natural language queries to find the most relevant datasets.
-- 🤖 **AI-Powered Metadata**: Sellers list datasets, and AI ensures credibility by checking metadata, security, and relevance.
-- 🔗 **Blockchain Security**: Datasets are sold as **burnable NFTs**, ensuring secure and time-limited access for buyers.
+1. **🚀 Request & Define Your Data Needs:**  
+   Search for an existing dataset or create a custom request. For example, you can track sentiment around a product launch by adding relevant Twitter handles, hashtags, or keywords, then submitting your request.
 
-## 🛠️ How to Use
+2. **🤖 AI Agents Collect & Structure Data:**  
+   Once your request is submitted, **DataBlox’s AI agents** fetch live Twitter data, analyze sentiment, detect trends, and extract key insights. They organize the information into structured categories like trends, regions, and demographics, turning raw social data into a clean, usable dataset.
 
-### 🔍 **Accessing Real-Time Datasets**
+3. **📩 Get Your Webhook & Live Updates:**  
+   Within **2–3 days**, you’ll receive a webhook URL. **Zerepy agents** continuously monitor your requested accounts, hashtags, and topics, instantly appending new data to your dataset and updating your webhook in real-time.
 
-1. 🔎 **Search** for a dataset relevant to your topic of interest.
-2. 🔔 **Subscribe** to a dataset and receive a **webhook URL**.
-3. 🔗 **Integrate** real-time JSON data into ML models, trading strategies, and dashboards.
+4. **📈 Seamlessly Integrate & Automate:**  
+   Plug your **webhook** into ML models, dashboards, trading strategies, or BI tools. Your system stays updated automatically, giving you continuous, real-time insights without any manual work.
 
-### 🎯 **Requesting Custom Datasets**
+Every new data point flows into your system without manual intervention, keeping your insights always current. 🚀
+<div align="center">
+  <img src="frontend/src/assets/videos/video_5.gif" alt="Seller Image 5" width="90%">
+</div>
 
-1. 📝 Submit a dataset request with a description of the data you need.
-2. 🤖 AI agents analyze related accounts, hashtags, and data sources.
-3. ⏳ Within **2-3 days**, a structured dataset is generated and delivered via email.
-4. 🔄 **Zerepy AI** continuously updates the dataset with fresh insights.
+## 🛒 AI Powered Data Marketplace
 
-### 🛍️ **Using the AI Data Marketplace**
+### 👤 Buyer
 
-1. 🔑 Describe your needs using **keywords or natural language**.
-2. 🏪 AI lists the **most relevant datasets** based on your search.
-3. 💬 **Chat with AI** to verify dataset quality before purchasing.
-4. 🔥 Buy datasets securely as **burnable NFTs**.
+- **🔍 Seamless Onboarding & Smart Search**  
+  Connect your wallet and enter a natural language query—no need for complex filters or technical know-how. Our AI-powered search engine automatically extracts relevant tags and metadata, presenting you with a curated list of high-quality, verified datasets—whether you need real-time health metrics, e-commerce trends, or behavioral insights.
 
-## 🔄 How It Works
+- **🤖 Interactive Quality Verification**  
+  Before purchasing, chat with our AI assistant to assess dataset quality. Ask about missing values, data freshness, consistency, or biases, and our **credibility & security agents** will provide detailed insights—ensuring you invest in only the most reliable data.
 
+- **🔗 Secure & Transparent NFT Transactions**  
+  When ready, purchase datasets as **burnable NFTs** on the **Sonic blockchain**. This ensures secure, time-limited access, with every transaction immutably recorded—guaranteeing transparency, ownership, and seamless integration into your workflow. 🚀
 
-### 📊 **Process Flow Diagram** 
+<div align="center">
+  <img src="frontend/src/assets/videos/video_1.gif" alt="Seller Image 1" width="45%">
+  <img src="frontend/src/assets/flow-chart/part2.jpeg" alt="Seller Image 2" width="45%">
+</div>
 
-![WhatsApp Image 2025-03-09 at 02 01 43](https://github.com/user-attachments/assets/b359cc3a-e5a6-48e4-abb2-588c9febe95b)
-![WhatsApp Image 2025-03-09 at 02 02 13](https://github.com/user-attachments/assets/2d45d055-0e68-4d69-bfe9-30c687076753)
-![WhatsApp Image 2025-03-09 at 02 01 49](https://github.com/user-attachments/assets/874dda6d-71a6-41b4-908d-fce7183a036a)
-![WhatsApp Image 2025-03-09 at 02 02 03](https://github.com/user-attachments/assets/a04c8b57-c134-43b6-9ca4-d8487e557025)
+### 🏷️ Seller
 
+- **📤 Effortless Dataset Listing for Sellers**  
+  Have a valuable dataset to offer? Simply connect your wallet and list it on the marketplace. Our AI agents help you categorize and tag your dataset for better discoverability. Add descriptions, sample previews, and pricing—all through a user-friendly interface.
+
+- **🧠 AI-Backed Quality Boost & Visibility**  
+  Our platform evaluates your dataset using credibility and consistency checks, boosting your listing’s trust factor. Verified datasets get better visibility, increasing buyer confidence and sales potential.
+
+- **💸 Earn via Sonic Tokens**  
+  Every sale earns you **Sonic tokens**, while the **burnable NFT mechanism** ensures fair usage rights and transparent access. Whether you're an individual contributor or a data-rich organization, monetizing your datasets has never been this simple.
+
+<div align="center">
+  <img src="frontend/src/assets/videos/video_6.gif" alt="Seller Image 6" width="90%">
+</div>
+
+**🔁Complete Workflow: How Everything Connects**
+<div align="center">
+  <img src="frontend/src/assets/flow-chart/full.jpeg" alt="Full_flowchart" width="90%">
+</div>
+<div align="center">
+  <img src="frontend/src/assets/flow-chart/part1.jpeg" alt="Flowchart1" width="30%">
+  <img src="frontend/src/assets/flow-chart/part2.jpeg" alt="Flowchart2" width="30%">
+  <img src="frontend/src/assets/flow-chart/part3.jpeg" alt="Flowchart3" width="30%">
+</div>
 
 ## ⚡ Technologies Used
 
-- **🛠️ Sonic Blockchain**: Secure, decentralized transactions and dataset ownership.
-- **🤖 Zerepy AI**: AI-powered monitoring agent that continuously tracks and updates real-time data streams.
-- **⚡ Next.js**: Provides a fast and scalable front-end framework for the DataBlox platform.
-- **🗄️ Supabase**: Backend database solution for managing dataset requests, subscriptions, and user authentication.
-- **📡 AI Processing**: Groq and Gemini AI for data extraction and analysis.
-- **🔗 Webhooks & JSON API**: Delivering real-time datasets seamlessly.
-- **📝 Smart Contracts**: Burnable NFT system for secure data transactions.
+- **Sonic Blockchain:** Secure, decentralized transactions and immutable dataset ownership.
+- **Zerepy AI:** The engine behind our live data fetching, processing, and continuous updates.
+- **Next.js & Supabase:** Powering a fast, scalable front-end and robust backend.
+- **Groq & Gemini AI:** Advanced tools for data extraction, sentiment analysis, and insight generation.
+- **Smart Contracts & Burnable NFTs:** Ensure secure, time-limited access to purchased datasets.
 
 ## 🏆 Why DataBlox?
 
-- ✅ **Real-time, AI-powered data insights**
-- 🔗 **Blockchain security & transparency**
-- 🏪 **AI marketplace ensuring dataset credibility**
-- 📡 **Webhook-based data integration**
-- 🎯 **Custom dataset requests powered by AI**
+- **Real-Time, AI-Powered Insights:** Stay ahead with continuously updated, actionable data.
+- **Decentralized & Secure:** Blockchain-based transactions ensure transparency and trust.
+- **Customizable Data Solutions:** Tailor your dataset requests to match exact needs.
+- **User-Friendly Marketplace:** Discover, verify, and purchase quality datasets with ease.
 
-## 🛠️ Future Enhancements
+## 🔮 Future Enhancements
 
-- 📈 **Expanding real-time dataset categories**
-- 🤖 **AI-powered trend prediction models**
-- 🔄 **Automated dataset resale marketplace**
-- 📱 **Mobile app for seamless access**
-
-## 📸 Screenshots & Demonstrations
-
-![Screenshot Placeholder]
-*(Add UI screenshots of dataset subscription, AI chatbot interaction, and webhook integration)*
+- **Broader Social Media Integration:** Expand data sources beyond Twitter to include platforms like LinkedIn.
+- **Advanced Trend Predictions:** Develop AI models to forecast emerging trends and market shifts.
+- **Automated Resale Marketplace:** Enable secure, automated resale of datasets.
+- **Mobile Application:** Bring real-time data intelligence to your fingertips on-the-go.
 
 ## 🔗 Join the Future of Data Intelligence
 
-**🌐 Website**: [DataBloX](https://datablox.vercel.app/)  
+Experience the revolution in data access and intelligence. Whether you're a **business optimizing campaigns, a researcher mining insights, or a developer powering next-gen applications, DataBlox empowers you with verified, real-time data.**
 
-------
+### Website: [DataBloX](#)
 
-### 👨‍💻 Contribute to DataBlox and help shape the next revolution in real-time data intelligence! 🚀
+## ✨ Contributors
 
+- **Umesh Singh Verma**
+- **Ankit Yadav**
+- **Akhilesh Jyotishi**
+- **Shubham Roy**
+- **Disha Dwivedi**
+
+---
+
+**DataBlox – Because in a world that never stops moving, your data shouldn’t either.** 🚀
